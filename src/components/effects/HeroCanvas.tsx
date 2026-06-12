@@ -50,10 +50,10 @@ function DataField({ count = 1500 }: { count?: number }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.04}
+        size={0.035}
         color={accent}
         transparent
-        opacity={0.75}
+        opacity={0.38}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}

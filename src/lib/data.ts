@@ -137,9 +137,9 @@ export const projects: Project[] = [
   {
     org: "Anahata Nepal",
     title: "Internal Child Sex Trafficking Study",
-    desc: "Mapping vulnerability hotspots in Kathmandu across physical, economic, mental and environmental safety.",
+    desc: "Mapping vulnerability hotspots in Kathmandu across physical, economic, mental and environmental safety. Completed November 2025.",
     loc: "Kathmandu, Nepal",
-    status: "ongoing",
+    status: "completed",
     cat: ["social"],
     tags: ["Mixed methods", "Survey"],
   },
@@ -206,9 +206,9 @@ export const featuredPaper = {
   desc: "Cross-border regulatory spillovers in crypto-asset markets after the SEC's 2017 DAO Report — a global ICO dataset (2014–2021) and region-month panel regressions documenting a substantial post-2017 reallocation of activity toward Europe.",
   url: "https://arxiv.org/abs/2602.00138",
   coauthors: [
-    { initials: "IG", name: "Indra Giri", aff: "Lead author" },
     { initials: "KS", name: "Krishna Sharma", aff: "Hoover Institution, Stanford University" },
     { initials: "KB", name: "Khemraj Bhatt", aff: "First Citizen Bank, NC" },
+    { initials: "IG", name: "Indra Giri", aff: "Sankhya Solutions Pvt. Ltd., Nepal" },
   ],
 };
 

@@ -65,6 +65,8 @@ export default function Hero() {
       {/* WebGL data-field (skipped under reduced motion) */}
       <div className="hero-canvas absolute inset-0 -z-10">
         {!reduced && <HeroCanvas />}
+        {/* radial vignette — darkens the text area centre for legibility */}
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 40% 50%, rgb(var(--bg)/0.55) 0%, transparent 100%)" }} />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
       </div>
 
