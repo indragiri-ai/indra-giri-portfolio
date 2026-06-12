@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── The Evidence Engine · design tokens ─────────────────────────────
+   Dark (default): indigo-ink noir + field-survey flag-orange accent.
+   Light: document paper + same accent family, darkened for contrast.   */
+:root {
+  --bg: 14 16 26; /* indigo ink */
+  --surface: 21 24 38;
+  --raised: 28 32 50;
+  --fg: 237 234 226; /* warm document paper */
+  --muted: 150 152 164;
+  --line: 237 234 226;
+  --accent: 255 92 56; /* flag orange */
+  --accent-ink: 14 16 26; /* text on accent fills */
+  --accent-text: 255 122 92; /* accent used AS text on dark */
+}
+
+.light {
+  --bg: 245 244 239;
+  --surface: 252 251 247;
+  --raised: 255 255 255;
+  --fg: 20 23 36;
+  --muted: 96 100 114;
+  --line: 20 23 36;
+  --accent: 235 78 40;
+  --accent-ink: 252 251 247;
+  --accent-text: 186 56 20;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.35);
+  color: rgb(var(--fg));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--surface));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--muted) / 0.4);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent));
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Film grain — pure CSS noise via SVG turbulence */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.light .grain::before {
+  opacity: 0.04;
+}
+
+/* Hide native cursor when custom cursor is active (fine pointers only) */
+@media (pointer: fine) {
+  .cursor-none-host,
+  .cursor-none-host a,
+  .cursor-none-host button {
+    cursor: none;
+  }
+}
+
+@layer components {
+  /* "FIG. 01 — LABEL" ledger eyebrow, the recurring research-paper motif */
+  .fig-label {
+    @apply inline-flex items-center gap-3 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-accent-text;
+  }
+  .fig-label::after {
+    content: "";
+    @apply h-px w-10 bg-accent/60;
+  }
+  .section-title {
+    @apply font-display text-4xl font-bold leading-[1.04] tracking-tight text-fg sm:text-5xl lg:text-6xl;
+  }
+  .section-title em {
+    @apply not-italic text-accent-text;
+  }
+  .panel {
+    @apply rounded-2xl border border-line/10 bg-surface;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}
