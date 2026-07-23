@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Mountain ridgelines with a signal tower reaching some areas and not others">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10152a"/>
+      <stop offset="1" stop-color="#0a0e19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d7b573" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#d7b573" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#131a2b"/>
+      <stop offset="1" stop-color="#0a0e19"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g stroke="#ebe8e0" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 200H1200M0 400H1200M0 600H1200"/>
+    <path d="M300 0V800M600 0V800M900 0V800"/>
+  </g>
+  <!-- far ridge -->
+  <path d="M0 470 L180 300 L320 420 L520 220 L700 400 L880 260 L1050 410 L1200 320 V800 H0 Z"
+        fill="url(#ridge)" stroke="#c6a15b" stroke-opacity="0.30" stroke-width="1.5"/>
+  <!-- near ridge -->
+  <path d="M0 640 L240 480 L430 600 L640 460 L850 620 L1030 520 L1200 610 V800 H0 Z"
+        fill="#0d1220" stroke="#c6a15b" stroke-opacity="0.45" stroke-width="1.5"/>
+  <!-- tower -->
+  <circle cx="240" cy="330" r="170" fill="url(#glow)" opacity="0.55"/>
+  <g stroke="#d7b573" stroke-width="3" stroke-linecap="round">
+    <path d="M240 480V330"/>
+    <path d="M222 480l18 -60 18 60" fill="none"/>
+  </g>
+  <circle cx="240" cy="322" r="9" fill="#d7b573"/>
+  <g fill="none" stroke="#d7b573" stroke-width="2" stroke-linecap="round">
+    <path d="M290 272a72 72 0 0 1 0 100" stroke-opacity="0.75"/>
+    <path d="M320 242a114 114 0 0 1 0 160" stroke-opacity="0.5"/>
+    <path d="M350 212a156 156 0 0 1 0 220" stroke-opacity="0.3"/>
+  </g>
+  <!-- connected settlement -->
+  <g fill="#d7b573">
+    <circle cx="330" cy="560" r="6"/>
+    <circle cx="370" cy="590" r="6"/>
+    <circle cx="300" cy="610" r="6"/>
+    <circle cx="410" cy="565" r="6"/>
+  </g>
+  <!-- unreached settlements, faint -->
+  <g fill="#9499a8" fill-opacity="0.35">
+    <circle cx="820" cy="640" r="6"/>
+    <circle cx="900" cy="600" r="6"/>
+    <circle cx="1010" cy="650" r="6"/>
+    <circle cx="740" cy="600" r="6"/>
+  </g>
+  <g fill="none" stroke="#9499a8" stroke-opacity="0.3" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 10">
+    <path d="M430 300a260 260 0 0 1 240 250"/>
+  </g>
+  <!-- moon -->
+  <circle cx="1030" cy="140" r="46" fill="none" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="1.5"/>
+  <circle cx="1030" cy="140" r="34" fill="#c6a15b" fill-opacity="0.12"/>
+</svg>

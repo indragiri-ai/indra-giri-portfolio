@@ -9,14 +9,14 @@ export default function Teaching() {
   return (
     <section id="teaching" className="mx-auto max-w-content px-6 py-28 sm:px-10">
       <SectionHead
-        fig="04"
-        tag="Lecture hall"
+        fig="05"
+        tag="Teaching"
         title={
           <>
             Educating the <em>next generation</em>
           </>
         }
-        intro="From university lecture halls to professional workshops — economics, research methods, data analysis, and the tools of modern evidence-based work."
+        intro="From university lecture halls to professional AI workshops. Economics, research methods, data analysis and the tools of modern evidence based work."
       />
 
       <Reveal>

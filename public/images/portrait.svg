@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a2138"/>
+      <stop offset="0.55" stop-color="#121727"/>
+      <stop offset="1" stop-color="#0c101b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#c6a15b" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#c6a15b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3350"/>
+      <stop offset="1" stop-color="#1d2439"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1200" fill="url(#bg)"/>
+  <rect width="900" height="1200" fill="url(#glow)"/>
+  <!-- abstract portrait silhouette -->
+  <circle cx="450" cy="400" r="150" fill="url(#body)"/>
+  <path d="M450 590 C 290 590 170 700 150 880 L150 1200 L750 1200 L750 880 C 730 700 610 590 450 590 Z" fill="url(#body)"/>
+  <circle cx="450" cy="400" r="150" fill="none" stroke="#c6a15b" stroke-opacity="0.35" stroke-width="2"/>
+  <!-- initials -->
+  <text x="450" y="435" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-style="italic" fill="#d7b573" opacity="0.9">IG</text>
+  <!-- caption -->
+  <text x="450" y="1076" text-anchor="middle" font-family="Consolas, monospace" font-size="26" letter-spacing="6" fill="#9499a8">YOUR PHOTO HERE</text>
+  <text x="450" y="1118" text-anchor="middle" font-family="Consolas, monospace" font-size="20" letter-spacing="3" fill="#6a7085">Replace public/images/portrait.svg</text>
+  <!-- corner marks -->
+  <path d="M40 40 h60 M40 40 v60" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="2" fill="none"/>
+  <path d="M860 40 h-60 M860 40 v60" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="2" fill="none"/>
+  <path d="M40 1160 h60 M40 1160 v-60" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="2" fill="none"/>
+  <path d="M860 1160 h-60 M860 1160 v-60" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="2" fill="none"/>
+</svg>

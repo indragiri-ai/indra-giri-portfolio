@@ -14,7 +14,7 @@ export default function SectionHead({
   return (
     <Reveal>
       <div className="fig-label mb-5">
-        FIG. {fig} — {tag}
+        {fig} · {tag}
       </div>
       <h2 className="section-title mb-4 max-w-3xl">{title}</h2>
       {intro && <p className="mb-12 max-w-xl leading-relaxed text-muted">{intro}</p>}

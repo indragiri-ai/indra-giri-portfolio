@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Abstract chat prompt panels with a glowing cursor">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10152a"/>
+      <stop offset="1" stop-color="#0a0e19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d7b573" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#d7b573" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g stroke="#ebe8e0" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 160H1200M0 320H1200M0 480H1200M0 640H1200"/>
+    <path d="M240 0V800M480 0V800M720 0V800M960 0V800"/>
+  </g>
+  <!-- prompt panel (user) -->
+  <g transform="translate(160,140)">
+    <rect width="560" height="220" rx="18" fill="#131a2b" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="1.5"/>
+    <path d="M40 60l26 26-26 26" fill="none" stroke="#d7b573" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="#c6a15b" stroke-width="6" stroke-linecap="round" stroke-opacity="0.7">
+      <path d="M100 86H420"/>
+    </g>
+    <g stroke="#9499a8" stroke-width="5" stroke-linecap="round" stroke-opacity="0.45">
+      <path d="M100 130H500M100 168H380"/>
+    </g>
+  </g>
+  <!-- response panel -->
+  <g transform="translate(420,420)">
+    <rect width="620" height="240" rx="18" fill="#131a2b" stroke="#ebe8e0" stroke-opacity="0.12" stroke-width="1.5"/>
+    <circle cx="56" cy="60" r="16" fill="none" stroke="#c6a15b" stroke-opacity="0.7" stroke-width="2"/>
+    <circle cx="56" cy="60" r="5" fill="#d7b573"/>
+    <g stroke="#9499a8" stroke-width="5" stroke-linecap="round" stroke-opacity="0.5">
+      <path d="M100 56H560M100 100H520M100 138H560M100 176H300"/>
+    </g>
+    <rect x="316" y="164" width="14" height="26" rx="2" fill="#d7b573"/>
+  </g>
+  <circle cx="330" cy="580" r="150" fill="url(#glow)" opacity="0.5"/>
+  <!-- staged arrows: work in stages -->
+  <g stroke="#c6a15b" stroke-opacity="0.5" stroke-width="2" fill="none">
+    <path d="M740 250 Q880 260 900 400" stroke-dasharray="3 8" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(150,540)" stroke="#c6a15b" stroke-opacity="0.6" stroke-width="2" fill="#131a2b">
+    <circle cx="0" cy="0" r="9"/>
+    <circle cx="70" cy="0" r="9"/>
+    <circle cx="140" cy="0" r="9"/>
+    <path d="M12 0H58M82 0H128" stroke-linecap="round"/>
+  </g>
+  <circle cx="150" cy="540" r="9" fill="#d7b573" stroke="none"/>
+  <path d="M60 90 Q600 30 1140 90" fill="none" stroke="#c6a15b" stroke-opacity="0.2" stroke-width="2"/>
+</svg>

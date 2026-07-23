@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
 import { profile } from "@/lib/data";
-import SmoothScroll from "@/components/effects/SmoothScroll";
-import CursorTrail from "@/components/effects/CursorTrail";
-import Preloader from "@/components/effects/Preloader";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
 });
@@ -28,21 +26,23 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${profile.name} — Senior Researcher, Data Analyst & Educator`,
+  title: `${profile.name} | AI Generalist, Researcher & Educator`,
   description: profile.tagline,
   keywords: [
     "Indra Giri",
+    "AI Generalist",
+    "AI trainer",
     "researcher",
     "data analyst",
     "economist",
     "impact evaluation",
     "Nepal",
-    "Stata",
+    "AI policy",
     "research consultant",
   ],
   authors: [{ name: profile.name }],
   openGraph: {
-    title: `${profile.name} — The Evidence Engine`,
+    title: `${profile.name} | AI Generalist, Researcher & Educator`,
     description: profile.tagline,
     type: "website",
     locale: "en_US",
@@ -67,11 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="grain">
-        <Preloader />
-        <CursorTrail />
-        <SmoothScroll>{children}</SmoothScroll>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

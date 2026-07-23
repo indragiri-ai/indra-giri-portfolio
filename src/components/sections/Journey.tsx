@@ -1,129 +1,120 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { IconMapPin } from "@tabler/icons-react";
+import { IconMapPin, IconBriefcase, IconSchool, IconStar } from "@tabler/icons-react";
 import { journey, type JourneyItem } from "@/lib/data";
+import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-function JourneyCard({ item, index }: { item: JourneyItem; index: number }) {
+function TimelineEntry({
+  item,
+  index,
+  last,
+}: {
+  item: JourneyItem;
+  index: number;
+  last: boolean;
+}) {
   const isEdu = item.type === "edu";
   const isCurrent = item.type === "current";
+  const Marker = isCurrent ? IconStar : isEdu ? IconSchool : IconBriefcase;
+
   return (
-    <article
-      className={cn(
-        "relative flex w-full shrink-0 flex-col rounded-2xl border p-7 lg:w-[420px]",
-        isCurrent
-          ? "border-accent/50 bg-accent/[0.07]"
-          : "border-line/10 bg-surface"
-      )}
-    >
-      <div className="mb-5 flex items-center justify-between">
-        <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
-          {String(index + 1).padStart(2, "0")} / {String(journey.length).padStart(2, "0")} ·{" "}
-          {isEdu ? "education" : "experience"}
-        </span>
-        <span
+    <Reveal delay={Math.min(index * 0.04, 0.2)}>
+      <div className="relative grid grid-cols-[3rem_1fr] gap-x-5 pb-12 last:pb-0 sm:grid-cols-[10rem_3rem_1fr] sm:gap-x-6">
+        {/* period (desktop, left column) */}
+        <div className="hidden pt-1 text-right sm:block">
+          <div
+            className={cn(
+              "font-mono text-xs tracking-wide",
+              isCurrent ? "font-semibold text-accent-text" : "text-muted"
+            )}
+          >
+            {item.period}
+          </div>
+          <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/70">
+            {isCurrent ? "Current" : isEdu ? "Education" : "Experience"}
+          </div>
+        </div>
+
+        {/* rail + marker */}
+        <div className="relative flex justify-center">
+          {!last && (
+            <span aria-hidden className="absolute -bottom-2 top-10 w-px bg-line/15" />
+          )}
+          <span
+            className={cn(
+              "z-10 flex h-10 w-10 items-center justify-center rounded-full border",
+              isCurrent
+                ? "border-accent bg-accent text-accent-ink"
+                : "border-line/20 bg-surface text-accent-text"
+            )}
+          >
+            <Marker size={17} stroke={1.7} />
+          </span>
+        </div>
+
+        {/* card */}
+        <div
           className={cn(
-            "rounded-full px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.12em]",
-            isCurrent
-              ? "bg-accent text-accent-ink"
-              : isEdu
-              ? "border border-accent/30 text-accent-text"
-              : "border border-line/15 text-muted"
+            "panel p-6 transition-colors hover:border-accent/40 sm:p-7",
+            isCurrent && "border-accent/40 bg-accent/[0.05]"
           )}
         >
-          {item.period}
-        </span>
-      </div>
-      <h3 className="font-display text-2xl font-bold leading-tight text-fg">{item.role}</h3>
-      <div className="mt-1 text-sm font-semibold text-accent-text">{item.org}</div>
-      <div className="mt-1 inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">
-        <IconMapPin size={12} className="text-accent-text" />
-        {item.loc}
-      </div>
-      <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">{item.desc}</p>
-      {item.tools.length > 0 && (
-        <div className="mt-5 flex flex-wrap gap-1.5">
-          {item.tools.map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.56rem] uppercase tracking-[0.1em] text-muted"
-            >
-              {t}
+          <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1 sm:hidden">
+            <span className="font-mono text-xs text-accent-text">{item.period}</span>
+            <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/70">
+              {isCurrent ? "Current" : isEdu ? "Education" : "Experience"}
             </span>
-          ))}
+          </div>
+          <h3 className="font-display text-xl font-semibold leading-snug text-fg sm:text-2xl">
+            {item.role}
+          </h3>
+          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+            <span className="font-semibold text-accent-text">{item.org}</span>
+            <span className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">
+              <IconMapPin size={12} />
+              {item.loc}
+            </span>
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-muted">{item.desc}</p>
+          {item.tools.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-1.5">
+              {item.tools.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
-      )}
-    </article>
+      </div>
+    </Reveal>
   );
 }
 
 export default function Journey() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const mm = gsap.matchMedia();
-
-    mm.add(
-      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-      () => {
-        const wrap = wrapRef.current;
-        const track = trackRef.current;
-        if (!wrap || !track) return;
-
-        const tween = gsap.to(track, {
-          x: () => -(track.scrollWidth - window.innerWidth + 80),
-          ease: "none",
-          scrollTrigger: {
-            trigger: wrap,
-            start: "top top",
-            end: () => `+=${track.scrollWidth - window.innerWidth + 80}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-          },
-        });
-
-        return () => {
-          tween.scrollTrigger?.kill();
-          tween.kill();
-        };
-      }
-    );
-
-    return () => mm.revert();
-  }, []);
-
   return (
-    <section id="journey" ref={wrapRef} className="overflow-hidden py-28 lg:h-screen lg:py-0">
-      <div className="mx-auto max-w-content px-6 sm:px-10 lg:pt-24">
-        <Reveal>
-          <div className="fig-label mb-5">FIG. 06 — Longitudinal record</div>
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <h2 className="section-title">
-              A decade across
-              <br />
-              <em>research, data &amp; borders</em>
-            </h2>
-            <p className="hidden max-w-xs pb-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted lg:block">
-              Scroll → the record advances horizontally
-            </p>
-          </div>
-        </Reveal>
-      </div>
+    <section id="journey" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+      <SectionHead
+        fig="07"
+        tag="Journey"
+        title={
+          <>
+            A decade across
+            <br />
+            research, data & <em>borders</em>
+          </>
+        }
+        intro="From Delhi classrooms to Nepali field sites, and from spreadsheets to AI systems. The path so far."
+      />
 
-      <div
-        ref={trackRef}
-        className="mt-12 flex flex-col gap-5 px-6 sm:px-10 lg:w-max lg:flex-row lg:items-stretch lg:gap-6 lg:pl-10 lg:pr-20"
-      >
+      <div className="mx-auto max-w-4xl">
         {journey.map((j, i) => (
-          <JourneyCard key={j.org + i} item={j} index={i} />
+          <TimelineEntry key={j.org + i} item={j} index={i} last={i === journey.length - 1} />
         ))}
       </div>
     </section>

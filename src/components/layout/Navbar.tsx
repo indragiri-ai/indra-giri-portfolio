@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { profile, navLinks } from "@/lib/data";
@@ -28,23 +29,20 @@ export default function Navbar() {
             : "bg-transparent"
         )}
       >
-        <a href="#top" className="font-display text-lg font-bold tracking-tight text-fg">
-          IG<span className="text-accent-text">—</span>
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.25em] text-muted">
-            evidence engine
-          </span>
-        </a>
+        <Link href="/" className="font-display text-xl font-semibold tracking-tight text-fg">
+          Indra <span className="italic text-accent-text">Giri</span>
+        </Link>
 
         <ul className="hidden items-center gap-7 lg:flex">
           {navLinks.map((l) => (
             <li key={l.href}>
-              <a
+              <Link
                 href={l.href}
                 className="group relative font-mono text-[0.68rem] uppercase tracking-[0.18em] text-muted transition-colors hover:text-fg"
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -78,7 +76,7 @@ export default function Navbar() {
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-muted">
-                Index
+                Menu
               </span>
               <button
                 onClick={() => setOpen(false)}
@@ -88,22 +86,25 @@ export default function Navbar() {
                 <IconX size={18} />
               </button>
             </div>
-            <div className="mt-12 flex flex-col gap-2">
+            <div className="mt-12 flex flex-col gap-2 overflow-y-auto">
               {navLinks.map((l, i) => (
-                <motion.a
+                <motion.div
                   key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
                   initial={{ opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 + i * 0.05 }}
-                  className="flex items-baseline gap-4 border-b border-line/10 py-4 font-display text-3xl font-bold text-fg"
                 >
-                  <span className="font-mono text-xs text-accent-text">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  {l.label}
-                </motion.a>
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="flex items-baseline gap-4 border-b border-line/10 py-4 font-display text-3xl font-semibold text-fg"
+                  >
+                    <span className="font-mono text-xs text-accent-text">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {l.label}
+                  </Link>
+                </motion.div>
               ))}
             </div>
             <a

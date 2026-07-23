@@ -82,14 +82,14 @@ export default function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-content px-6 py-28 sm:px-10">
       <SectionHead
-        fig="03"
-        tag="Instruments"
+        fig="04"
+        tag="Skills"
         title={
           <>
             The analytical <em>toolkit</em>
           </>
         }
-        intro="Statistical software, research methods, and analytical techniques — the instruments behind every evidence-based decision."
+        intro="Statistical software, AI tools, research methods and analytical techniques. The instruments behind every evidence based decision."
       />
 
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr]">
@@ -97,7 +97,7 @@ export default function Skills() {
         <Reveal>
           <div ref={ref} className="panel px-7 py-3">
             <div className="border-b border-line/10 py-4 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-muted">
-              Readout · statistical & analytical software
+              Software & AI proficiency
             </div>
             {tools.map((t, i) => (
               <Meter key={t.name} {...t} go={go} idx={i} />

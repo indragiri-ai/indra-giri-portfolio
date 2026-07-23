@@ -12,7 +12,6 @@ import {
 } from "@tabler/icons-react";
 import { profile } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
-import MagneticButton from "@/components/ui/MagneticButton";
 
 type Status = "idle" | "sending" | "sent" | "error" | "invalid";
 
@@ -20,7 +19,7 @@ const labels: Record<Status, string> = {
   idle: "Send message",
   sending: "Sending…",
   sent: "Message sent",
-  error: "Something went wrong — try again",
+  error: "Something went wrong, please try again",
   invalid: "Please fill name, email & message",
 };
 
@@ -39,16 +38,21 @@ export default function Contact() {
       setTimeout(() => setStatus("idle"), 2200);
       return;
     }
+    const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+    if (!formspreeId) {
+      // no form service configured: open the visitor's email app instead
+      const body = encodeURIComponent(`${form.message}\n\n${form.name} (${form.email})`);
+      const subject = encodeURIComponent(form.subject || `Message from ${form.name}`);
+      window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
+      return;
+    }
     setStatus("sending");
     try {
-      const res = await fetch(
-        `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(form),
-        }
-      );
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(form),
+      });
       if (!res.ok) throw new Error("failed");
       setStatus("sent");
       setForm({ name: "", email: "", subject: "", message: "" });
@@ -60,20 +64,20 @@ export default function Contact() {
   };
 
   const inputCls =
-    "w-full rounded-xl border border-line/15 bg-surface px-5 py-4 text-sm text-fg outline-none transition-colors placeholder:text-muted/60 focus:border-accent";
+    "w-full rounded-xl border border-line/15 bg-bg px-5 py-4 text-sm text-fg outline-none transition-colors placeholder:text-muted/60 focus:border-accent";
 
   return (
     <section id="contact" className="mx-auto max-w-content px-6 py-28 sm:px-10">
       <Reveal>
-        <div className="fig-label mb-5">FIG. 07 — Correspondence</div>
-        <h2 className="font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-tight text-fg sm:text-7xl lg:text-8xl">
-          Let&apos;s build
+        <div className="fig-label mb-5">09 · Contact</div>
+        <h2 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">
+          Let&apos;s work
           <br />
-          <span className="text-accent-text">evidence.</span>
+          <em className="italic text-accent-text">together</em>
         </h2>
         <p className="mt-6 max-w-xl leading-relaxed text-muted">
-          Open to research collaborations, consulting engagements, guest lectures, and speaking
-          opportunities. I usually respond within a day.
+          Open to research collaborations, AI training engagements, consulting, guest lectures
+          and speaking opportunities. I usually respond within a day.
         </p>
       </Reveal>
 
@@ -92,7 +96,7 @@ export default function Contact() {
                     <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
                       {label}
                     </div>
-                    <div className="mt-0.5 font-display text-lg font-bold text-fg group-hover:text-accent-text">
+                    <div className="mt-0.5 font-display text-lg font-semibold text-fg group-hover:text-accent-text">
                       {value}
                     </div>
                   </div>
@@ -111,7 +115,7 @@ export default function Contact() {
               <span className="relative h-2 w-2 rounded-full bg-accent">
                 <span className="absolute inset-0 animate-ping2 rounded-full bg-accent" />
               </span>
-              Currently available for new research projects
+              Available for research & AI projects
             </div>
           </div>
         </Reveal>
@@ -134,23 +138,21 @@ export default function Contact() {
               value={form.message}
               onChange={update("message")}
             />
-            <MagneticButton className="mt-6 inline-block w-full">
-              <button
-                onClick={submit}
-                disabled={status === "sending"}
-                className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] transition-all ${
-                  status === "sent"
-                    ? "bg-fg text-bg"
-                    : "bg-accent text-accent-ink hover:shadow-[0_12px_36px_rgb(var(--accent)/0.35)]"
-                }`}
-              >
-                {status === "sending" && <IconLoader2 size={15} className="animate-spin" />}
-                {status === "sent" && <IconCheck size={15} />}
-                {(status === "error" || status === "invalid") && <IconAlertCircle size={15} />}
-                {status === "idle" && <IconSend size={15} />}
-                {labels[status]}
-              </button>
-            </MagneticButton>
+            <button
+              onClick={submit}
+              disabled={status === "sending"}
+              className={`mt-6 flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] transition-all ${
+                status === "sent"
+                  ? "bg-fg text-bg"
+                  : "bg-accent text-accent-ink hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgb(var(--accent)/0.3)]"
+              }`}
+            >
+              {status === "sending" && <IconLoader2 size={15} className="animate-spin" />}
+              {status === "sent" && <IconCheck size={15} />}
+              {(status === "error" || status === "invalid") && <IconAlertCircle size={15} />}
+              {status === "idle" && <IconSend size={15} />}
+              {labels[status]}
+            </button>
           </div>
         </Reveal>
       </div>

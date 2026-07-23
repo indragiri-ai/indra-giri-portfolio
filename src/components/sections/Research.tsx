@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconMapPin } from "@tabler/icons-react";
 import { projects, projectFilters, type ProjectCategory, type Project } from "@/lib/data";
@@ -10,22 +10,10 @@ import { cn } from "@/lib/utils";
 
 type FilterKey = "all" | ProjectCategory;
 
-function SpotlightCard({ p, index }: { p: Project; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const onMove = (e: React.MouseEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
-    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
-  };
-
+function ProjectCard({ p, index }: { p: Project; index: number }) {
   return (
     <motion.div
       layout
-      ref={ref}
-      onMouseMove={onMove}
       initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.97 }}
@@ -35,16 +23,6 @@ function SpotlightCard({ p, index }: { p: Project; index: number }) {
         p.big && "md:col-span-2"
       )}
     >
-      {/* cursor spotlight */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(420px circle at var(--mx) var(--my), rgb(var(--accent) / 0.08), transparent 45%)",
-        }}
-      />
-
       <div className="relative z-10 flex flex-1 flex-col">
         <div className="mb-5 flex items-start justify-between gap-4">
           <span className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
@@ -113,16 +91,16 @@ export default function Research() {
   return (
     <section id="research" className="mx-auto max-w-content px-6 py-28 sm:px-10">
       <SectionHead
-        fig="02"
-        tag="Dataset"
+        fig="03"
+        tag="Research"
         title={
           <>
-            Eleven studies.
+            Research that
             <br />
-            <em>Real consequences.</em>
+            moves <em>decisions</em>
           </>
         }
-        intro="A decade of applied research for international organisations, governments and universities across South Asia — each card a study that moved a decision."
+        intro="A decade of applied research for international organisations, governments and universities across South Asia. Each card is a study that informed a real decision."
       />
 
       <Reveal>
@@ -147,7 +125,7 @@ export default function Research() {
       <motion.div layout className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
-            <SpotlightCard key={p.title} p={p} index={i} />
+            <ProjectCard key={p.title} p={p} index={i} />
           ))}
         </AnimatePresence>
       </motion.div>

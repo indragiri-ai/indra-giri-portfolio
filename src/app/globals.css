@@ -2,31 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── The Evidence Engine · design tokens ─────────────────────────────
-   Dark (default): indigo-ink noir + field-survey flag-orange accent.
-   Light: document paper + same accent family, darkened for contrast.   */
+/* ─── Design tokens ───────────────────────────────────────────────
+   Premium editorial: deep ink navy + refined gold accent.
+   Dark (default) and light (toggle in nav).                        */
 :root {
-  --bg: 14 16 26; /* indigo ink */
-  --surface: 21 24 38;
-  --raised: 28 32 50;
-  --fg: 237 234 226; /* warm document paper */
-  --muted: 150 152 164;
-  --line: 237 234 226;
-  --accent: 255 92 56; /* flag orange */
-  --accent-ink: 14 16 26; /* text on accent fills */
-  --accent-text: 255 122 92; /* accent used AS text on dark */
+  --bg: 12 16 27; /* deep ink navy */
+  --surface: 18 23 37;
+  --raised: 25 31 48;
+  --fg: 235 232 224; /* warm paper */
+  --muted: 148 153 168;
+  --line: 235 232 224;
+  --accent: 198 161 91; /* refined gold */
+  --accent-ink: 15 19 30; /* text on gold fills */
+  --accent-text: 215 181 115; /* gold used AS text on dark */
 }
 
 .light {
-  --bg: 245 244 239;
-  --surface: 252 251 247;
+  --bg: 250 249 245; /* warm ivory */
+  --surface: 255 255 255;
   --raised: 255 255 255;
-  --fg: 20 23 36;
-  --muted: 96 100 114;
-  --line: 20 23 36;
-  --accent: 235 78 40;
-  --accent-ink: 252 251 247;
-  --accent-text: 186 56 20;
+  --fg: 25 29 41;
+  --muted: 104 109 124;
+  --line: 25 29 41;
+  --accent: 158 122 52; /* bronze */
+  --accent-ink: 255 255 255;
+  --accent-text: 138 104 40;
 }
 
 html {
@@ -43,7 +43,7 @@ body {
 }
 
 ::selection {
-  background: rgb(var(--accent) / 0.35);
+  background: rgb(var(--accent) / 0.3);
   color: rgb(var(--fg));
 }
 
@@ -61,63 +61,75 @@ body {
   background: rgb(var(--accent));
 }
 
-/* Lenis */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-/* Film grain — pure CSS noise via SVG turbulence */
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: -50%;
-  z-index: 70;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-.light .grain::before {
-  opacity: 0.04;
-}
-
-/* Hide native cursor when custom cursor is active (fine pointers only) */
-@media (pointer: fine) {
-  .cursor-none-host,
-  .cursor-none-host a,
-  .cursor-none-host button {
-    cursor: none;
-  }
-}
-
 @layer components {
-  /* "FIG. 01 — LABEL" ledger eyebrow, the recurring research-paper motif */
+  /* small numbered eyebrow above section titles */
   .fig-label {
-    @apply inline-flex items-center gap-3 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-accent-text;
+    @apply inline-flex items-center gap-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-accent-text;
   }
   .fig-label::after {
     content: "";
-    @apply h-px w-10 bg-accent/60;
+    @apply h-px w-12 bg-accent/50;
   }
   .section-title {
-    @apply font-display text-4xl font-bold leading-[1.04] tracking-tight text-fg sm:text-5xl lg:text-6xl;
+    @apply font-display text-4xl font-semibold leading-[1.08] tracking-tight text-fg sm:text-5xl;
   }
   .section-title em {
-    @apply not-italic text-accent-text;
+    @apply italic text-accent-text;
   }
   .panel {
     @apply rounded-2xl border border-line/10 bg-surface;
   }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-8 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] text-accent-ink transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgb(var(--accent)/0.3)];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line/25 px-8 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] text-fg transition-colors hover:border-accent hover:text-accent-text;
+  }
+}
+
+/* article body typography (blog posts) */
+.article-body h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  color: rgb(var(--fg));
+  margin-top: 3rem;
+  margin-bottom: 1.1rem;
+}
+.article-body h2::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-bottom: 1.1rem;
+  background: rgb(var(--accent) / 0.6);
+}
+.article-body p {
+  color: rgb(var(--muted));
+  line-height: 1.85;
+  margin-bottom: 1.35rem;
+  font-size: 1.05rem;
+}
+/* opening paragraph: larger, brighter, with a gold serif drop cap */
+.article-body section:first-child p:first-child {
+  color: rgb(var(--fg) / 0.92);
+  font-size: 1.14rem;
+  line-height: 1.8;
+}
+.article-body section:first-child p:first-child::first-letter {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 3.9rem;
+  line-height: 0.8;
+  float: left;
+  padding: 0.35rem 0.75rem 0 0;
+  color: rgb(var(--accent-text));
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none !important;
+  html {
+    scroll-behavior: auto;
   }
 }

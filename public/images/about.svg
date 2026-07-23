@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1250" viewBox="0 0 1000 1250">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#141a2d"/>
+      <stop offset="1" stop-color="#0c101b"/>
+    </linearGradient>
+    <radialGradient id="glow2" cx="0.7" cy="0.25" r="0.8">
+      <stop offset="0" stop-color="#c6a15b" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#c6a15b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#bg2)"/>
+  <rect width="1000" height="1250" fill="url(#glow2)"/>
+  <!-- abstract mountains: field work in Nepal -->
+  <path d="M0 900 L220 620 L360 780 L540 520 L720 760 L860 640 L1000 820 L1000 1250 L0 1250 Z" fill="#1d2439"/>
+  <path d="M0 1010 L180 830 L400 990 L620 790 L820 950 L1000 870 L1000 1250 L0 1250 Z" fill="#252d47"/>
+  <!-- sun -->
+  <circle cx="700" cy="330" r="90" fill="none" stroke="#c6a15b" stroke-opacity="0.5" stroke-width="2"/>
+  <circle cx="700" cy="330" r="58" fill="#c6a15b" fill-opacity="0.25"/>
+  <!-- data points rising -->
+  <g fill="#d7b573" fill-opacity="0.7">
+    <circle cx="180" cy="520" r="6"/>
+    <circle cx="265" cy="450" r="5"/>
+    <circle cx="350" cy="395" r="6"/>
+    <circle cx="440" cy="330" r="5"/>
+    <circle cx="530" cy="285" r="6"/>
+  </g>
+  <path d="M180 520 L265 450 L350 395 L440 330 L530 285" stroke="#d7b573" stroke-opacity="0.4" stroke-width="2" fill="none"/>
+  <!-- caption -->
+  <text x="500" y="1120" text-anchor="middle" font-family="Consolas, monospace" font-size="28" letter-spacing="6" fill="#9499a8">YOUR PHOTO HERE</text>
+  <text x="500" y="1165" text-anchor="middle" font-family="Consolas, monospace" font-size="21" letter-spacing="3" fill="#6a7085">Replace public/images/about.svg</text>
+</svg>

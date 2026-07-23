@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Topographic contour lines with scattered survey data points">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10152a"/>
+      <stop offset="1" stop-color="#0a0e19"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d7b573" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#d7b573" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <g stroke="#ebe8e0" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 200H1200M0 400H1200M0 600H1200"/>
+    <path d="M300 0V800M600 0V800M900 0V800"/>
+  </g>
+  <!-- contours -->
+  <g fill="none" stroke="#c6a15b" stroke-width="1.5">
+    <path stroke-opacity="0.20" d="M-50 690 C200 620 340 700 560 640 C780 580 920 660 1250 590"/>
+    <path stroke-opacity="0.25" d="M-50 600 C180 520 380 610 580 540 C790 470 960 560 1250 480"/>
+    <path stroke-opacity="0.30" d="M-50 500 C160 430 400 510 600 430 C800 360 980 450 1250 370"/>
+    <path stroke-opacity="0.35" d="M-50 400 C180 330 420 400 620 330 C820 260 1000 340 1250 270"/>
+    <path stroke-opacity="0.30" d="M-50 300 C220 240 440 300 640 240 C840 180 1020 240 1250 180"/>
+    <path stroke-opacity="0.22" d="M-50 210 C260 150 460 210 660 160 C860 110 1040 150 1250 100"/>
+  </g>
+  <!-- data points -->
+  <g fill="#9499a8" fill-opacity="0.7">
+    <circle cx="220" cy="560" r="6"/>
+    <circle cx="340" cy="470" r="6"/>
+    <circle cx="470" cy="590" r="6"/>
+    <circle cx="540" cy="380" r="6"/>
+    <circle cx="700" cy="500" r="6"/>
+    <circle cx="760" cy="300" r="6"/>
+    <circle cx="930" cy="420" r="6"/>
+    <circle cx="1020" cy="250" r="6"/>
+    <circle cx="180" cy="330" r="6"/>
+    <circle cx="880 " cy="620" r="6"/>
+  </g>
+  <!-- verified points -->
+  <circle cx="610" cy="450" r="160" fill="url(#glow)" opacity="0.6"/>
+  <g>
+    <circle cx="610" cy="450" r="10" fill="#d7b573"/>
+    <circle cx="610" cy="450" r="26" fill="none" stroke="#d7b573" stroke-opacity="0.7" stroke-width="2"/>
+    <path d="M610 404v-26M610 496v26M564 450h-26M656 450h26" stroke="#d7b573" stroke-opacity="0.5" stroke-width="2"/>
+  </g>
+  <g>
+    <circle cx="340" cy="470" r="18" fill="none" stroke="#c6a15b" stroke-opacity="0.8" stroke-width="2"/>
+  </g>
+  <g>
+    <circle cx="930" cy="420" r="18" fill="none" stroke="#c6a15b" stroke-opacity="0.8" stroke-width="2"/>
+  </g>
+  <!-- flagged outlier -->
+  <g stroke="#c6a15b" stroke-opacity="0.9" stroke-width="2.5" stroke-linecap="round">
+    <path d="M1013 243l14 14M1027 243l-14 14"/>
+  </g>
+</svg>
