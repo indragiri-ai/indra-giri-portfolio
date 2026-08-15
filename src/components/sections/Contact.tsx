@@ -70,7 +70,7 @@ export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <Reveal>
-        <div className="fig-label mb-5">09 · Contact</div>
+        <div className="fig-label mb-5">08 · Contact</div>
         <h2 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">
           Let&apos;s work
           <br />

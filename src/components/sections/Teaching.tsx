@@ -10,7 +10,7 @@ export default function Teaching() {
   return (
     <section id="teaching" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
-        fig="05"
+        fig="04"
         tag="Teaching"
         title={
           <>

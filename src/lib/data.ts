@@ -322,6 +322,12 @@ export interface BuiltProject {
   meta: string;
   tags: string[];
   status: "live" | "in progress";
+  /** Screenshot in /public. Only the featured entry needs one. */
+  image?: string;
+  /** One line for the feature band, shorter and punchier than `desc`. */
+  headline?: string;
+  /** Exactly one entry should carry this: it gets the band under the hero. */
+  featured?: boolean;
 }
 
 export const builtProjects: BuiltProject[] = [
@@ -334,6 +340,10 @@ export const builtProjects: BuiltProject[] = [
     meta: "Supabase · Postgres · FastAPI · Next.js",
     tags: ["Open data", "Data engineering", "Nepal"],
     status: "in progress",
+    image: "/images/nepal-data-portal.jpg",
+    headline:
+      "Official statistics about Nepal's economy, banking system and society, collected from primary sources and archived so that every number can be traced back to who published it.",
+    featured: true,
   },
   {
     title: "AI for Teachers: A Practical Handbook",
@@ -616,15 +626,20 @@ export const journey: JourneyItem[] = [
 
 /* ── Navigation ──────────────────────────────────────────────── */
 
+/**
+ * Seven items, deliberately. Publications and Journey came out when they became
+ * their own pages: they are reached from the summary blocks on the home page.
+ * Anything longer than about seven reads as a site map rather than navigation.
+ */
 export const navLinks = [
   { href: "/#about", label: "About" },
   /* AI is a standalone page, not an anchor: it is the deepest part of the site
      and the section on the home page is only a teaser for it. */
   { href: "/ai", label: "AI" },
+  { href: "/projects", label: "Projects" },
   { href: "/#research", label: "Research" },
   { href: "/#teaching", label: "Teaching" },
-  { href: "/#publications", label: "Publications" },
-  { href: "/#journey", label: "Journey" },
+  { href: "/#gallery", label: "Media" },
   /* BLOG IS HIDDEN pending the owner's review of the 4 draft articles.
      To bring it back: rename src/app/_blog to src/app/blog (the underscore
      makes it a private folder that Next does not route), restore this nav

@@ -2,7 +2,6 @@
 
 import { IconMapPin, IconBriefcase, IconSchool, IconStar } from "@tabler/icons-react";
 import { journey, type JourneyItem } from "@/lib/data";
-import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
@@ -96,27 +95,16 @@ function TimelineEntry({
   );
 }
 
-export default function Journey() {
+/**
+ * The full career timeline. Lives on /journey; the home page carries only a
+ * short summary, because a CV is for someone already convinced.
+ */
+export default function JourneyTimeline() {
   return (
-    <section id="journey" className="mx-auto max-w-content px-6 py-20 sm:px-10">
-      <SectionHead
-        fig="08"
-        tag="Journey"
-        title={
-          <>
-            A decade across
-            <br />
-            research, data & <em>borders</em>
-          </>
-        }
-        intro="From Delhi classrooms to Nepali field sites, and from spreadsheets to AI systems. The path so far."
-      />
-
-      <div className="mx-auto max-w-4xl">
-        {journey.map((j, i) => (
-          <TimelineEntry key={j.org + i} item={j} index={i} last={i === journey.length - 1} />
-        ))}
-      </div>
-    </section>
+    <div className="mx-auto max-w-4xl">
+      {journey.map((j, i) => (
+        <TimelineEntry key={j.org + i} item={j} index={i} last={i === journey.length - 1} />
+      ))}
+    </div>
   );
 }

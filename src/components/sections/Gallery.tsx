@@ -43,7 +43,7 @@ export default function Gallery() {
   return (
     <section id="gallery" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
-        fig="06"
+        fig="05"
         tag="Media"
         title={
           <>
