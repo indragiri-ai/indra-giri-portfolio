@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { profile, navLinks } from "@/lib/data";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import { cn } from "@/lib/utils";
+import { cn, asset } from "@/lib/utils";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,7 +50,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <a
-            href={profile.cvPath}
+            href={asset(profile.cvPath)}
             download
             className="hidden rounded-full border border-accent bg-accent px-5 py-2 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-accent-ink transition-transform hover:-translate-y-0.5 sm:block"
           >
@@ -108,7 +108,7 @@ export default function Navbar() {
               ))}
             </div>
             <a
-              href={profile.cvPath}
+              href={asset(profile.cvPath)}
               download
               className="mt-auto rounded-full border border-accent bg-accent py-3.5 text-center font-mono text-xs font-semibold uppercase tracking-[0.15em] text-accent-ink"
             >

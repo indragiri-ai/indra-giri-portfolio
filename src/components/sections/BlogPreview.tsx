@@ -3,16 +3,17 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { posts } from "@/lib/blog";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
+import { asset } from "@/lib/utils";
 
 export default function BlogPreview() {
   const latest = [...posts].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3);
 
   return (
     <section id="writing" className="border-y border-line/10 bg-surface/40">
-      <div className="mx-auto max-w-content px-6 py-28 sm:px-10">
+      <div className="mx-auto max-w-content px-6 py-20 sm:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
-            fig="08"
+            fig="09"
             tag="Writing"
             title={
               <>
@@ -40,7 +41,7 @@ export default function BlogPreview() {
               >
                 <div className="overflow-hidden border-b border-line/10">
                   <img
-                    src={p.cover}
+                    src={asset(p.cover)}
                     alt={p.coverAlt}
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />

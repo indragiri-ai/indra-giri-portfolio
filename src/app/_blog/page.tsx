@@ -6,6 +6,7 @@ import { profile } from "@/lib/data";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
+import { asset } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: `Blog & Articles | ${profile.name}`,
@@ -37,7 +38,7 @@ export default function BlogPage() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={featured.cover}
+                  src={asset(featured.cover)}
                   alt={featured.coverAlt}
                   className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:aspect-auto lg:min-h-full"
                 />
@@ -75,7 +76,7 @@ export default function BlogPage() {
               >
                 <div className="overflow-hidden border-b border-line/10">
                   <img
-                    src={p.cover}
+                    src={asset(p.cover)}
                     alt={p.coverAlt}
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />

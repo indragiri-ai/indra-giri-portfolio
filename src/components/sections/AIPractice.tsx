@@ -1,7 +1,9 @@
 "use client";
 
-import { IconSchool, IconBulb, IconRobot, type Icon } from "@tabler/icons-react";
+import Link from "next/link";
+import { IconSchool, IconBulb, IconRobot, IconArrowRight, type Icon } from "@tabler/icons-react";
 import { aiPractice } from "@/lib/data";
+import { aiServices } from "@/lib/ai";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 
@@ -14,7 +16,7 @@ const icons: Record<string, Icon> = {
 export default function AIPractice() {
   return (
     <section id="ai" className="border-y border-line/10 bg-surface/40">
-      <div className="mx-auto max-w-content px-6 py-28 sm:px-10">
+      <div className="mx-auto max-w-content px-6 py-20 sm:px-10">
         <SectionHead
           fig="02"
           tag="AI Practice"
@@ -34,11 +36,15 @@ export default function AIPractice() {
             const IconCmp = icons[o.icon] ?? IconRobot;
             return (
               <Reveal key={o.title} delay={i * 0.07}>
-                <div className="panel flex h-full flex-col p-7 transition-colors hover:border-accent/40">
+                {/* Each offering now opens its own page under /ai */}
+                <Link
+                  href={`/ai/${aiServices[i]?.slug ?? ""}`}
+                  className="panel group flex h-full flex-col p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+                >
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-text">
                     <IconCmp size={22} stroke={1.6} />
                   </div>
-                  <h3 className="font-display text-xl font-semibold leading-snug text-fg">
+                  <h3 className="font-display text-xl font-semibold leading-snug text-fg transition-colors group-hover:text-accent-text">
                     {o.title}
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{o.desc}</p>
@@ -50,7 +56,10 @@ export default function AIPractice() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                  <span className="mt-6 inline-flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
+                    Learn more <IconArrowRight size={13} />
+                  </span>
+                </Link>
               </Reveal>
             );
           })}
@@ -84,6 +93,18 @@ export default function AIPractice() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={0.2}>
+          <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-line/10 pt-8">
+            <Link href="/ai" className="btn-primary">
+              Explore the AI practice <IconArrowRight size={15} />
+            </Link>
+            <p className="max-w-md text-sm leading-relaxed text-muted">
+              Training programs, the Kathmandu AI readiness report, and how AI
+              runs inside the research workflow.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

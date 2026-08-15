@@ -14,18 +14,22 @@ export const profile = {
   phoneHref: "+9779856077413",
   availability: "Open to research and AI collaborations",
   linkedin: "https://www.linkedin.com/in/indra-giri-72aba3a7/",
-  // Sankhya AI: co-founded venture. URL is a placeholder until the site exists;
-  // components must render the link ONLY when `url` is non-empty (see UPGRADE-INSTRUCTIONS.md, workstream E).
+  // Sankhya AI is the AI unit of Sankhya Solutions Pvt. Ltd.
+  // NAMING RULE: use "Sankhya AI" in AI / training contexts, "Sankhya Solutions"
+  // in research and evaluation contexts. Do not mix the two in one sentence.
+  // URL is a placeholder until the site exists; components must render the link
+  // ONLY when `url` is non-empty (see UPGRADE-INSTRUCTIONS.md, workstream E).
   sankhya: {
     name: "Sankhya AI",
+    parent: "Sankhya Solutions Pvt. Ltd.",
     role: "Co-founder",
     url: "", // TODO: set real Sankhya AI website URL when live
-    blurb: "AI training and analytics company co-founded in Kathmandu.",
+    blurb: "The AI training and analytics unit of Sankhya Solutions Pvt. Ltd., Kathmandu.",
   },
   github: "https://github.com/indragiri-ai",
   arxiv: "https://arxiv.org/abs/2602.00138",
   cvPath: "/cv/Indra_Giri_CV.pdf",
-  portrait: "/images/portrait.svg",
+  portrait: "/images/portrait.jpg",
   aboutPhoto: "/images/about.svg",
   tagline:
     "AI Generalist, researcher and educator helping organisations turn data into decisions and evidence into impact.",
@@ -56,7 +60,6 @@ export const clients = [
   "iDE Nepal",
   "AEPC · Govt. of Nepal",
   "Hoover Institution",
-  "Sankhya Solutions",
   "Anahata Nepal",
 ];
 
@@ -67,6 +70,10 @@ export const about = {
     "Today I bring artificial intelligence into that same discipline. I train professionals and students in generative AI, study how AI is being adopted in Nepal, and use AI tools to make research faster, deeper and more reliable. The goal has not changed: better evidence and better decisions.",
   ],
   photoCaption: "Field work, Nepal",
+  mapLabel: "Field footprint",
+  mapTitle: "Where the research has taken me",
+  mapIntro:
+    "Every district below is somewhere I have run fieldwork: household surveys, key informant interviews, focus groups and field observation. Hover or tap a district to see the project and the year. Fieldwork across India is not shown here.",
   pillars: [
     {
       tag: "field",
@@ -146,7 +153,7 @@ export const aiPractice = {
     },
     {
       label: "Training",
-      text: "Designed and delivered generative AI and prompt engineering programs through Sankhya Solutions.",
+      text: "Designed and delivered generative AI and prompt engineering programs through Sankhya AI.",
     },
   ],
 };
@@ -187,7 +194,7 @@ export const projects: Project[] = [
     big: true,
   },
   {
-    org: "Sankhya Solutions",
+    org: "Sankhya AI",
     title: "AI Training & Readiness Programs",
     desc: "Designing and delivering generative AI and prompt engineering training for professionals, with AI readiness assessments for organisations.",
     loc: "Kathmandu, Nepal",
@@ -278,7 +285,7 @@ export const projects: Project[] = [
     tags: ["Quantitative", "Govt."],
   },
   {
-    org: "Sankhya Solutions",
+    org: "Sankhya AI",
     title: "AI Awareness Among Professionals in Nepal",
     desc: "Exploratory study on AI adoption, presented at the 4th National Economist Conference.",
     loc: "Nepal",
@@ -337,15 +344,22 @@ export const mediaArticles = [
 
 /* ── Skills ──────────────────────────────────────────────────── */
 
-export const tools = [
-  { name: "Generative AI", val: 93, tier: "Expert" },
-  { name: "Stata", val: 95, tier: "Expert" },
-  { name: "SPSS", val: 92, tier: "Expert" },
-  { name: "Excel", val: 95, tier: "Expert" },
-  { name: "KoboToolbox", val: 90, tier: "Expert" },
-  { name: "R", val: 88, tier: "Advanced" },
-  { name: "Tableau", val: 88, tier: "Advanced" },
-  { name: "Python", val: 85, tier: "Advanced" },
+/**
+ * Software proficiency. Deliberately NO numeric scores: self assigned
+ * percentages read as junior and invite unflattering comparisons. Tier plus a
+ * short line of real evidence carries more weight. Keep `use` factual.
+ */
+export type ToolTier = "Expert" | "Advanced";
+
+export const tools: { name: string; tier: ToolTier; use: string }[] = [
+  { name: "Generative AI", tier: "Expert", use: "Training curricula, prompt design, AI assisted analysis" },
+  { name: "Stata", tier: "Expert", use: "Panel, time series and impact evaluation analysis" },
+  { name: "SPSS", tier: "Expert", use: "Survey cleaning, hypothesis testing, teaching" },
+  { name: "Excel", tier: "Expert", use: "Advanced modelling, reporting, KUSOM training program" },
+  { name: "KoboToolbox", tier: "Expert", use: "Mobile data collection across field studies" },
+  { name: "R", tier: "Advanced", use: "Econometrics and reproducible analysis" },
+  { name: "Tableau", tier: "Advanced", use: "Dashboards and logistics reporting" },
+  { name: "Python", tier: "Advanced", use: "Automation, API workflows, AI tooling" },
 ];
 
 export const researchMethods = [
@@ -416,13 +430,50 @@ export const universities = [
   },
 ];
 
-export const trainings = [
-  { title: "Generative AI & Prompt Engineering", sub: "Text generation, automation and AI readiness assessments" },
-  { title: "Advanced Analytics", sub: "Econometrics and modelling in Stata, R and Python" },
-  { title: "Statistical Analysis with SPSS", sub: "Cleaning, hypothesis testing and interpretation" },
-  { title: "Survey & Questionnaire Design", sub: "Sampling methodology and robust data collection" },
-  { title: "Excel for Analysis", sub: "Advanced formulas, charts and reporting" },
+/**
+ * Training programs. `title` and `sub` are live on the site today.
+ *
+ * TODO(owner): `audience`, `format` and `covers` render ONLY when filled, so
+ * the /training page stays honest while they are empty. Fill them from the
+ * signature programs in the tracker file and the page gets substantially
+ * stronger. Do not invent curriculum details here.
+ */
+export interface Training {
+  title: string;
+  sub: string;
+  /** e.g. "Researchers, analysts, faculty" */
+  audience?: string;
+  /** e.g. "4 days, in person" */
+  format?: string;
+  /** Session or module list. */
+  covers?: string[];
+}
+
+export const trainings: Training[] = [
+  {
+    title: "Generative AI & Prompt Engineering",
+    sub: "Text generation, automation and AI readiness assessments",
+  },
+  {
+    title: "Advanced Analytics",
+    sub: "Econometrics and modelling in Stata, R and Python",
+  },
+  {
+    title: "Statistical Analysis with SPSS",
+    sub: "Cleaning, hypothesis testing and interpretation",
+  },
+  {
+    title: "Survey & Questionnaire Design",
+    sub: "Sampling methodology and robust data collection",
+  },
+  {
+    title: "Excel for Analysis",
+    sub: "Advanced formulas, charts and reporting",
+  },
 ];
+
+export const trainingIntro =
+  "Practical, hands on programs for professionals, university faculty and student cohorts. Every session is built around real data and the decisions people actually have to make, not toy examples.";
 
 /* ── Career journey ──────────────────────────────────────────── */
 
@@ -447,6 +498,15 @@ export const journey: JourneyItem[] = [
     period: "2023 - Present",
     desc: "Leading end to end research and impact evaluations for INGOs, governments and universities. Managing data teams, AI readiness research and analytics, and designing the firm's AI training programs.",
     tools: ["Generative AI", "Stata", "R", "Python", "SPSS", "KoboToolbox", "Tableau"],
+  },
+  {
+    type: "work",
+    role: "Managing Director",
+    org: "Multistar Motors Pvt. Ltd.",
+    loc: "Pokhara, Nepal",
+    period: "2021 - 2023",
+    desc: "Ran the authorised Motorhead Bikes dealership for Pokhara. Owned sales strategy, marketing and the customer experience end to end, from showroom operations to after sales handling.",
+    tools: ["Sales strategy", "Marketing", "Customer experience"],
   },
   {
     type: "work",
@@ -508,11 +568,17 @@ export const journey: JourneyItem[] = [
 
 export const navLinks = [
   { href: "/#about", label: "About" },
-  { href: "/#ai", label: "AI" },
+  /* AI is a standalone page, not an anchor: it is the deepest part of the site
+     and the section on the home page is only a teaser for it. */
+  { href: "/ai", label: "AI" },
   { href: "/#research", label: "Research" },
   { href: "/#teaching", label: "Teaching" },
   { href: "/#publications", label: "Publications" },
   { href: "/#journey", label: "Journey" },
-  { href: "/blog", label: "Blog" },
+  /* BLOG IS HIDDEN pending the owner's review of the 4 draft articles.
+     To bring it back: rename src/app/_blog to src/app/blog (the underscore
+     makes it a private folder that Next does not route), restore this nav
+     link, re-add <BlogPreview /> to app/page.tsx as section 09 Writing, and
+     renumber Contact back to 10. Nothing was deleted. */
   { href: "/#contact", label: "Contact" },
 ];

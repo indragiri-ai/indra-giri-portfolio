@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { profile, roles, stats, clients } from "@/lib/data";
 import Counter from "@/components/ui/Counter";
+import { asset } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -134,11 +135,13 @@ export default function Hero() {
             className="absolute -right-4 top-4 h-full w-full rounded-t-[10rem] rounded-b-2xl border border-accent/30"
           />
           <figure className="relative overflow-hidden rounded-t-[10rem] rounded-b-2xl border border-line/15 bg-surface">
-            {/* Replace public/images/portrait.svg with your own vertical photo
-                (same file name, or update profile.portrait in data.ts) */}
+            {/* Real portrait at public/images/portrait.jpg (3:4, wired via
+                profile.portrait). The frame is an ARCH: keep any replacement
+                3:4 with the head centred and roughly 15-20% down from the top,
+                or the rounded corners will bite into it. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={profile.portrait}
+              src={asset(profile.portrait)}
               alt={`Portrait of ${profile.name}`}
               className="aspect-[3/4] w-full object-cover"
             />

@@ -1,48 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { tools, researchMethods, analyticalTechniques, languages } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
-
-function Meter({ name, val, tier, go, idx }: { name: string; val: number; tier: string; go: boolean; idx: number }) {
-  const [n, setN] = useState(0);
-
-  useEffect(() => {
-    if (!go) return;
-    const delay = idx * 90;
-    const t = setTimeout(() => {
-      let cur = 0;
-      const step = val / 45;
-      const iv = setInterval(() => {
-        cur = Math.min(cur + step, val);
-        setN(Math.round(cur));
-        if (cur >= val) clearInterval(iv);
-      }, 22);
-    }, delay);
-    return () => clearTimeout(t);
-  }, [go, val, idx]);
-
-  return (
-    <div className="border-b border-line/10 py-5 last:border-b-0">
-      <div className="mb-2.5 flex items-baseline justify-between">
-        <span className="font-display text-lg font-bold text-fg">{name}</span>
-        <span className="font-mono text-xs text-muted">
-          <span className="text-accent-text">{n}</span> / 100 · {tier}
-        </span>
-      </div>
-      <div className="h-[5px] overflow-hidden rounded-full bg-line/10">
-        <motion.div
-          className="h-full rounded-full bg-accent"
-          initial={{ width: 0 }}
-          animate={go ? { width: `${val}%` } : { width: 0 }}
-          transition={{ duration: 1.2, delay: idx * 0.09, ease: [0.16, 1, 0.3, 1] }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function ChipCloud({ items }: { items: string[] }) {
   return (
@@ -60,27 +20,8 @@ function ChipCloud({ items }: { items: string[] }) {
 }
 
 export default function Skills() {
-  const [go, setGo] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setGo(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
   return (
-    <section id="skills" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+    <section id="skills" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
         fig="04"
         tag="Skills"
@@ -92,43 +33,56 @@ export default function Skills() {
         intro="Statistical software, AI tools, research methods and analytical techniques. The instruments behind every evidence based decision."
       />
 
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        {/* instrument readouts */}
-        <Reveal>
-          <div ref={ref} className="panel px-7 py-3">
-            <div className="border-b border-line/10 py-4 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-muted">
-              Software & AI proficiency
+      {/* Stacked bands rather than two tall columns. The old side-by-side
+          layout left a hole under Languages because the software list was
+          always taller than the chip stack, and no amount of tuning fixes an
+          imbalance that depends on how many tools there are. */}
+      <Reveal>
+        <div className="fig-label mb-6">Software &amp; AI proficiency</div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {tools.map((t) => (
+            <div
+              key={t.name}
+              className="panel flex h-full flex-col p-5 transition-colors hover:border-accent/40"
+            >
+              <div className="font-mono text-[0.58rem] uppercase tracking-[0.18em] text-accent-text">
+                {t.tier}
+              </div>
+              <div className="mt-2 font-display text-lg font-bold leading-snug text-fg">
+                {t.name}
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{t.use}</p>
             </div>
-            {tools.map((t, i) => (
-              <Meter key={t.name} {...t} go={go} idx={i} />
+          ))}
+        </div>
+      </Reveal>
+
+      <div className="mt-14 grid grid-cols-1 gap-12 md:grid-cols-2">
+        <Reveal delay={0.05}>
+          <div className="fig-label mb-5">Research methods</div>
+          <ChipCloud items={researchMethods} />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="fig-label mb-5">Analytical techniques</div>
+          <ChipCloud items={analyticalTechniques} />
+        </Reveal>
+      </div>
+
+      <Reveal delay={0.15}>
+        <div className="mt-14">
+          <div className="fig-label mb-5">Languages</div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {languages.map((l) => (
+              <div key={l.name} className="panel flex items-baseline justify-between px-5 py-4">
+                <span className="font-display text-lg font-bold text-fg">{l.name}</span>
+                <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-accent-text">
+                  {l.level}
+                </span>
+              </div>
             ))}
           </div>
-        </Reveal>
-
-        <div className="flex flex-col gap-10">
-          <Reveal delay={0.05}>
-            <div className="fig-label mb-5">Research methods</div>
-            <ChipCloud items={researchMethods} />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="fig-label mb-5">Analytical techniques</div>
-            <ChipCloud items={analyticalTechniques} />
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="fig-label mb-5">Languages</div>
-            <div className="grid grid-cols-3 gap-3">
-              {languages.map((l) => (
-                <div key={l.name} className="panel px-4 py-4 text-center">
-                  <div className="font-display text-base font-bold text-fg">{l.name}</div>
-                  <div className="mt-0.5 font-mono text-[0.6rem] uppercase tracking-[0.15em] text-accent-text">
-                    {l.level}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

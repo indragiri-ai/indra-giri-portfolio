@@ -98,9 +98,9 @@ function TimelineEntry({
 
 export default function Journey() {
   return (
-    <section id="journey" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+    <section id="journey" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
-        fig="07"
+        fig="08"
         tag="Journey"
         title={
           <>

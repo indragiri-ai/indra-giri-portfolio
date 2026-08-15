@@ -6,9 +6,9 @@ import AIPractice from "@/components/sections/AIPractice";
 import Research from "@/components/sections/Research";
 import Skills from "@/components/sections/Skills";
 import Teaching from "@/components/sections/Teaching";
+import Gallery from "@/components/sections/Gallery";
 import Publications from "@/components/sections/Publications";
 import Journey from "@/components/sections/Journey";
-import BlogPreview from "@/components/sections/BlogPreview";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -22,9 +22,9 @@ export default function Home() {
         <Research />
         <Skills />
         <Teaching />
+        <Gallery />
         <Publications />
         <Journey />
-        <BlogPreview />
         <Contact />
       </main>
       <Footer />

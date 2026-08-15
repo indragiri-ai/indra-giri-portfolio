@@ -3,10 +3,12 @@
 import { about, profile } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
+import NepalMap from "@/components/ui/NepalMap";
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+    <section id="about" className="py-20">
+      <div className="mx-auto max-w-content px-6 sm:px-10">
       <SectionHead
         fig="01"
         tag="About"
@@ -20,22 +22,9 @@ export default function About() {
       />
 
       <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-        {/* photo + quote */}
+        {/* quote */}
         <Reveal>
-          <figure className="overflow-hidden rounded-2xl border border-line/15 bg-surface">
-            {/* Replace public/images/about.svg with a photo of you at work */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={profile.aboutPhoto}
-              alt={about.photoCaption}
-              className="aspect-[4/5] w-full object-cover"
-            />
-          </figure>
-          <figcaption className="mt-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
-            {about.photoCaption}
-          </figcaption>
-
-          <blockquote className="mt-10 border-l-2 border-accent pl-6">
+          <blockquote className="border-l-2 border-accent pl-6">
             <p className="font-display text-2xl font-medium italic leading-snug text-fg">
               &ldquo;{about.lead}&rdquo;
             </p>
@@ -71,6 +60,27 @@ export default function About() {
             ))}
           </div>
         </div>
+      </div>
+
+      </div>
+
+      {/* Field footprint. Deliberately OUTSIDE the max-w-content wrapper: Nepal
+          is a 1.7:1 landscape country, so the map needs the full viewport width
+          to be legible. Only the heading and the list below it stay measured. */}
+      <div className="mt-20 border-t border-line/10 pt-14">
+        <Reveal>
+          <div className="mx-auto max-w-content px-6 sm:px-10">
+            <div className="fig-label mb-4">{about.mapLabel}</div>
+            <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight text-fg sm:text-4xl">
+              {about.mapTitle}
+            </h3>
+            <p className="mt-4 max-w-2xl leading-relaxed text-muted">{about.mapIntro}</p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.08} className="mt-12">
+          <NepalMap />
+        </Reveal>
       </div>
     </section>
   );

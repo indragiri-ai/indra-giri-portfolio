@@ -15,18 +15,38 @@
   --accent: 198 161 91; /* refined gold */
   --accent-ink: 15 19 30; /* text on gold fills */
   --accent-text: 215 181 115; /* gold used AS text on dark */
+  --accent-display: 215 181 115; /* italics in section titles */
+
+  /* Fieldwork map. Explicit fills per theme rather than a faded accent:
+     opacity on gold goes muddy on ivory and invisible on navy. */
+  --map-land: 30 37 55; /* districts with no fieldwork */
+  --map-border: 12 16 27; /* hairline between districts */
+  --map-edge: 74 84 110; /* national outline */
+  --map-work: 168 133 66; /* districts with fieldwork */
+  --map-work-active: 226 189 116; /* hovered or focused */
 }
 
 .light {
   --bg: 250 249 245; /* warm ivory */
   --surface: 255 255 255;
   --raised: 255 255 255;
-  --fg: 25 29 41;
-  --muted: 104 109 124;
-  --line: 25 29 41;
-  --accent: 158 122 52; /* bronze */
+  --fg: 20 25 43; /* deep ink navy, same family as the dark theme ground */
+  /* Warm greys. The old muted and line were cool blue-greys sitting on a warm
+     ivory ground, which is what made the light theme look washed and cheap. */
+  --muted: 106 101 93;
+  --line: 122 110 92;
+  --accent: 150 103 38; /* copper bronze for fills */
   --accent-ink: 255 255 255;
-  --accent-text: 138 104 40;
+  --accent-text: 138 92 30; /* small text: darker, carries contrast */
+  --accent-display: 176 128 46; /* display italics: richer, large text only */
+
+  /* Warm stone land so the bronze reads as a deliberate highlight rather
+     than a stain, with a defined edge to hold the shape on ivory. */
+  --map-land: 229 225 216;
+  --map-border: 250 249 245;
+  --map-edge: 168 160 143;
+  --map-work: 166 124 44;
+  --map-work-active: 116 84 24;
 }
 
 html {
@@ -40,6 +60,14 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.4s ease, color 0.4s ease;
+  /* Fraunces is now self hosted as a VARIABLE font, so `font-optical-sizing:
+     auto` would push the opsz axis toward 144 at display sizes and render the
+     headings noticeably thinner than the approved design. Pinning it to the
+     font's default optical size reproduces the static instances Google used to
+     serve. Remove this line only if you deliberately want the higher contrast
+     display cut on large headings. Inter and IBM Plex Mono have no opsz axis,
+     so this is a no-op for them. */
+  font-optical-sizing: none;
 }
 
 ::selection {
@@ -74,7 +102,10 @@ body {
     @apply font-display text-4xl font-semibold leading-[1.08] tracking-tight text-fg sm:text-5xl;
   }
   .section-title em {
-    @apply italic text-accent-text;
+    @apply italic;
+    /* Its own token: at display size a richer gold is legible and looks
+       expensive, while --accent-text stays dark enough for small copy. */
+    color: rgb(var(--accent-display));
   }
   .panel {
     @apply rounded-2xl border border-line/10 bg-surface;

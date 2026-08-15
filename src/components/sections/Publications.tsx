@@ -7,9 +7,9 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function Publications() {
   return (
-    <section id="publications" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+    <section id="publications" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
-        fig="06"
+        fig="07"
         tag="Publications"
         title={
           <>
@@ -55,66 +55,80 @@ export default function Publications() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+      {/* Three equal columns, each a self contained list whose heading sits on
+          the same baseline. The old two column split stacked Conference under
+          Working papers, so its heading landed at a random height against the
+          right hand column and read as a misalignment. */}
+      <div className="grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-3">
         <Reveal>
-          <div className="fig-label mb-6">Working & research papers</div>
-          {workingPapers.map((w) => (
-            <div key={w.title} className="group border-b border-line/10 py-5 transition-all hover:pl-2">
-              <div className="mb-1.5 font-display text-lg font-bold leading-snug text-fg group-hover:text-accent-text">
-                {w.title}
-              </div>
-              <p className="text-sm leading-relaxed text-muted">
-                {w.venue && <span className="text-accent-text">{w.venue} · </span>}
-                {w.meta}
-              </p>
-              <div className="mt-2.5 flex gap-2">
-                {w.chips.map((c) => (
-                  <span
-                    key={c}
-                    className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <div className="fig-label mb-6 mt-10">Conference papers</div>
-          {conferencePapers.map((c) => (
-            <div key={c.title} className="group border-b border-line/10 py-5 transition-all last:border-0 hover:pl-2">
-              <div className="mb-1 font-display text-lg font-bold leading-snug text-fg group-hover:text-accent-text">
-                {c.title}
-              </div>
-              <p className="text-sm text-muted">
-                <span className="text-accent-text">{c.venue}</span> · {c.meta}
-              </p>
-            </div>
-          ))}
+          <div className="fig-label mb-6">Working &amp; research papers</div>
+          <ul>
+            {workingPapers.map((w) => (
+              <li key={w.title} className="group border-t border-line/10 py-5 first:border-t-0 first:pt-0">
+                <div className="font-display text-lg font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                  {w.title}
+                </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  {w.venue && <span className="text-accent-text">{w.venue} · </span>}
+                  {w.meta}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {w.chips.map((c) => (
+                    <span
+                      key={c}
+                      className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <div className="fig-label mb-6">In the media</div>
-          {mediaArticles.map((m) => (
-            <div key={m.title} className="group border-b border-line/10 py-5 transition-all hover:pl-2">
-              <div className="mb-1 font-display text-lg font-bold leading-snug text-fg group-hover:text-accent-text">
-                {m.title}
-              </div>
-              <p className="text-sm text-muted">
-                <span className="text-accent-text">{m.venue}</span> · {m.meta}
-              </p>
-            </div>
-          ))}
+        <Reveal delay={0.06}>
+          <div className="fig-label mb-6">Conference papers</div>
+          <ul>
+            {conferencePapers.map((c) => (
+              <li key={c.title} className="group border-t border-line/10 py-5 first:border-t-0 first:pt-0">
+                <div className="font-display text-lg font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                  {c.title}
+                </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  <span className="text-accent-text">{c.venue}</span> · {c.meta}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
 
-          <div className="fig-label mb-6 mt-10">Recognition</div>
-          <p className="text-sm leading-loose text-muted">
-            Collaborating with researchers at{" "}
-            <strong className="font-semibold text-fg">Stanford&apos;s Hoover Institution</strong>,
-            presenting at national economic forums, and publishing op-eds shaping Nepal&apos;s{" "}
-            <strong className="font-semibold text-fg">AI &amp; digital policy</strong> conversation.
-          </p>
+        <Reveal delay={0.12}>
+          <div className="fig-label mb-6">In the media</div>
+          <ul>
+            {mediaArticles.map((m) => (
+              <li key={m.title} className="group border-t border-line/10 py-5 first:border-t-0 first:pt-0">
+                <div className="font-display text-lg font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                  {m.title}
+                </div>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  <span className="text-accent-text">{m.venue}</span> · {m.meta}
+                </p>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
+
+      {/* Recognition reads as a closing note, not a fourth list */}
+      <Reveal delay={0.16}>
+        <p className="mt-14 max-w-3xl border-l-2 border-accent pl-6 text-sm leading-loose text-muted">
+          Collaborating with researchers at{" "}
+          <strong className="font-semibold text-fg">Stanford&apos;s Hoover Institution</strong>,
+          presenting at national economic forums, and publishing op-eds shaping Nepal&apos;s{" "}
+          <strong className="font-semibold text-fg">AI &amp; digital policy</strong> conversation.
+        </p>
+      </Reveal>
     </section>
   );
 }

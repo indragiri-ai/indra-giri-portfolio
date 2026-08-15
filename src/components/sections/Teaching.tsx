@@ -1,13 +1,14 @@
 "use client";
 
-import { IconCalendar } from "@tabler/icons-react";
+import Link from "next/link";
+import { IconArrowRight, IconCalendar } from "@tabler/icons-react";
 import { teachingMetrics, universities, trainings } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 
 export default function Teaching() {
   return (
-    <section id="teaching" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+    <section id="teaching" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
         fig="05"
         tag="Teaching"
@@ -69,22 +70,36 @@ export default function Teaching() {
         ))}
       </div>
 
+      {/* Three programs as a taster; the full set lives on /training. Five
+          cards across one row squeezed each into a column too narrow to read. */}
       <Reveal>
-        <div className="fig-label mb-6">Training & workshops · Sankhya Solutions</div>
+        <div className="fig-label mb-6">Training &amp; workshops · Sankhya AI</div>
       </Reveal>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        {trainings.map((t, i) => (
-          <Reveal key={t.title} delay={i * 0.05}>
-            <div className="group relative h-full overflow-hidden rounded-2xl border border-accent/25 bg-accent/[0.06] p-6 transition-all hover:-translate-y-1.5 hover:border-accent/60">
-              <div className="mb-3 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {trainings.slice(0, 3).map((t, i) => (
+          <Reveal key={t.title} delay={i * 0.06}>
+            <div className="group h-full rounded-2xl border border-accent/25 bg-accent/[0.06] p-7 transition-all hover:-translate-y-1 hover:border-accent/60">
+              <div className="mb-4 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
                 W·0{i + 1}
               </div>
-              <div className="font-display text-base font-bold leading-snug text-fg">{t.title}</div>
-              <div className="mt-2 text-xs leading-relaxed text-muted">{t.sub}</div>
+              <h3 className="font-display text-xl font-bold leading-snug text-fg">{t.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{t.sub}</p>
             </div>
           </Reveal>
         ))}
       </div>
+
+      <Reveal delay={0.18}>
+        <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-line/10 pt-8">
+          <Link href="/training" className="btn-primary">
+            All {trainings.length} programs <IconArrowRight size={15} />
+          </Link>
+          <p className="max-w-md text-sm leading-relaxed text-muted">
+            Generative AI, analytics, survey design and Excel, delivered to
+            professionals, faculty and student cohorts.
+          </p>
+        </div>
+      </Reveal>
     </section>
   );
 }

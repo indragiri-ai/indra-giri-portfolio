@@ -6,6 +6,7 @@ import { posts, getPost } from "@/lib/blog";
 import { profile } from "@/lib/data";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { asset } from "@/lib/utils";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -67,7 +68,7 @@ export default async function BlogPostPage({
 
         <figure className="mt-10 overflow-hidden rounded-2xl border border-line/10 bg-surface">
           <img
-            src={post.cover}
+            src={asset(post.cover)}
             alt={post.coverAlt}
             className="aspect-[21/10] w-full object-cover"
           />

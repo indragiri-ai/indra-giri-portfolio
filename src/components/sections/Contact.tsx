@@ -67,7 +67,7 @@ export default function Contact() {
     "w-full rounded-xl border border-line/15 bg-bg px-5 py-4 text-sm text-fg outline-none transition-colors placeholder:text-muted/60 focus:border-accent";
 
   return (
-    <section id="contact" className="mx-auto max-w-content px-6 py-28 sm:px-10">
+    <section id="contact" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <Reveal>
         <div className="fig-label mb-5">09 · Contact</div>
         <h2 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">

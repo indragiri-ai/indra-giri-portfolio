@@ -9,3 +9,6 @@ npm-debug.log*
 .env*.local
 *.tsbuildinfo
 next-env.d.ts
+
+# Original photos and source data, kept out of the published site
+/source-images/
