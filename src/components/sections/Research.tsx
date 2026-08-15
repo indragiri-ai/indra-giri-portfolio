@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import { projects } from "@/lib/data";
+import { projects, builtProjects } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 import ProjectCard from "@/components/ui/ProjectCard";
+import BuiltCard from "@/components/ui/BuiltCard";
 
 /**
  * Home page shows CURRENT work only. The full catalogue, with filters, lives at
@@ -34,6 +35,22 @@ export default function Research() {
             <ProjectCard p={p} />
           </Reveal>
         ))}
+      </div>
+
+      {/* Built and published: live products and open resources. On the home
+          page because these are the only pieces of the work a visitor can go
+          and use immediately, which makes them worth more than one click away. */}
+      <div className="mt-14">
+        <Reveal>
+          <div className="fig-label mb-6">Built &amp; published</div>
+        </Reveal>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {builtProjects.map((b, i) => (
+            <Reveal key={b.title} delay={i * 0.06}>
+              <BuiltCard b={b} />
+            </Reveal>
+          ))}
+        </div>
       </div>
 
       <Reveal delay={0.2}>
