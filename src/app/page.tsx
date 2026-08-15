@@ -9,6 +9,7 @@ import Teaching from "@/components/sections/Teaching";
 import Gallery from "@/components/sections/Gallery";
 import Publications from "@/components/sections/Publications";
 import JourneyPreview from "@/components/sections/JourneyPreview";
+import BlogPreview from "@/components/sections/BlogPreview";
 import Contact from "@/components/sections/Contact";
 
 /**
@@ -31,6 +32,7 @@ export default function Home() {
         <Gallery />
         <Publications />
         <JourneyPreview />
+        <BlogPreview />
         <Contact />
       </main>
       <Footer />

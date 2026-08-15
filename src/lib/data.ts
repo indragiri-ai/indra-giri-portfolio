@@ -639,11 +639,8 @@ export const navLinks = [
   { href: "/projects", label: "Projects" },
   { href: "/#research", label: "Research" },
   { href: "/#teaching", label: "Teaching" },
-  { href: "/#gallery", label: "Media" },
-  /* BLOG IS HIDDEN pending the owner's review of the 4 draft articles.
-     To bring it back: rename src/app/_blog to src/app/blog (the underscore
-     makes it a private folder that Next does not route), restore this nav
-     link, re-add <BlogPreview /> to app/page.tsx as section 09 Writing, and
-     renumber Contact back to 10. Nothing was deleted. */
+  /* Media is deliberately NOT in the nav: the gallery has a prominent block on
+     the home page, and eight items starts reading as a site map. */
+  { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Contact" },
 ];
