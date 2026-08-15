@@ -12,8 +12,11 @@ export const profile = {
   email: "girindra075@gmail.com",
   phone: "+977 9856077413",
   phoneHref: "+9779856077413",
+  /* wa.me requires digits only: no plus sign, spaces or dashes. */
+  whatsapp: "9779856077413",
   availability: "Open to research and AI collaborations",
   linkedin: "https://www.linkedin.com/in/indra-giri-72aba3a7/",
+  facebook: "https://www.facebook.com/indra.giri.564",
   // Sankhya AI is the AI unit of Sankhya Solutions Pvt. Ltd.
   // NAMING RULE: use "Sankhya AI" in AI / training contexts, "Sankhya Solutions"
   // in research and evaluation contexts. Do not mix the two in one sentence.
@@ -36,6 +39,15 @@ export const profile = {
   heroIntro:
     "I combine a decade of rigorous field research with modern AI practice. I design studies, train professionals in AI and analytics, and build evidence that shapes policy and programs across Nepal, South Asia and beyond.",
 };
+
+/**
+ * WhatsApp deep link. Opens the app on mobile and WhatsApp Web on desktop, with
+ * the first message pre-typed so an enquiry arrives with context rather than a
+ * bare "hi". The visitor can edit it before sending.
+ */
+export const whatsappUrl = `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(
+  "Hello Indra, I found your website and would like to talk about a training or research project."
+)}`;
 
 export const roles = [
   "AI Generalist",
@@ -292,6 +304,44 @@ export const projects: Project[] = [
     status: "completed",
     cat: ["ai"],
     tags: ["Exploratory", "AI policy"],
+  },
+];
+
+/* ── Built and published ─────────────────────────────────────── */
+
+/**
+ * Things Indra has built and put online, as opposed to studies he has run.
+ * Every URL here was checked live: keep it that way, a dead link on a
+ * portfolio is worse than no link.
+ */
+export interface BuiltProject {
+  title: string;
+  desc: string;
+  url: string;
+  /** Shown under the title. */
+  meta: string;
+  tags: string[];
+  status: "live" | "in progress";
+}
+
+export const builtProjects: BuiltProject[] = [
+  {
+    title: "Nepal Data Portal",
+    desc: "A provenance-first open data warehouse for Nepal: every figure carries its source, its collection date and its caveats, so a number can be traced back to the institution that published it. Phase 1 is live; Nepali calendars, federal geography and NRB and Census series are in progress.",
+    // NOTE: the repo's own homepage field points at nepal-data-base-project.vercel.app,
+    // which 404s. This is the working deployment.
+    url: "https://nepal-data-base-project-7oru.vercel.app",
+    meta: "Supabase · Postgres · FastAPI · Next.js",
+    tags: ["Open data", "Data engineering", "Nepal"],
+    status: "in progress",
+  },
+  {
+    title: "AI for Teachers: A Practical Handbook",
+    desc: "A free, step-by-step handbook for Nepali school teachers covering Gemini, prompting, Gems, Gemini Notebook and Claude. Written from the teacher training sessions and kept classroom-ready rather than theoretical.",
+    url: "https://indragiri-ai.github.io/AI-Training-Teacher/",
+    meta: "Free handbook · Open to anyone",
+    tags: ["AI training", "Teachers", "Open resource"],
+    status: "live",
   },
 ];
 

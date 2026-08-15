@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowRight, IconCamera } from "@tabler/icons-react";
-import { profile } from "@/lib/data";
+import { IconArrowRight, IconCamera, IconBook, IconExternalLink } from "@tabler/icons-react";
+import { profile, builtProjects } from "@/lib/data";
 import { aiServices, trainingDeliveries } from "@/lib/ai";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -10,6 +10,8 @@ import Reveal from "@/components/ui/Reveal";
 import { asset } from "@/lib/utils";
 
 const service = aiServices.find((s) => s.slug === "training")!;
+/* The teachers handbook, surfaced here because it came out of these sessions. */
+const handbook = builtProjects.find((b) => b.title.startsWith("AI for Teachers"));
 
 export const metadata: Metadata = {
   title: `AI Training & Capacity Building | ${profile.name}`,
@@ -43,6 +45,33 @@ export default function AITrainingPage() {
             ))}
           </ul>
         </Reveal>
+
+        {/* The handbook that came out of the teacher sessions. Free and public,
+            which makes it the strongest single proof on this page. */}
+        {handbook && (
+          <Reveal delay={0.1}>
+            <a
+              href={handbook.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-14 flex flex-col gap-6 rounded-2xl border border-accent/25 bg-accent/[0.06] p-8 transition-all duration-300 hover:border-accent/60 sm:flex-row sm:items-center sm:p-10"
+            >
+              <IconBook size={38} className="shrink-0 text-accent-text" stroke={1.4} />
+              <div className="flex-1">
+                <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+                  Free resource · {handbook.meta}
+                </div>
+                <h2 className="mt-2 font-display text-2xl font-bold leading-snug text-fg">
+                  {handbook.title}
+                </h2>
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">{handbook.desc}</p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
+                Open the handbook <IconExternalLink size={14} />
+              </span>
+            </a>
+          </Reveal>
+        )}
 
         {/* Delivered programs, alternating photo and text */}
         <div className="mt-20">

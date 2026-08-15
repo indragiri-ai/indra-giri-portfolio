@@ -35,11 +35,17 @@ const config: Config = {
           "0%": { transform: "scale(1)", opacity: "0.6" },
           "100%": { transform: "scale(3)", opacity: "0" },
         },
+        /* cross-fade for the rotating gallery tiles */
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
       },
       animation: {
         marquee: "marquee 28s linear infinite",
         "pulse-dot": "pulseDot 2s ease-in-out infinite",
         ping2: "ping2 1.8s ease-out infinite",
+        "fade-in": "fadeIn 0.7s ease-out both",
       },
     },
   },

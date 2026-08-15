@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowLeft } from "@tabler/icons-react";
-import { profile, projects } from "@/lib/data";
+import { IconArrowLeft, IconExternalLink } from "@tabler/icons-react";
+import { profile, projects, builtProjects } from "@/lib/data";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
@@ -59,7 +59,56 @@ export default function ProjectsPage() {
           </div>
         </Reveal>
 
-        <div className="mt-16">
+        {/* Built and published: products and resources, not studies, so they
+            sit above the research catalogue rather than inside its filters. */}
+        <Reveal delay={0.06}>
+          <div className="mt-16">
+            <div className="fig-label mb-6">Built &amp; published</div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              {builtProjects.map((b) => (
+                <a
+                  key={b.title}
+                  href={b.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col rounded-2xl border border-accent/25 bg-accent/[0.06] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60"
+                >
+                  <div className="mb-4 flex items-center justify-between gap-4">
+                    <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+                      {b.meta}
+                    </span>
+                    <span className="flex items-center gap-1.5 whitespace-nowrap font-mono text-[0.6rem] uppercase tracking-[0.15em] text-accent-text">
+                      <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-accent" />
+                      {b.status}
+                    </span>
+                  </div>
+                  <h2 className="font-display text-2xl font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                    {b.title}
+                  </h2>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{b.desc}</p>
+                  <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-accent/20 pt-4">
+                    <div className="flex flex-wrap gap-1.5">
+                      {b.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text transition-transform group-hover:translate-x-1">
+                      Visit <IconExternalLink size={13} />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-20">
+          <div className="fig-label mb-6">Research catalogue</div>
           <ProjectsExplorer />
         </div>
       </main>

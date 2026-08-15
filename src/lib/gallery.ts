@@ -24,6 +24,13 @@ export interface GalleryItem {
 export const galleryIntro =
   "Sessions, field teams and the places the research happens. Most of this work occurs far from a desk.";
 
+/**
+ * Only entries that actually have an image. Everything public renders from
+ * this, so a caption waiting for its photo never shows as an empty tile on the
+ * live site: the entries below with no `src` are a to-do list, not content.
+ */
+export const galleryPhotos = () => gallery.filter((g) => Boolean(g.src));
+
 export const gallery: GalleryItem[] = [
   {
     src: "/images/ai/kusom.jpg",

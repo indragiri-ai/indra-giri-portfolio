@@ -1,13 +1,24 @@
-import { IconMail, IconFileText, IconBrandLinkedin, IconBrandGithub } from "@tabler/icons-react";
-import { profile } from "@/lib/data";
+import {
+  IconMail,
+  IconFileText,
+  IconBrandLinkedin,
+  IconBrandGithub,
+  IconBrandFacebook,
+  IconBrandWhatsapp,
+} from "@tabler/icons-react";
+import { profile, whatsappUrl } from "@/lib/data";
 
 export default function Footer() {
+  /* Ordered by what a professional visitor is most likely to want. Entries with
+     an empty href are dropped, so an unset profile never leaves a dead icon. */
   const socials = [
     { Icon: IconMail, href: `mailto:${profile.email}`, label: "Email" },
+    { Icon: IconBrandWhatsapp, href: whatsappUrl, label: "WhatsApp" },
     { Icon: IconBrandLinkedin, href: profile.linkedin, label: "LinkedIn" },
     { Icon: IconBrandGithub, href: profile.github, label: "GitHub" },
+    { Icon: IconBrandFacebook, href: profile.facebook, label: "Facebook" },
     { Icon: IconFileText, href: profile.arxiv, label: "arXiv" },
-  ];
+  ].filter((s) => Boolean(s.href));
 
   return (
     <footer className="border-t border-line/10 px-6 py-12 sm:px-10">

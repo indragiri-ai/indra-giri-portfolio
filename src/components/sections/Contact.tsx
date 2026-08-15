@@ -9,8 +9,9 @@ import {
   IconCheck,
   IconAlertCircle,
   IconLoader2,
+  IconBrandWhatsapp,
 } from "@tabler/icons-react";
-import { profile } from "@/lib/data";
+import { profile, whatsappUrl } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
 
 type Status = "idle" | "sending" | "sent" | "error" | "invalid";
@@ -86,9 +87,16 @@ export default function Contact() {
           <div className="flex flex-col">
             {[
               { Icon: IconMail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+              {
+                Icon: IconBrandWhatsapp,
+                label: "WhatsApp",
+                value: profile.phone,
+                href: whatsappUrl,
+                external: true,
+              },
               { Icon: IconPhone, label: "Phone", value: profile.phone, href: `tel:${profile.phoneHref}` },
               { Icon: IconMapPin, label: "Location", value: profile.location },
-            ].map(({ Icon, label, value, href }) => {
+            ].map(({ Icon, label, value, href, external }) => {
               const Row = (
                 <div className="group flex items-center gap-5 border-b border-line/10 py-6 transition-all hover:pl-2">
                   <Icon size={20} className="text-accent-text" />
@@ -103,7 +111,12 @@ export default function Contact() {
                 </div>
               );
               return href ? (
-                <a key={label} href={href}>
+                <a
+                  key={label}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                >
                   {Row}
                 </a>
               ) : (

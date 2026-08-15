@@ -12,7 +12,7 @@ The real folder is `D:\My_profile\CV_Indra\Profile_website_indra\Updated_profile
 - Build: `npm run build`. NEVER build while the dev server runs (corrupts .next, server starts 500ing; if it happens, stop and restart the dev server).
 
 ## Architecture (all under src/)
-- `lib/data.ts` : ALL site content (profile, roles, stats, about, aiPractice, projects, publications, skills, teaching, journey, navLinks). Edit content here, never in components. TODO inside: real LinkedIn URL still placeholder.
+- `lib/data.ts` : ALL site content (profile, roles, stats, about, aiPractice, projects, publications, skills, teaching, journey, navLinks). Edit content here, never in components. LinkedIn URL confirmed correct by the owner (Aug 2026).
 - `lib/blog.ts` : blog posts as typed data (slug, dates, category, sections). 4 draft articles awaiting owner review. New post = new object at top of `posts`.
 - `app/`: `/` (one-page site), `/blog`, `/blog/[slug]` (generateStaticParams; Next 15 Promise params).
 - `components/sections/`: Hero (vertical arched portrait, RoleFlipper, stats, trusted-by), About (photo + quote + pillars), AIPractice (id="ai": offerings, toolkit, highlights), Research (filterable grid), Skills, Teaching, Publications, Journey (vertical timeline: period rail + icon markers + cards), BlogPreview, Contact (Formspree if NEXT_PUBLIC_FORMSPREE_ID set, else mailto fallback).
@@ -48,4 +48,4 @@ No em-dashes. Honest credentials only (KUSOM 4-day Excel+AI program, government 
 4. Stop dev, `npm run build` passes (static export, 9 pages currently).
 
 ## Pending from owner (July 2026)
-Real photos, real LinkedIn URL, review of 4 draft blog posts. Planned additions: Training & Workshops page (4 signature programs from his tracker file) and a Credentials section as he completes certifications. Deploy target: Vercel or GitHub Pages (workflow present), custom domain later.
+Review of the 4 draft blog posts (currently unrouted at src/app/_blog). Planned additions: Training & Workshops page (4 signature programs from his tracker file) and a Credentials section as he completes certifications. Deploy target: Vercel or GitHub Pages (workflow present), custom domain later.
