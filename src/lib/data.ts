@@ -514,6 +514,48 @@ export const languages = [
   { name: "Hindi", level: "Fluent" },
 ];
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  year: string;
+  credentialId?: string;
+  /** PDF in /public/Certifications. Omitted entries show no "View certificate" link. */
+  file?: string;
+}
+
+export const certifications: Certification[] = [
+  {
+    title: "Responsible Use of AI",
+    issuer: "NetHope Trainings · Humanitarian Leadership Academy",
+    year: "2026",
+    file: "/Certifications/Responsible%20Use%20of%20AI.pdf",
+  },
+  {
+    title: "AI Fluency for Educators",
+    issuer: "Anthropic",
+    year: "2026",
+    file: "/Certifications/Anthropic_AI_for_educators.pdf",
+  },
+  {
+    title: "Claude 101",
+    issuer: "Anthropic",
+    year: "2026",
+    file: "/Certifications/Claude_101.pdf",
+  },
+  {
+    title: "Machine Learning A-Z",
+    issuer: "Udemy",
+    year: "2021",
+    credentialId: "UC-a642c971-4c02-42eb-a26a-ba00abc91826",
+  },
+  {
+    title: "Python Core",
+    issuer: "SoloLearn",
+    year: "2018",
+    credentialId: "CT-0U5XMFY",
+  },
+];
+
 /* ── Teaching ────────────────────────────────────────────────── */
 
 export const teachingMetrics = [

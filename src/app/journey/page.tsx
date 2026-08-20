@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconDownload } from "@tabler/icons-react";
+import { IconDownload, IconCertificate, IconExternalLink } from "@tabler/icons-react";
 import {
   profile,
   journey,
@@ -8,6 +8,7 @@ import {
   researchMethods,
   analyticalTechniques,
   languages,
+  certifications,
 } from "@/lib/data";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -137,6 +138,50 @@ export default function JourneyPage() {
                     <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-accent-text">
                       {l.level}
                     </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="mt-14">
+              <div className="fig-label mb-5">Certifications</div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {certifications.map((c) => (
+                  <div
+                    key={c.title}
+                    className="panel flex h-full flex-col gap-3 p-5 transition-colors hover:border-accent/40"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent-text">
+                        <IconCertificate size={16} stroke={1.7} />
+                      </span>
+                      <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-muted">
+                        {c.year}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="font-display text-lg font-bold leading-snug text-fg">
+                        {c.title}
+                      </div>
+                      <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text">
+                        {c.issuer}
+                      </div>
+                    </div>
+                    {c.credentialId && (
+                      <p className="text-[0.68rem] text-muted">Credential ID: {c.credentialId}</p>
+                    )}
+                    {c.file && (
+                      <a
+                        href={asset(c.file)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-auto inline-flex items-center gap-1.5 pt-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent-text"
+                      >
+                        View certificate <IconExternalLink size={12} />
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
