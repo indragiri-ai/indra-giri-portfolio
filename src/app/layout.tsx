@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { profile } from "@/lib/data";
+import { asset } from "@/lib/utils";
 import "./globals.css";
 
 /**
@@ -41,8 +42,21 @@ const mono = localFont({
   fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "monospace"],
 });
 
+/**
+ * Set NEXT_PUBLIC_SITE_URL once the deploy domain is decided (see CLAUDE.md:
+ * "Deploy target: Vercel or GitHub Pages, custom domain later"). Without it,
+ * the OG/Twitter image below still renders correctly on the site itself, but
+ * link previews on LinkedIn/WhatsApp etc. can't resolve a relative image URL
+ * and will show no image until the env var is set.
+ */
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+const ogImagePath = asset(profile.portrait);
+const ogImage = SITE_URL ? `${SITE_URL}${ogImagePath}` : ogImagePath;
+const title = `${profile.name} | AI Generalist, Researcher & Educator`;
+
 export const metadata: Metadata = {
-  title: `${profile.name} | AI Generalist, Researcher & Educator`,
+  ...(SITE_URL ? { metadataBase: new URL(SITE_URL) } : {}),
+  title,
   description: profile.tagline,
   keywords: [
     "Indra Giri",
@@ -58,10 +72,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name }],
   openGraph: {
-    title: `${profile.name} | AI Generalist, Researcher & Educator`,
+    title,
     description: profile.tagline,
     type: "website",
     locale: "en_US",
+    images: [{ url: ogImage, width: 1200, height: 1500, alt: profile.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: profile.tagline,
+    images: [ogImage],
   },
 };
 

@@ -13,7 +13,7 @@ export default function BlogPreview() {
       <div className="mx-auto max-w-content px-6 py-20 sm:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHead
-            fig="08"
+            fig="06"
             tag="Writing"
             title={
               <>

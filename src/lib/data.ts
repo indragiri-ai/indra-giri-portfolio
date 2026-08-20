@@ -33,7 +33,7 @@ export const profile = {
   arxiv: "https://arxiv.org/abs/2602.00138",
   cvPath: "/cv/Indra_Giri_CV.pdf",
   portrait: "/images/portrait.jpg",
-  aboutPhoto: "/images/about.svg",
+  aboutPhoto: "/images/about.jpg",
   tagline:
     "AI Generalist, researcher and educator helping organisations turn data into decisions and evidence into impact.",
   heroIntro:
@@ -73,36 +73,28 @@ export const clients = [
   "AEPC · Govt. of Nepal",
   "Hoover Institution",
   "Anahata Nepal",
+  "Kathmandu University School of Management",
+  "Chingad Rural Municipality",
+  "Durbar High School",
 ];
 
 export const about = {
   lead: "Good data, asked the right questions, can change lives.",
-  paragraphs: [
-    "Over the past decade I have led research across Nepal, India and beyond. I design studies, train field teams, run the analysis and turn raw evidence into recommendations that shape policy and programs. My work has reached brick kiln families, smallholder farmers, government officers and children in vulnerable communities.",
-    "Today I bring artificial intelligence into that same discipline. I train professionals and students in generative AI, study how AI is being adopted in Nepal, and use AI tools to make research faster, deeper and more reliable. The goal has not changed: better evidence and better decisions.",
-  ],
-  photoCaption: "Field work, Nepal",
-  mapLabel: "Field footprint",
-  mapTitle: "Where the research has taken me",
-  mapIntro:
+  paragraph:
+    "Over the past decade I have led research across Nepal, India and beyond, and today I bring artificial intelligence into that same discipline: training professionals, studying how AI is adopted in Nepal, and using AI tools to make research faster, deeper and more reliable. The goal has not changed: better evidence and better decisions.",
+  photoCaption: "Teaching a generative AI session",
+};
+
+/**
+ * Nepal fieldwork map intro. Lives here (not under `about`) because the map
+ * itself now sits inside the Research section: it is the district level
+ * record of where the research projects below actually happened.
+ */
+export const fieldworkIntro = {
+  label: "Field footprint",
+  title: "Where the research has taken me",
+  intro:
     "Every district below is somewhere I have run fieldwork: household surveys, key informant interviews, focus groups and field observation. Hover or tap a district to see the project and the year. Fieldwork across India is not shown here.",
-  pillars: [
-    {
-      tag: "field",
-      title: "The Researcher",
-      text: "End to end impact evaluations, value chain studies and mixed methods research for international organisations and governments.",
-    },
-    {
-      tag: "lab",
-      title: "The AI Practitioner",
-      text: "Generative AI training, AI readiness research and AI assisted analytics. Helping people and organisations work confidently with AI.",
-    },
-    {
-      tag: "classroom",
-      title: "The Educator",
-      text: "Economics, research methods and data analysis across four universities, mentoring students to think critically and reason with evidence.",
-    },
-  ],
 };
 
 /* ── AI practice ─────────────────────────────────────────────── */
@@ -133,7 +125,7 @@ export const aiPractice = {
     },
     {
       icon: "robot",
-      title: "AI in the Research Workflow",
+      title: "AI and Automation",
       desc: "Using AI to make every stage of research faster, deeper and more reliable.",
       points: [
         "AI assisted survey design and qualitative coding",
@@ -153,20 +145,6 @@ export const aiPractice = {
     "NotebookLM",
     "AI agents",
     "RAG workflows",
-  ],
-  highlights: [
-    {
-      label: "Conference",
-      text: "Presented research on AI awareness among professionals in Nepal at the 4th National Economist Conference.",
-    },
-    {
-      label: "Media",
-      text: "Published op-eds on AI policy and the AI revolution in The Himalayan Times and Nagarik Dainik.",
-    },
-    {
-      label: "Training",
-      text: "Designed and delivered generative AI and prompt engineering programs through Sankhya AI.",
-    },
   ],
 };
 
@@ -397,9 +375,95 @@ export const conferencePapers = [
   },
 ];
 
-export const mediaArticles = [
-  { title: "Making AI Policy Truly Effective", venue: "The Himalayan Times", meta: "Op-ed" },
-  { title: "एआई क्रान्तिमा ऊर्जाको आवश्यकता", venue: "Nagarik Dainik", meta: "Opinion (Nepali)" },
+export interface MediaArticle {
+  slug: string;
+  title: string;
+  venue: string;
+  meta: string;
+  /** Real publish date, e.g. "21 February 2025". Shown on the article page footer. */
+  date: string;
+  /** Where it ran, e.g. "Kathmandu, Nepal". */
+  place: string;
+  /** The full published text, one paragraph per entry, reproduced verbatim from the original. */
+  body: string[];
+}
+
+export const mediaArticles: MediaArticle[] = [
+  {
+    slug: "the-digital-key-to-political-stability",
+    title: "The Digital Key to Political Stability: Government Must Adapt to the Technology",
+    venue: "The Himalayan Times",
+    meta: "Op-ed · with Bishu Giri",
+    date: "13 January 2026",
+    place: "Kathmandu, Nepal",
+    body: [
+      "Nepal's youth are tech-fluent while the government lags behind in digital adoption. This disconnect represents a significant challenge for political stability and governance in the country.",
+      "When Singha Durbar caught fire recently, citizens expressed concern about the data centre's safety, recognizing its critical importance for government operations. New generations understand digital infrastructure's role in national functioning, yet the government has not kept pace with technological expectations.",
+      "Nepal established a federal republic system after considerable political struggle, yet ordinary citizens report minimal improvement in daily life. Accessing public services remains burdensome, and political affiliation determines service accessibility rather than merit or need. This rent-seeking culture perpetuates inefficiency across government systems.",
+      "Generation Z, having grown up with smartphones and internet access, finds this unacceptable. They demand efficient systems where bribes and party loyalty prove unnecessary for basic services. The recent youth protests partially reflected frustration with government's failure to embrace technology.",
+      "The authors propose four pillars for Nepal's digital transformation:",
+      "Policy Integration: Nepal possesses a Digital Nepal Framework requiring updates. Recent initiatives include a National AI Policy and cybersecurity legislation. However, these policies exist in isolation when they should coordinate, since digitalization creates data for AI systems, cybersecurity protects that data, and frameworks must integrate all components.",
+      "People and Literacy: Despite 80 percent mobile phone ownership, only 31 percent demonstrate digital literacy. Citizens primarily use phones for social media, unaware of government services, banking, and shopping availability online. Government must address this knowledge gap through comprehensive literacy programs teaching service navigation, fraud recognition, and data protection.",
+      "Infrastructure Development: Private sector progress significantly exceeds government efforts. Financial institutions and fintech companies adapted quickly; 28 million use mobile banking, and QR transactions increased substantially. Apps like Pathao and Indrive demonstrate urban adoption success. However, the government's Nagarik App faces serious implementation challenges, with inconsistent performance across Apple and Android platforms.",
+      "Government should function as infrastructure enabler by expanding WiFi networks, data storage facilities, and network towers to reach remote areas. Digital benefits must extend nationwide, reducing the digital divide.",
+      "Security Concerns: Increased digitalization creates vulnerability to cyber attacks from distant locations. Nations worldwide have experienced disruptions from hacking. As adoption grows, systems become increasingly vulnerable. Nepal should collaborate with international organizations like the World Bank on cyber resilience initiatives and develop domestic data centres requiring stable power and water infrastructure.",
+      "Successful digitalization means simplified processes: renewing driving licenses without queues, obtaining tax clearance through clicks, and registering businesses without intermediaries. Estonia provides a successful international model for digital transformation that Nepal might emulate.",
+      "The authors conclude that Nepal's youth expect governmental modernization. While steps toward digitalization exist, implementation speed fails to meet citizen expectations for change.",
+      "Bishu works as a data scientist at the World Bank's Washington D.C. headquarters; Indra serves as a lecturer at BridgeAI Academy in Kathmandu.",
+    ],
+  },
+  {
+    slug: "making-ai-policy-truly-effective",
+    title: "Making AI Policy Truly Effective",
+    venue: "The Himalayan Times",
+    meta: "Op-ed · with Bishu Giri and Krishna Sharma",
+    date: "21 February 2025",
+    place: "Kathmandu, Nepal",
+    body: [
+      "A robust foundation must precede sweeping regulations.",
+      "Is AI the 'Amrita', the nectar of immortality, or must it first pass through the churning of the cosmic ocean-unleashing both divine wisdom and unforeseen chaos before it becomes a true elixir for humanity?",
+      "AI, like the fabled 'Amrita', holds the potential to be a nectar of economic and social prosperity, granting Nepal unprecedented opportunities in governance, healthcare, education and business. However, just as the cosmic ocean had to be churned before yielding its divine elixir, AI must also undergo rigorous scrutiny, infrastructure strengthening and regulatory clarity before it can be harnessed for the collective good. The National Artificial Intelligence Policy 2081 aspires to regulate and facilitate AI in Nepal, but does it provide a concrete roadmap to ensure AI serves the country rather than overwhelming it?",
+      "The policy outlines broad objectives but fails to address how they will be implemented. It lacks a clear action plan detailing the responsible agencies, funding mechanisms and measurable outcomes. A well-crafted policy must go beyond abstract goals and specify how Nepal will build an AI ecosystem that aligns with its economic and technological realities. Otherwise, Nepal risks falling into the trap of ambitious policies that remain only on paper.",
+      "Nepal's AI policy draft emphasizes university collaboration, yet research and development remain weak due to inadequate funding and institutional support. Policymakers highlight academic partnerships, but the reality is starkly different, as seen in the struggles of the National Innovation Centre. India's IITs have propelled a startup boom with over 100 unicorns, showcasing the power of strong educational ties. Meanwhile, Nepal allocates less than 1% of GDP to R&D, leaving institutions like NAST underfunded. Without a clear financing strategy for AI labs, research hubs, and curriculum integration, Nepal will remain reliant on foreign solutions, missing the chance to nurture domestic talent and innovation.",
+      "Beyond research, Nepal's broader digital ecosystem remains underdeveloped. The policy assumes AI can flourish without addressing core digital weaknesses such as poor internet connectivity, frequent power outages and inadequate access to computing power. As of 2023, Nepal's internet penetration stood at approximately 50 per cent, with rural areas facing even lower access rates; while mobile phone penetration is relatively high, reliable broadband coverage is still limited to a few urban pockets.",
+      "In addition, digital literacy remains a challenge—many citizens struggle with basic online services, raising the question of how they will navigate the far more complex \"language\" of AI. The AI ecosystem also demands stable and sufficient energy supplies. Without investing in AI-ready infrastructure—such as a robust literacy plan, improved digital connectivity and uninterrupted power, AI initiatives will struggle to scale beyond a handful of tech hubs.",
+      "The current draft lacks clarity whether to build our own foundational AI model or leverage the open source solutions. This is critical for Nepal, like many other low-income countries. The introduction of Deepseek, a foundational large language model (LLM), developed in China, showed that the cost of training LLMs can go down significantly.",
+      "However, in any case, the need for robust data pipelines, high-powered computational infrastructure and skilled resources is still relevant. A strategic blend of public-private partnerships, government-backed investments and incentives to attract foreign investors could help Nepal navigate these complexities.",
+      "Nepal can also take inspiration from initiatives like the Singapore–Rwanda AI Playbook, forging strategic, cross-country partnerships that pool resources and expertise—particularly valuable for smaller states aiming to build a robust AI ecosystem without shouldering prohibitive costs alone.",
+      "AI development and adoption require significant resources and dedicated organisations.",
+      "Nepal's policy draft mentions public-private partnerships but lacks details on private sector incentives. Countries like India and Singapore drive AI growth through venture capital, incubators and government-backed research. Rather than adding compliance burdens, Nepal should foster AI entrepreneurship with tax incentives, innovation hubs and direct funding. AI-specific startup grants or a venture capital matching scheme could further attract global investment.",
+      "AI has huge potential to improve many critical areas such as healthcare, education, employment and finance. However, it comes with equal risk, if not regulated properly. The governance section of the policy is vague in addressing AI risks such as misinformation, surveillance and data privacy. While AI can be used to enhance security and governance, the absence of clear guidelines on ethical AI use leaves room for misuse.",
+      "Nepal should ensure legal protections are in place to prevent AI from being exploited for disinformation, financial crimes or intrusive surveillance. While the policy touches on these risks, it does not specify how accountability mechanisms will be enforced or who will be responsible for oversight. Without strong cybersecurity laws, encryption standards and data localization policies, AI-driven platforms can expose sensitive personal and government data to external threats.",
+      "To make the AI policy truly effective, Nepal must first establish a robust foundation before enacting sweeping regulations. Instead of viewing AI solely as a governance issue, Nepal should embrace it as a development catalyst—requiring targeted investment, research, infrastructure and workforce training. By prioritising capacity-building over premature regulation, the country can fully harness AI's benefits while responsibly managing its inherent risks. Nepal's AI policy should prioritise three pillars: (1) University-led AI research funding, (2) AI workforce upskilling and (3) AI-driven public-private partnerships.",
+      "The authors are associated with Sankhya AI-Kathmandu.",
+    ],
+  },
+  {
+    slug: "ai-krantima-urjako-aawashyakta",
+    title: "एआई क्रान्तिमा ऊर्जाको आवश्यकता",
+    venue: "Nagarik Dainik",
+    meta: "Opinion (Nepali) · with Bishu Giri and Krishna Sharma",
+    date: "27 February 2025",
+    place: "Kathmandu, Nepal",
+    body: [
+      "विश्वभर एआई क्रान्ति तीव्र गतिमा अगाडि बढिरहेको छ। संयुक्त राज्य अमेरिका, चीन र युरोप जस्ता देशले अत्याधुनिक एआई मोडेलहरू विकास गर्न ठूलो लगानी गरिरहेका छन् जसका लागि विशाल कम्प्युटेसनल शक्ति र ऊर्जा स्रोत आवश्यक पर्छ। हालै अमेरिकाले पाँच सय अर्ब डलर र युरोपले २०० अर्ब युरोको लगानी घोषणा गरेका छन्। यी लगानीले एआईको आर्थिक र प्रविधिगत वृद्धिमा महत्त्वपूर्ण भूमिका खेल्न सक्ने देखाउँछ।",
+      "नेपालले पनि एआईलाई आत्मसात गर्दै उस्तै प्रविधिगत प्रगति गर्ने लक्ष्य राख्नुपर्छ। तर एआई विकासका लागि आवश्यक स्रोतहरूको अभाव झेलिरहेको छ। ऊर्जा स्रोत र कम्प्युटिङ पूर्वाधारको सीमितता नेपालका लागि प्रमुख चुनौती बनेको छ। नेपालले एआईको विकासलाई सम्भव बनाउन चाहन्छ भने त्यसका लागि रणनीतिक र स्रोत–सचेत दृष्टिकोण अपनाउनु आवश्यक छ।",
+      "नेपाल एआई नीति मस्यौदा २०८१ ले देशमा यो प्रविधिको विकासका लागि आवश्यक आधार तय गरिसकेको छ जुन एक महत्त्वपूर्ण उपलब्धि हो तर अझै पनि नेपालले आफ्नै आधारभूत एआई मोडेलहरू विकास गर्नु उपयुक्त हुन्छ वा अन्य देशद्वारा विकसित मोडेलहरूलाई एकीकृत गर्नु राम्रो हुन्छ भन्नेबारे ठोस बहस आवश्यक छ।",
+      "नेपालको सन्दर्भमा, कम्प्युटिङ शक्ति, डेटा उपलब्धता र स्थिर बिजुली आपूर्तिको अभाव मुख्य चुनौती हुन्। यस कारण नेपालले एआईको प्रशिक्षणका लागि पूर्वाधार निर्माण गर्न सक्दैन भन्ने सवालभन्दा पनि उपलब्ध स्रोतहरूलाई कसरी प्रभावकारीरूपमा उपयोग गर्न सकिन्छ भन्ने पक्षमा छलफल केन्द्रित हुनुपर्छ।",
+      "एआई मोडेलहरू प्रशिक्षण गर्दा डेटा सङ्कलन, मोडेल निर्माण, परीक्षण, परिमार्जन र अन्ततः प्रयोगमा ल्याउने प्रक्रिया समावेश हुन्छ। यसमध्ये सबैभन्दा बढी ऊर्जा खपत गर्ने चरण मोडेल प्रशिक्षण हो। आधुनिक एआई मोडेलहरूमा गहिरो शिक्षण प्रविधि प्रयोग गरिन्छ जसमा न्युरल नेटवर्क (मानव मस्तिष्कबाट प्रेरित जटिल कम्प्युटिङ प्रणाली) आधारित हुन्छ।",
+      "यी न्युरल नेटवर्कहरूको प्रशिक्षण अत्यधिक ऊर्जा खपत गर्ने चरण हो। जटिल मोडेलहरूमा अर्बौं संख्यामा न्युरल नेटवर्क परिमिति हुन्छन्। उदाहरणका लागि चाटजिपिटी–३ मोडेलमा एक सय ७५ अर्ब परिमिति छन्। यस मोडेललाई प्रशिक्षण गर्न एक हजार दुई सय ८७ मेगावाट बिजुली खपत भएको थियो जुन करिब नेपालको एक घण्टाको कुल बिजुली खपत बराबर हो।",
+      "एक अनुमानअनुसार प्रत्येक च्याटजिपिटी क्वेरीले ०.००२९ किलोवाट बिजुली खपत गर्छ। विश्वभर दैनिक एक अर्ब क्वेरीहरू प्रशोधन गरिन्छ। नेपालका करिब ३० लाख व्यक्ति (नेपालको १० प्रतिशत जनसंख्या) ले दैनिक ३.३३ पटक चाटजिपिटी प्रयोग गरे भने दैनिक बिजुली खपत करिब २९ मेगावाट हुनेछ जसको वार्षिक खपत १०,५८५ मेगावाट पुग्न सक्छ।",
+      "नेपालमा हालको कुल वार्षिक बिजुली उत्पादन १२ हजार ७१ जिडब्लुएच छ जसको अधिकांश भाग जलविद्युत्बाट प्राप्त हुन्छ। नेपालमा सानो स्तरमा मात्र एआई प्रविधिको प्रयोग भए पनि यसले बिजुली आपूर्तिमा ठूलो प्रभाव पार्न सक्छ।",
+      "नेपालको जलविद्युत् उत्पादन मौसमी हुन्छ– वर्षायाममा बिजुली अत्यधिक उत्पादन हुन्छ भने हिउँदमा ४० प्रतिशतभन्दा कम उत्पादन हुन्छ जसका कारण नेपाललाई भारतबाट बिजुली आयात गर्नुपर्ने बाध्यता छ। एआई प्रविधिले स्थिर र उच्च क्षमताको बिजुली आपूर्तिको माग गर्छ तर नेपालको वर्तमान बिजुली आपूर्ति अस्थिर छ।",
+      "नेपाल विद्युत् प्राधिकरण र सरकारबीच उद्योगलाई विशेष बिजुली आपूर्ति दिने विषयमा विवाद चलिरहेको छ। उद्योगहरू बिजुली आपूर्तिको अभावका कारण घाटामा छन् भने डेटा सेन्टर र एआई कम्पनीहरूका लागि आवश्यक स्थिर बिजुली आपूर्ति अझै कठिन हुनेछ।",
+      "नेपालले एआईका लागि आवश्यक ठूलो मात्रामा बिजुली छुट्याउने निर्णय गर्दा यसको प्रभाव अन्य महत्त्वपूर्ण क्षेत्रहरूमा पर्न सक्छ। कृषि, उद्योग, स्वास्थ्य र अन्य अत्यावश्यक सेवाहरूलाई पर्याप्त ऊर्जा आपूर्ति गर्न नसक्दा समग्र आर्थिक विकासमा असर पर्न सक्छ। एआई मोडेल प्रशिक्षणले कुल बिजुली खपतमा सानो मात्र योगदान दिन सक्छ तर अल्पकालीन रूपमा उच्च मागले स्थानीय क्षेत्रमा बिजुली अभाव सिर्जना गर्न सक्छ। त्यसैले नेपालले डिजिटल प्रविधि र ऊर्जा सुरक्षाबीच सन्तुलन कायम गर्न आवश्यक छ।",
+      "नेपालले एआईलाई आत्मसात गर्नुपर्छ तर संक्रमणकालीन रणनीति अपनाउनु जरुरी छ। नेपालले तत्कालै बृहत् मोडेल निर्माणमा ध्यान केन्द्रित गर्नुको सट्टा, स्थानीय आवश्यकताअनुसार मध्यम आकारका एआई मोडेलहरू विकास गर्नु उपयुक्त हुन्छ। एआई मोडेलहरूलाई ट्रान्सफर लर्निङ, नलेज डिस्टिलेसन र परिमिति–कुशल प्रशिक्षण प्रविधि प्रयोग गरी स्थानीय भाषामा परिमार्जन गर्न सकिन्छ। यसले ऊर्जा लागत कम बनाउँछ र स्थानीय एआई विकासलाई दिगो बनाउँछ।",
+      "नेपालले अल्पकालीनरूपमा अन्तर्राष्ट्रिय क्लाउड–आधारित एआई समाधानहरू प्रयोग गर्न सक्छ। अन्तर्राष्ट्रिय डेटा सेन्टरहरू प्रायः नवीकरणीय ऊर्जा स्रोतहरूमा आधारित हुन्छन् जसले नेपाललाई कम्प्युटिङ पूर्वाधारको वित्तीय बोझबाट बचाउन सक्छ। तर क्लाउड कम्प्युटिङमा डेटा गोपनीयता, नेटवर्क ढिलाइ र भूराजनीतिक असर जस्ता जोखिम छन्। यसकारण, नेपालले क्लाउड–आधारित रणनीतिलाई लामो समयसम्म निर्भर हुन नदिने गरी सोच्नुपर्छ।",
+      "नेपालले जलविद्युत्बाहेक सौर्य र पवन ऊर्जा जस्ता नवीकरणीय ऊर्जा स्रोतहरूमा लगानी गर्नुपर्छ। विशेषगरी ब्याट्री भण्डारण प्रणालीको विकास गर्दा नेपालले जलविद्युत् उत्पादनमा आउने मौसमी प्रभावलाई सन्तुलित गर्न सक्छ। हाल नेपालका नवीकरणीय ऊर्जा परियोजनाहरू घरायसी प्रयोजनमा सीमित छन् तर डिजिटल पूर्वाधारलाई समर्थन गर्न ठूलो स्तरका परियोजना आवश्यक छन्।",
+      "नेपालले आफ्नै बृहत् एआई मोडेलहरू निर्माण गर्नु अहिलेको सन्दर्भमा व्यावहारिक देखिँदैन। हाल उपलब्ध स्रोतहरूलाई अधिकतम प्रयोग गर्दै नेपालले एआई मोडेलहरूलाई अनुकूलन गर्न ध्यान दिनुपर्छ। दीर्घकालीन रूपमा नेपालले आफ्नै साना–मझौला एआई मोडेलहरू विकास गर्न आधार तयार गर्नुपर्छ। नेपालले सानै स्तरमा एआई विकासको आधार तयार गर्‍यो भने भविष्यमा डिजिटल स्वतन्त्रता सुनिश्चित गर्न सक्छ। एआई केवल प्रविधि विकासको कुरा मात्र होइन, यो नेपाललाई डिजिटल युगमा प्रतिस्पर्धी बनाउन आवश्यक रणनीतिसमेत हो।",
+      "– लेखकहरू संख्य एआई र एसआइपिआरसँग सम्बद्ध छन्।",
+    ],
+  },
 ];
 
 /* ── Skills ──────────────────────────────────────────────────── */
@@ -622,25 +686,42 @@ export const journey: JourneyItem[] = [
     desc: "Foundation in economic theory, statistics and quantitative reasoning.",
     tools: [],
   },
+  {
+    type: "edu",
+    role: "Higher Secondary, Commerce",
+    org: "Delhi Public School, R.K. Puram",
+    loc: "New Delhi, India",
+    period: "2007 - 2009",
+    desc: "Commerce stream.",
+    tools: [],
+  },
+  {
+    type: "edu",
+    role: "SLC (Secondary Education), Batch 2006/2007",
+    org: "Shree Bharati Bhawan Secondary School",
+    loc: "Pokhara, Nepal",
+    period: "2006 - 2007",
+    desc: "School Leaving Certificate (SLC) examination.",
+    tools: [],
+  },
 ];
 
 /* ── Navigation ──────────────────────────────────────────────── */
 
 /**
- * Seven items, deliberately. Publications and Journey came out when they became
- * their own pages: they are reached from the summary blocks on the home page.
- * Anything longer than about seven reads as a site map rather than navigation.
+ * About is deliberately not in the nav: the whole site is about one person,
+ * so a dedicated "About" entry is redundant. Every other heading here is a
+ * standalone page, not a home page anchor: the matching home section is only
+ * a teaser for it. Contact is the one exception, since a contact form has
+ * nothing to show on a page of its own beyond what is already on the home
+ * anchor.
  */
 export const navLinks = [
-  { href: "/#about", label: "About" },
-  /* AI is a standalone page, not an anchor: it is the deepest part of the site
-     and the section on the home page is only a teaser for it. */
   { href: "/ai", label: "AI" },
   { href: "/projects", label: "Projects" },
-  { href: "/#research", label: "Research" },
-  { href: "/#teaching", label: "Teaching" },
-  /* Media is deliberately NOT in the nav: the gallery has a prominent block on
-     the home page, and eight items starts reading as a site map. */
+  { href: "/research", label: "Research" },
+  { href: "/teaching", label: "Teaching" },
   { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Contact" },
+  { href: "/gallery", label: "Gallery" },
 ];

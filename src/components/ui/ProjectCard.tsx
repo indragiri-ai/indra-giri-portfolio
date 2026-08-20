@@ -1,11 +1,13 @@
-import { IconMapPin } from "@tabler/icons-react";
+import { IconMapPin, IconChartBar } from "@tabler/icons-react";
 import type { Project } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 /**
  * One research project. Used by the Research section on the home page (which
  * shows only current work) and by /projects (which shows everything), so the
- * two never drift apart visually.
+ * two never drift apart visually. Styled to match the press-mention cards in
+ * PressMarquee: icon badge, bordered surface panel, tint-on-hover rather than
+ * lift-and-shadow.
  */
 export default function ProjectCard({
   p,
@@ -17,13 +19,13 @@ export default function ProjectCard({
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-2xl border border-line/10 bg-surface p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_50px_rgb(var(--fg)/0.06)]",
+        "group flex h-full flex-col gap-5 rounded-2xl border border-line/15 bg-surface p-7 transition-colors hover:border-accent/50 hover:bg-accent/[0.06]",
         className
       )}
     >
-      <div className="mb-5 flex items-start justify-between gap-4">
-        <span className="font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
-          {p.org}
+      <div className="flex items-start justify-between gap-4">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent-text">
+          <IconChartBar size={16} stroke={1.7} />
         </span>
         <span
           className={cn(
@@ -41,10 +43,16 @@ export default function ProjectCard({
         </span>
       </div>
 
-      <h3 className="mb-3 font-display text-xl font-bold leading-tight text-fg transition-colors group-hover:text-accent-text">
-        {p.title}
-      </h3>
-      <p className="mb-6 flex-1 text-sm leading-relaxed text-muted">{p.desc}</p>
+      <div>
+        <div className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text">
+          {p.org}
+        </div>
+        <h3 className="mt-1.5 font-display text-xl font-bold leading-tight text-fg">
+          {p.title}
+        </h3>
+      </div>
+
+      <p className="flex-1 text-sm leading-relaxed text-muted">{p.desc}</p>
 
       <div className="mt-auto border-t border-line/10 pt-4">
         <span className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted">

@@ -43,6 +43,7 @@ const config: Config = {
       },
       animation: {
         marquee: "marquee 28s linear infinite",
+        "marquee-slow": "marquee 110s linear infinite",
         "pulse-dot": "pulseDot 2s ease-in-out infinite",
         ping2: "ping2 1.8s ease-out infinite",
         "fade-in": "fadeIn 0.7s ease-out both",

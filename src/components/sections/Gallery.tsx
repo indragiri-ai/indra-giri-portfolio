@@ -43,7 +43,7 @@ export default function Gallery() {
   return (
     <section id="gallery" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <SectionHead
-        fig="05"
+        fig="07"
         tag="Media"
         title={
           <>
@@ -85,14 +85,10 @@ export default function Gallery() {
       </div>
 
       <Reveal delay={0.2}>
-        <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-line/10 pt-8">
+        <div className="mt-12 border-t border-line/10 pt-8">
           <Link href="/gallery" className="btn-primary">
             View full gallery <IconArrowRight size={15} />
           </Link>
-          <p className="max-w-md text-sm leading-relaxed text-muted">
-            {photos.length} photographs from training rooms, staff rooms and
-            fieldwork across Nepal.
-          </p>
         </div>
       </Reveal>
     </section>

@@ -14,7 +14,7 @@ import {
 import { profile, whatsappUrl } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
 
-type Status = "idle" | "sending" | "sent" | "error" | "invalid";
+type Status = "idle" | "sending" | "sent" | "error" | "invalid" | "invalidEmail";
 
 const labels: Record<Status, string> = {
   idle: "Send message",
@@ -22,7 +22,10 @@ const labels: Record<Status, string> = {
   sent: "Message sent",
   error: "Something went wrong, please try again",
   invalid: "Please fill name, email & message",
+  invalidEmail: "Please enter a valid email address",
 };
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -33,9 +36,15 @@ export default function Contact() {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  const submit = async () => {
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setStatus("invalid");
+      setTimeout(() => setStatus("idle"), 2200);
+      return;
+    }
+    if (!EMAIL_RE.test(form.email.trim())) {
+      setStatus("invalidEmail");
       setTimeout(() => setStatus("idle"), 2200);
       return;
     }
@@ -65,12 +74,14 @@ export default function Contact() {
   };
 
   const inputCls =
-    "w-full rounded-xl border border-line/15 bg-bg px-5 py-4 text-sm text-fg outline-none transition-colors placeholder:text-muted/60 focus:border-accent";
+    "w-full rounded-xl border border-line/15 bg-bg px-5 py-4 text-sm text-fg outline-none transition-colors placeholder:text-muted/60 focus:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  const labelCls = "mb-1.5 block font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted";
+  const isError = status === "error" || status === "invalid" || status === "invalidEmail";
 
   return (
     <section id="contact" className="mx-auto max-w-content px-6 py-20 sm:px-10">
       <Reveal>
-        <div className="fig-label mb-5">09 · Contact</div>
+        <div className="fig-label mb-5">08 · Contact</div>
         <h2 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">
           Let&apos;s work
           <br />
@@ -134,27 +145,64 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="panel p-7 sm:p-9">
+          <form className="panel p-7 sm:p-9" onSubmit={submit} noValidate>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <input className={inputCls} placeholder="Your name" value={form.name} onChange={update("name")} />
-              <input className={inputCls} type="email" placeholder="you@email.com" value={form.email} onChange={update("email")} />
+              <div>
+                <label htmlFor="contact-name" className={labelCls}>Name</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  className={inputCls}
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={update("name")}
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className={labelCls}>Email</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className={inputCls}
+                  placeholder="you@email.com"
+                  value={form.email}
+                  onChange={update("email")}
+                />
+              </div>
             </div>
-            <input
-              className={`${inputCls} mt-4`}
-              placeholder="What's this about?"
-              value={form.subject}
-              onChange={update("subject")}
-            />
-            <textarea
-              className={`${inputCls} mt-4 min-h-32 resize-y`}
-              placeholder="Write your message…"
-              value={form.message}
-              onChange={update("message")}
-            />
+            <div className="mt-4">
+              <label htmlFor="contact-subject" className={labelCls}>Subject</label>
+              <input
+                id="contact-subject"
+                name="subject"
+                autoComplete="off"
+                className={inputCls}
+                placeholder="What's this about?"
+                value={form.subject}
+                onChange={update("subject")}
+              />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="contact-message" className={labelCls}>Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                required
+                className={`${inputCls} min-h-32 resize-y`}
+                placeholder="Write your message…"
+                value={form.message}
+                onChange={update("message")}
+              />
+            </div>
             <button
-              onClick={submit}
+              type="submit"
               disabled={status === "sending"}
-              className={`mt-6 flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] transition-all ${
+              className={`mt-6 flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                 status === "sent"
                   ? "bg-fg text-bg"
                   : "bg-accent text-accent-ink hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgb(var(--accent)/0.3)]"
@@ -162,11 +210,14 @@ export default function Contact() {
             >
               {status === "sending" && <IconLoader2 size={15} className="animate-spin" />}
               {status === "sent" && <IconCheck size={15} />}
-              {(status === "error" || status === "invalid") && <IconAlertCircle size={15} />}
+              {isError && <IconAlertCircle size={15} />}
               {status === "idle" && <IconSend size={15} />}
               {labels[status]}
             </button>
-          </div>
+            <p role="status" aria-live="polite" className="sr-only">
+              {status !== "idle" ? labels[status] : ""}
+            </p>
+          </form>
         </Reveal>
       </div>
     </section>

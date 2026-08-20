@@ -14,8 +14,6 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   const photos = galleryPhotos();
-  const training = photos.filter((p) => p.kind === "training").length;
-  const field = photos.length - training;
 
   return (
     <>
@@ -31,86 +29,40 @@ export default function GalleryPage() {
             }
             intro={galleryIntro}
           />
-
-          <Reveal delay={0.06}>
-            <div className="mt-10 flex flex-wrap gap-x-12 gap-y-5 border-y border-line/10 py-6">
-              {[
-                { value: photos.length, label: "Photographs" },
-                { value: training, label: "Training sessions" },
-                { value: field, label: "Field work" },
-              ]
-                .filter((s) => s.value > 0)
-                .map((s) => (
-                  <div key={s.label}>
-                    <div className="font-display text-3xl font-semibold text-accent-text">
-                      {s.value}
-                    </div>
-                    <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </Reveal>
         </div>
 
-        {/* Alternating layout: every third photo runs wide, so the page reads
-            as a photo essay rather than a uniform grid of thumbnails. */}
-        <div className="mt-16 space-y-16">
-          {photos.map((item, i) => {
-            const wide = i % 3 === 0;
-
-            return (
-              <Reveal key={item.caption} delay={0.04}>
-                <figure
-                  className={
-                    wide
-                      ? "mx-auto max-w-[1400px] px-4 sm:px-6"
-                      : "mx-auto max-w-content px-6 sm:px-10"
-                  }
-                >
-                  <div
-                    className={
-                      wide
-                        ? "overflow-hidden rounded-2xl border border-line/10 bg-surface"
-                        : "grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:gap-14"
-                    }
-                  >
-                    <div
-                      className={
-                        wide
-                          ? ""
-                          : "overflow-hidden rounded-2xl border border-line/10 bg-surface"
-                      }
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={asset(item.src!)}
-                        alt={item.caption}
-                        className={
-                          wide
-                            ? "aspect-[21/9] w-full object-cover"
-                            : "aspect-[4/3] w-full object-cover"
-                        }
-                      />
-                    </div>
-
-                    <figcaption className={wide ? "px-6 py-6 sm:px-8" : ""}>
-                      <span className="font-mono text-[0.58rem] uppercase tracking-[0.18em] text-accent-text">
-                        {item.kind === "training" ? "Training" : "Field work"}
-                      </span>
-                      <p className="mt-3 max-w-2xl font-display text-2xl font-bold leading-snug text-fg sm:text-3xl">
-                        {item.caption}
-                      </p>
-                      <p className="mt-2 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-muted">
-                        {item.meta}
-                      </p>
-                    </figcaption>
+        {/* Same card design as the home page's Media & Gallery section,
+            just showing every photo in one grid instead of a rotating
+            three-slot window. */}
+        <div className="mx-auto mt-16 max-w-content px-6 sm:px-10">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {photos.map((item, i) => (
+              <Reveal key={item.caption} delay={Math.min(i * 0.04, 0.3)}>
+                <figure className="group h-full overflow-hidden rounded-2xl border border-line/10 bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={asset(item.src!)}
+                      alt={item.caption}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
+
+                  <figcaption className="p-5">
+                    <span className="font-mono text-[0.55rem] uppercase tracking-[0.16em] text-accent-text">
+                      {item.kind === "training" ? "Training" : "Field work"}
+                    </span>
+                    <p className="mt-2 font-display text-base font-bold leading-snug text-fg">
+                      {item.caption}
+                    </p>
+                    <p className="mt-1 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted">
+                      {item.meta}
+                    </p>
+                  </figcaption>
                 </figure>
               </Reveal>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
         <div className="mx-auto mt-24 max-w-content px-6 sm:px-10">

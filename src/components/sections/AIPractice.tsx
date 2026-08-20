@@ -30,7 +30,11 @@ export default function AIPractice() {
           intro={aiPractice.intro}
         />
 
-        {/* offerings */}
+        {/* offerings: brighter than the site's other cards on purpose. This
+            is the section that should feel alive, not just informative, so
+            each card carries its own tinted gradient wash, a glowing icon
+            badge and a stronger lift on hover instead of the flat .panel
+            treatment used everywhere else. */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {aiPractice.offerings.map((o, i) => {
             const IconCmp = icons[o.icon] ?? IconRobot;
@@ -39,24 +43,28 @@ export default function AIPractice() {
                 {/* Each offering now opens its own page under /ai */}
                 <Link
                   href={`/ai/${aiServices[i]?.slug ?? ""}`}
-                  className="panel group flex h-full flex-col p-7 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent/[0.09] via-surface to-surface p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/60 hover:shadow-[0_24px_60px_-20px_rgb(var(--accent)/0.45)]"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 text-accent-text">
-                    <IconCmp size={22} stroke={1.6} />
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/25 blur-3xl transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                  <div className="relative mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-accent/40 bg-accent text-accent-ink shadow-[0_10px_30px_-8px_rgb(var(--accent)/0.6)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <IconCmp size={26} stroke={1.7} />
                   </div>
-                  <h3 className="font-display text-xl font-semibold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                  <h3 className="relative font-display text-xl font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
                     {o.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{o.desc}</p>
-                  <ul className="mt-5 flex flex-1 flex-col gap-2.5 border-t border-line/10 pt-5">
+                  <p className="relative mt-2 text-sm leading-relaxed text-muted">{o.desc}</p>
+                  <ul className="relative mt-5 flex flex-1 flex-col gap-2.5 border-t border-accent/15 pt-5">
                     {o.points.map((pt) => (
                       <li key={pt} className="flex items-start gap-2.5 text-sm text-muted">
-                        <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-accent" />
+                        <span className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_rgb(var(--accent)/0.8)]" />
                         {pt}
                       </li>
                     ))}
                   </ul>
-                  <span className="mt-6 inline-flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
+                  <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-accent bg-accent px-4 py-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent-ink transition-all group-hover:gap-3 group-hover:shadow-[0_8px_24px_-6px_rgb(var(--accent)/0.7)]">
                     Learn more <IconArrowRight size={13} />
                   </span>
                 </Link>
@@ -64,47 +72,6 @@ export default function AIPractice() {
             );
           })}
         </div>
-
-        {/* toolkit */}
-        <Reveal delay={0.1}>
-          <div className="fig-label mb-5 mt-14">AI toolkit</div>
-          <div className="flex flex-wrap gap-2.5">
-            {aiPractice.toolkit.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-line/15 bg-surface px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-fg transition-colors hover:border-accent hover:text-accent-text"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* proof points */}
-        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line/10 bg-line/10 md:grid-cols-3">
-          {aiPractice.highlights.map((h, i) => (
-            <Reveal key={h.label} delay={0.12 + i * 0.06} className="h-full">
-              <div className="h-full bg-surface p-7">
-                <div className="mb-3 font-mono text-[0.6rem] uppercase tracking-[0.22em] text-accent-text">
-                  {h.label}
-                </div>
-                <p className="text-sm leading-relaxed text-muted">{h.text}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.2}>
-          <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-line/10 pt-8">
-            <Link href="/ai" className="btn-primary">
-              Explore the AI practice <IconArrowRight size={15} />
-            </Link>
-            <p className="max-w-md text-sm leading-relaxed text-muted">
-              Training programs, the Kathmandu AI readiness report, and how AI
-              runs inside the research workflow.
-            </p>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

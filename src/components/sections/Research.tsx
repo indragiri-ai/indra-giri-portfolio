@@ -1,69 +1,83 @@
+"use client";
+
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import { projects, builtProjects } from "@/lib/data";
+import { fieldworkIntro } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
-import ProjectCard from "@/components/ui/ProjectCard";
-import BuiltCard from "@/components/ui/BuiltCard";
+import ResearchMarquee from "@/components/ui/ResearchMarquee";
+import NepalMap from "@/components/ui/NepalMap";
+import FeaturedPaperCard from "@/components/ui/FeaturedPaperCard";
 
 /**
- * Home page shows CURRENT work only. The full catalogue, with filters, lives at
- * /projects. Twelve cards plus a filter bar made the home page a database
- * listing; three live projects and one clear link reads as a practice.
+ * The Nepal fieldwork map, then every project as a rolling band, the same
+ * marquee mechanic as the press mentions in Publications: pauses on
+ * hover/focus, collapses to a static grid under prefers-reduced-motion. The
+ * filterable, grouped catalogue lives at /research.
  */
 export default function Research() {
-  const current = projects.filter((p) => p.status === "ongoing").slice(0, 3);
-
   return (
-    <section id="research" className="mx-auto max-w-content px-6 py-20 sm:px-10">
-      <SectionHead
-        fig="03"
-        tag="Research"
-        title={
-          <>
-            Research that
-            <br />
-            moves <em>decisions</em>
-          </>
-        }
-        intro="A decade of applied research for international organisations, governments and universities across South Asia. Here is what is on the desk right now."
-      />
+    <section id="research" className="py-20">
+      <div className="mx-auto max-w-content px-6 sm:px-10">
+        <SectionHead
+          fig="04"
+          tag="Research"
+          title={
+            <>
+              Research that
+              <br />
+              moves <em>decisions</em>
+            </>
+          }
+          intro="A decade of applied research for international organisations, governments and universities across South Asia."
+        />
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {current.map((p, i) => (
-          <Reveal key={p.title} delay={i * 0.06}>
-            <ProjectCard p={p} />
-          </Reveal>
-        ))}
+        <div className="fig-label mb-4">{fieldworkIntro.label}</div>
+        <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight text-fg sm:text-4xl">
+          {fieldworkIntro.title}
+        </h3>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">{fieldworkIntro.intro}</p>
       </div>
 
-      {/* Built and published: live products and open resources. On the home
-          page because these are the only pieces of the work a visitor can go
-          and use immediately, which makes them worth more than one click away. */}
-      <div className="mt-14">
-        <Reveal>
-          <div className="fig-label mb-6">Built &amp; published</div>
-        </Reveal>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {builtProjects.map((b, i) => (
-            <Reveal key={b.title} delay={i * 0.06}>
-              <BuiltCard b={b} />
-            </Reveal>
-          ))}
-        </div>
-      </div>
-
-      <Reveal delay={0.2}>
-        <div className="mt-12 flex flex-wrap items-center gap-6 border-t border-line/10 pt-8">
-          <Link href="/projects" className="btn-primary">
-            All {projects.length} projects <IconArrowRight size={15} />
-          </Link>
-          <p className="max-w-md text-sm leading-relaxed text-muted">
-            Impact evaluations, value chain studies, market research and social
-            research across Nepal and India.
-          </p>
-        </div>
+      {/* Full bleed: Nepal's bbox is 1.7:1 and needs the full viewport width
+          to stay legible. */}
+      <Reveal delay={0.08} className="mt-12">
+        <NepalMap />
       </Reveal>
+
+      <div className="mx-auto max-w-content px-6 pt-16 sm:px-10">
+        <div className="fig-label mb-6">Research conducted</div>
+
+        <Reveal delay={0.06}>
+          <ResearchMarquee />
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div className="mt-12 border-t border-line/10 pt-8">
+            <Link href="/research" className="btn-primary">
+              View all research projects <IconArrowRight size={15} />
+            </Link>
+          </div>
+        </Reveal>
+
+        {/* Papers and articles belong here too: they are the other place the
+            research ends up, alongside the studies above. */}
+        <div className="mt-16 border-t border-line/10 pt-14">
+          <Reveal>
+            <div className="fig-label mb-6">Published research</div>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <FeaturedPaperCard />
+          </Reveal>
+          <Reveal delay={0.14}>
+            <div className="mt-8">
+              <Link href="/publications" className="btn-primary">
+                All publications <IconArrowRight size={15} />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </div>
     </section>
   );
 }

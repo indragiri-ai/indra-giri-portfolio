@@ -57,8 +57,8 @@ export const aiServices: AIService[] = [
   },
   {
     slug: "research-workflow",
-    name: "AI in Research",
-    title: "AI in the research workflow",
+    name: "AI & Automation",
+    title: "AI and automation",
     tagline: "Faster studies that are still defensible.",
     intro:
       "I use AI across the research lifecycle, from instrument design to the final report, without letting it near the parts of the work where a plausible-sounding error would be fatal. This page sets out exactly where it helps, where it does not, and the checks that make the difference.",

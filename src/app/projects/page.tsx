@@ -1,82 +1,59 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowLeft } from "@tabler/icons-react";
-import { profile, projects, builtProjects } from "@/lib/data";
+import { IconArrowRight } from "@tabler/icons-react";
+import { profile, builtProjects } from "@/lib/data";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
-import ProjectsExplorer from "@/components/sections/ProjectsExplorer";
 import BuiltCard from "@/components/ui/BuiltCard";
 
 const intro =
-  "Impact evaluations, value chain studies, market research and social research for international organisations, governments and universities across Nepal and India. Every study below ran end to end: design, field teams, analysis and the recommendations that followed.";
+  "Products and resources built and put online, as opposed to studies run for a client. Every link below is live and checked: what you see is what a visitor gets today.";
 
 export const metadata: Metadata = {
-  title: `Research Projects | ${profile.name}`,
+  title: `Projects | ${profile.name}`,
   description: intro,
 };
 
 export default function ProjectsPage() {
-  const orgs = new Set(projects.map((p) => p.org));
-
   return (
     <>
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
-        <Reveal>
-          <Link
-            href="/#research"
-            /* flex + w-fit, not inline-flex: .fig-label below is itself
-               inline-flex and would sit on the same line. */
-            className="mb-10 flex w-fit items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent-text"
-          >
-            <IconArrowLeft size={14} /> Back to home
-          </Link>
+        <PageHeader
+          backHref="/#projects"
+          eyebrow="Projects"
+          title={
+            <>
+              Built &amp; <em>published</em>
+            </>
+          }
+          intro={intro}
+        />
 
-          <div className="fig-label mb-5">Research</div>
-          <h1 className="section-title max-w-3xl text-5xl sm:text-6xl">
-            The full <em>catalogue</em>
-          </h1>
-          <p className="mt-6 max-w-2xl leading-relaxed text-muted">{intro}</p>
-
-          <div className="mt-10 flex flex-wrap gap-x-12 gap-y-5 border-y border-line/10 py-6">
-            {[
-              { value: projects.length, label: "Projects" },
-              { value: orgs.size, label: "Commissioning organisations" },
-              {
-                value: projects.filter((p) => p.status === "ongoing").length,
-                label: "Ongoing",
-              },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="font-display text-3xl font-semibold text-accent-text">
-                  {s.value}
-                </div>
-                <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Built and published: products and resources, not studies, so they
-            sit above the research catalogue rather than inside its filters. */}
-        <Reveal delay={0.06}>
-          <div className="mt-16">
-            <div className="fig-label mb-6">Built &amp; published</div>
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              {builtProjects.map((b) => (
-                <BuiltCard key={b.title} b={b} />
-              ))}
-            </div>
-          </div>
-        </Reveal>
-
-        <div className="mt-20">
-          <div className="fig-label mb-6">Research catalogue</div>
-          <ProjectsExplorer />
+        <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2">
+          {builtProjects.map((b, i) => (
+            <Reveal key={b.title} delay={0.08 + i * 0.06}>
+              <BuiltCard b={b} />
+            </Reveal>
+          ))}
         </div>
+
+        <Reveal delay={0.2}>
+          <div className="mt-16 rounded-2xl border border-accent/25 bg-accent/[0.06] p-8 sm:p-10">
+            <h2 className="font-display text-2xl font-bold text-fg sm:text-3xl">
+              Looking for the research studies?
+            </h2>
+            <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+              Impact evaluations, value chain studies and social research done
+              for clients live on the Research page, not here.
+            </p>
+            <Link href="/research" className="btn-primary mt-7">
+              View research <IconArrowRight size={15} />
+            </Link>
+          </div>
+        </Reveal>
       </main>
       <Footer />
     </>
