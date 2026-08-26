@@ -44,6 +44,8 @@ export default function GalleryPage() {
                     <img
                       src={asset(item.src!)}
                       alt={item.caption}
+                      loading={i < 3 ? "eager" : "lazy"}
+                      decoding="async"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   </div>

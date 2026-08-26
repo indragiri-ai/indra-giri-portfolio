@@ -122,7 +122,7 @@ export default function NepalMap() {
                 }
                 className={
                   worked
-                    ? "cursor-pointer outline-none transition-[fill] duration-200"
+                    ? "cursor-pointer transition-[fill] duration-200"
                     : "transition-[fill] duration-200"
                 }
                 fill={

@@ -150,6 +150,8 @@ export default function AITrainingPage() {
                     <img
                       src={asset(d.photo)}
                       alt={d.photoCaption ?? d.organisation}
+                      loading="lazy"
+                      decoding="async"
                       className="aspect-[4/3] w-full object-cover"
                     />
                   ) : (

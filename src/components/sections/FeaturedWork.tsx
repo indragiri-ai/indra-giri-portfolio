@@ -131,7 +131,10 @@ export default function FeaturedWork() {
                 <img
                   src={asset(item.image)}
                   alt={`${item.title} home page`}
-                  className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]"
+                  width={1800}
+                  height={775}
+                  decoding="async"
+                  className="aspect-[1800/775] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]"
                 />
               )}
 

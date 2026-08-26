@@ -180,6 +180,7 @@ export default function JourneyPage() {
                         className="mt-auto inline-flex items-center gap-1.5 pt-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent-text"
                       >
                         View certificate <IconExternalLink size={12} />
+                        <span className="sr-only"> (opens in new tab)</span>
                       </a>
                     )}
                   </div>

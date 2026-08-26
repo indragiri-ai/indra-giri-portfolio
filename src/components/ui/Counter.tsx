@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export default function Counter({
   value,
@@ -11,12 +12,13 @@ export default function Counter({
   suffix?: string;
   className?: string;
 }) {
+  const reduced = usePrefersReducedMotion();
   const [n, setN] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || reduced) return;
     const obs = new IntersectionObserver(
       ([e]) => {
         if (!e.isIntersecting) return;
@@ -33,11 +35,11 @@ export default function Counter({
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, [value]);
+  }, [value, reduced]);
 
   return (
     <span ref={ref} className={className}>
-      {n}
+      {reduced ? value : n}
       {suffix}
     </span>
   );

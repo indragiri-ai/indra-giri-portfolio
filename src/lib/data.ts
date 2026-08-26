@@ -105,6 +105,8 @@ export const aiPractice = {
   offerings: [
     {
       icon: "school",
+      /** Matches an AIService slug in lib/ai.ts: the offering card links to /ai/[slug]. */
+      slug: "training",
       title: "AI Training & Capacity Building",
       desc: "Practical generative AI programs for professionals, universities and organisations.",
       points: [
@@ -115,6 +117,7 @@ export const aiPractice = {
     },
     {
       icon: "bulb",
+      slug: "research-policy",
       title: "AI Research & Policy",
       desc: "Evidence on how AI is adopted in Nepal and what effective AI policy should look like.",
       points: [
@@ -125,6 +128,7 @@ export const aiPractice = {
     },
     {
       icon: "robot",
+      slug: "research-workflow",
       title: "AI and Automation",
       desc: "Using AI to make every stage of research faster, deeper and more reliable.",
       points: [
@@ -386,6 +390,8 @@ export interface MediaArticle {
   place: string;
   /** The full published text, one paragraph per entry, reproduced verbatim from the original. */
   body: string[];
+  /** BCP 47 language code for the body text, e.g. "ne" for Nepali. Defaults to "en". */
+  lang?: string;
 }
 
 export const mediaArticles: MediaArticle[] = [
@@ -445,6 +451,7 @@ export const mediaArticles: MediaArticle[] = [
     meta: "Opinion (Nepali) · with Bishu Giri and Krishna Sharma",
     date: "27 February 2025",
     place: "Kathmandu, Nepal",
+    lang: "ne",
     body: [
       "विश्वभर एआई क्रान्ति तीव्र गतिमा अगाडि बढिरहेको छ। संयुक्त राज्य अमेरिका, चीन र युरोप जस्ता देशले अत्याधुनिक एआई मोडेलहरू विकास गर्न ठूलो लगानी गरिरहेका छन् जसका लागि विशाल कम्प्युटेसनल शक्ति र ऊर्जा स्रोत आवश्यक पर्छ। हालै अमेरिकाले पाँच सय अर्ब डलर र युरोपले २०० अर्ब युरोको लगानी घोषणा गरेका छन्। यी लगानीले एआईको आर्थिक र प्रविधिगत वृद्धिमा महत्त्वपूर्ण भूमिका खेल्न सक्ने देखाउँछ।",
       "नेपालले पनि एआईलाई आत्मसात गर्दै उस्तै प्रविधिगत प्रगति गर्ने लक्ष्य राख्नुपर्छ। तर एआई विकासका लागि आवश्यक स्रोतहरूको अभाव झेलिरहेको छ। ऊर्जा स्रोत र कम्प्युटिङ पूर्वाधारको सीमितता नेपालका लागि प्रमुख चुनौती बनेको छ। नेपालले एआईको विकासलाई सम्भव बनाउन चाहन्छ भने त्यसका लागि रणनीतिक र स्रोत–सचेत दृष्टिकोण अपनाउनु आवश्यक छ।",

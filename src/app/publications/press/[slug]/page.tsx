@@ -52,12 +52,15 @@ export default async function PressArticlePage({
             <span>·</span>
             <span>{article.meta}</span>
           </div>
-          <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-fg sm:text-5xl">
+          <h1
+            lang={article.lang}
+            className="mt-5 font-display text-4xl font-semibold leading-[1.1] tracking-tight text-fg sm:text-5xl"
+          >
             {article.title}
           </h1>
         </header>
 
-        <article className="article-body mt-12">
+        <article lang={article.lang} className="article-body mt-12">
           {article.body.map((p, i) => (
             <p key={i}>{p}</p>
           ))}

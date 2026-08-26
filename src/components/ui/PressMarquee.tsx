@@ -16,8 +16,8 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
  * prefers-reduced-motion.
  */
 export default function PressMarquee() {
-  if (mediaArticles.length === 0) return null;
   const reduced = usePrefersReducedMotion();
+  if (mediaArticles.length === 0) return null;
 
   const Card = ({ m, keySuffix = "" }: { m: (typeof mediaArticles)[number]; keySuffix?: string }) => (
     <Link

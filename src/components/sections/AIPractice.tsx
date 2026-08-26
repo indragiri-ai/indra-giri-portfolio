@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { IconSchool, IconBulb, IconRobot, IconArrowRight, type Icon } from "@tabler/icons-react";
 import { aiPractice } from "@/lib/data";
-import { aiServices } from "@/lib/ai";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 
@@ -42,7 +41,7 @@ export default function AIPractice() {
               <Reveal key={o.title} delay={i * 0.07}>
                 {/* Each offering now opens its own page under /ai */}
                 <Link
-                  href={`/ai/${aiServices[i]?.slug ?? ""}`}
+                  href={`/ai/${o.slug}`}
                   className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent/[0.09] via-surface to-surface p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/60 hover:shadow-[0_24px_60px_-20px_rgb(var(--accent)/0.45)]"
                 >
                   <span

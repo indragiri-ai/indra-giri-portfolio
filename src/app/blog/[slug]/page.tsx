@@ -67,9 +67,12 @@ export default async function BlogPostPage({
         </header>
 
         <figure className="mt-10 overflow-hidden rounded-2xl border border-line/10 bg-surface">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={asset(post.cover)}
             alt={post.coverAlt}
+            fetchPriority="high"
+            decoding="async"
             className="aspect-[21/10] w-full object-cover"
           />
         </figure>

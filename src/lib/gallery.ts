@@ -21,8 +21,14 @@ export interface GalleryItem {
   kind: "training" | "field";
 }
 
+/**
+ * Kept honest against what's actually visible: while every fieldwork entry
+ * below is still waiting on a photo (no `src`), this only promises training
+ * sessions. Widen it back to "field teams and the places the research
+ * happens" once a fieldwork entry actually has an image.
+ */
 export const galleryIntro =
-  "Sessions, field teams and the places the research happens. Most of this work occurs far from a desk.";
+  "Training sessions with teachers and institutions across Nepal, with fieldwork photography added as it comes in.";
 
 /**
  * Only entries that actually have an image. Everything public renders from

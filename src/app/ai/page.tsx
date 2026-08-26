@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowLeft, IconArrowRight, IconSchool, IconBulb, IconRobot } from "@tabler/icons-react";
+import { IconArrowRight, IconSchool, IconBulb, IconRobot } from "@tabler/icons-react";
 import { profile } from "@/lib/data";
 import { aiIntro, aiServices, aiReport, trainingDeliveries } from "@/lib/ai";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
@@ -19,20 +20,15 @@ export default function AIPage() {
     <>
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
-        <Reveal>
-          <Link
-            href="/"
-            className="mb-10 flex w-fit items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent-text"
-          >
-            <IconArrowLeft size={14} /> Back to home
-          </Link>
-
-          <div className="fig-label mb-5">AI practice</div>
-          <h1 className="section-title max-w-3xl text-5xl sm:text-6xl">
-            Artificial intelligence, applied with <em>rigour</em>
-          </h1>
-          <p className="mt-6 max-w-2xl leading-relaxed text-muted">{aiIntro}</p>
-        </Reveal>
+        <PageHeader
+          eyebrow="AI practice"
+          title={
+            <>
+              Artificial intelligence, applied with <em>rigour</em>
+            </>
+          }
+          intro={aiIntro}
+        />
 
         {/* The three services */}
         <div className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-3">

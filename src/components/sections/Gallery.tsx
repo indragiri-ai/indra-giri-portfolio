@@ -64,6 +64,8 @@ export default function Gallery() {
                   key={item.src}
                   src={asset(item.src!)}
                   alt={item.caption}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full animate-fade-in object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>

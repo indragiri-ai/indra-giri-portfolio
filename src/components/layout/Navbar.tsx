@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
@@ -8,9 +8,13 @@ import { profile, navLinks } from "@/lib/data";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { cn, asset } from "@/lib/utils";
 
+const MENU_ID = "mobile-menu";
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -18,6 +22,44 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Lock background scroll, trap focus inside the panel, close on Escape,
+  // and return focus to the trigger once the menu closes.
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const panel = menuRef.current;
+    const focusables = panel?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled])'
+    );
+    focusables?.[0]?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab" || !focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    const trigger = openButtonRef.current;
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      trigger?.focus();
+    };
+  }, [open]);
 
   return (
     <>
@@ -57,8 +99,11 @@ export default function Navbar() {
             Download CV
           </a>
           <button
+            ref={openButtonRef}
             onClick={() => setOpen(true)}
             aria-label="Open menu"
+            aria-expanded={open}
+            aria-controls={MENU_ID}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-line/15 text-fg lg:hidden"
           >
             <IconMenu2 size={17} />
@@ -69,6 +114,11 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={menuRef}
+            id={MENU_ID}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

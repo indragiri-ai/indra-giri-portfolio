@@ -4,13 +4,15 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects, projectFilters, type ProjectCategory } from "@/lib/data";
 import ProjectCard from "@/components/ui/ProjectCard";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { cn } from "@/lib/utils";
 
 type FilterKey = "all" | ProjectCategory;
 
-/** The full project catalogue with category filters. Lives only on /projects. */
+/** The full project catalogue with category filters. Lives only on /research. */
 export default function ProjectsExplorer() {
   const [active, setActive] = useState<FilterKey>("all");
+  const reduced = usePrefersReducedMotion();
 
   const counts = useMemo(() => {
     const c: Record<string, number> = { all: projects.length };
@@ -54,16 +56,23 @@ export default function ProjectsExplorer() {
             <div className="fig-label mb-6">
               {group.label} · {group.items.length}
             </div>
-            <motion.div layout className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <motion.div
+              layout={!reduced}
+              className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+            >
               <AnimatePresence mode="popLayout">
                 {group.items.map((p, i) => (
                   <motion.div
                     key={p.title}
-                    layout
-                    initial={{ opacity: 0, y: 24 }}
+                    layout={!reduced}
+                    initial={reduced ? false : { opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ duration: 0.4, delay: i * 0.03, ease: [0.16, 1, 0.3, 1] }}
+                    exit={reduced ? undefined : { opacity: 0, scale: 0.97 }}
+                    transition={
+                      reduced
+                        ? { duration: 0 }
+                        : { duration: 0.4, delay: i * 0.03, ease: [0.16, 1, 0.3, 1] }
+                    }
                   >
                     <ProjectCard p={p} />
                   </motion.div>

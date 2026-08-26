@@ -4,25 +4,32 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { profile, roles, stats, clients } from "@/lib/data";
 import Counter from "@/components/ui/Counter";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { asset } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 function RoleFlipper() {
+  const reduced = usePrefersReducedMotion();
   const [idx, setIdx] = useState(0);
   useEffect(() => {
+    if (reduced) return;
     const iv = setInterval(() => setIdx((i) => (i + 1) % roles.length), 2600);
     return () => clearInterval(iv);
-  }, []);
+  }, [reduced]);
   return (
     <span className="relative inline-flex h-[1.5em] min-w-[240px] overflow-hidden align-bottom">
+      {/* One stable accessible name; the flipping visual below is hidden from
+          assistive tech so it doesn't announce a change every 2.6s. */}
+      <span className="sr-only">{roles.join(" · ")}</span>
       <AnimatePresence mode="wait">
         <motion.span
           key={idx}
-          initial={{ y: "100%", opacity: 0 }}
+          aria-hidden
+          initial={reduced ? false : { y: "100%", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: "-100%", opacity: 0 }}
-          transition={{ duration: 0.45, ease: EASE }}
+          exit={reduced ? undefined : { y: "-100%", opacity: 0 }}
+          transition={reduced ? { duration: 0 } : { duration: 0.45, ease: EASE }}
           className="text-accent-text"
         >
           {roles[idx]}
@@ -143,6 +150,10 @@ export default function Hero() {
             <img
               src={asset(profile.portrait)}
               alt={`Portrait of ${profile.name}`}
+              width={1086}
+              height={1448}
+              fetchPriority="high"
+              decoding="async"
               className="aspect-[3/4] w-full object-cover"
             />
           </figure>

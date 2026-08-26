@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export default function Reveal({
   children,
@@ -14,6 +15,12 @@ export default function Reveal({
   y?: number;
   className?: string;
 }) {
+  const reduced = usePrefersReducedMotion();
+
+  if (reduced) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}

@@ -33,6 +33,10 @@ export default function About() {
               <img
                 src={asset(profile.aboutPhoto)}
                 alt={profile.name}
+                width={900}
+                height={1125}
+                loading="lazy"
+                decoding="async"
                 className="aspect-[4/5] w-full object-cover"
               />
             </figure>

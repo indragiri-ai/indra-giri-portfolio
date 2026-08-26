@@ -12,6 +12,7 @@ export default function BuiltCard({ b }: { b: BuiltProject }) {
       href={b.url}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`${b.title} (opens in new tab)`}
       className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-accent/25 bg-accent/[0.06] p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/60 hover:shadow-[0_20px_55px_-18px_rgb(var(--accent)/0.4)]"
     >
       <span

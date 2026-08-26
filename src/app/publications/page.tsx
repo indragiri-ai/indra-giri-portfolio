@@ -75,6 +75,7 @@ export default function PublicationsPage() {
                 className="btn-primary"
               >
                 Read on arXiv <IconExternalLink size={15} />
+                <span className="sr-only"> (opens in new tab)</span>
               </a>
             </div>
           </div>

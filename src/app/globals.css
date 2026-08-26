@@ -75,6 +75,23 @@ body {
   color: rgb(var(--fg));
 }
 
+/* Visible keyboard focus everywhere. Hover states are richly styled across
+   the site, but until this rule only the contact form had a matching
+   focus-visible ring; the Nepal map paths even suppressed the browser
+   default. This single rule covers nav links, buttons, form fields and any
+   tabbable custom control (the map districts use tabIndex/role="button"). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -162,5 +179,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  /* Decorative status dots (availability, "ongoing", "in progress") and the
+     WhatsApp ping ring are the one place small CSS keyframe animations run
+     outside the components already gated on usePrefersReducedMotion (the
+     marquees swap to a static layout in JS instead, so they don't need a
+     rule here). */
+  .animate-pulse-dot,
+  .animate-ping2 {
+    animation: none;
   }
 }

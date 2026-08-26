@@ -13,8 +13,8 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
  * The filterable, grouped catalogue still lives at /research.
  */
 export default function ResearchMarquee() {
-  if (projects.length === 0) return null;
   const reduced = usePrefersReducedMotion();
+  if (projects.length === 0) return null;
 
   const Card = ({ p, keySuffix = "" }: { p: (typeof projects)[number]; keySuffix?: string }) => (
     <div key={p.title + keySuffix} className="w-[20rem] shrink-0 sm:w-[22rem]">

@@ -37,9 +37,11 @@ export default function BlogPage() {
               className="group mt-16 grid grid-cols-1 overflow-hidden rounded-2xl border border-accent/25 bg-surface transition-colors hover:border-accent/50 lg:grid-cols-[1.05fr_1fr]"
             >
               <div className="relative overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={asset(featured.cover)}
                   alt={featured.coverAlt}
+                  decoding="async"
                   className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:aspect-auto lg:min-h-full"
                 />
                 <span className="absolute left-5 top-5 rounded-full border border-accent/40 bg-bg/70 px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text backdrop-blur">
@@ -75,9 +77,12 @@ export default function BlogPage() {
                 className="panel group flex h-full flex-col overflow-hidden transition-colors hover:border-accent/40"
               >
                 <div className="overflow-hidden border-b border-line/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={asset(p.cover)}
                     alt={p.coverAlt}
+                    loading="lazy"
+                    decoding="async"
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                 </div>

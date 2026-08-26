@@ -40,9 +40,12 @@ export default function BlogPreview() {
                 className="panel group flex h-full flex-col overflow-hidden transition-colors hover:border-accent/40"
               >
                 <div className="overflow-hidden border-b border-line/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={asset(p.cover)}
                     alt={p.coverAlt}
+                    loading="lazy"
+                    decoding="async"
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                   />
                 </div>
