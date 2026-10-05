@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { profile, roles, stats, clients } from "@/lib/data";
+import { profile, roles, stats } from "@/lib/data";
 import Counter from "@/components/ui/Counter";
+import ClientMarquee from "@/components/ui/ClientMarquee";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { asset } from "@/lib/utils";
 
@@ -136,31 +137,32 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.3, ease: EASE }}
           className="relative mx-auto w-full max-w-sm lg:max-w-none"
         >
-          {/* offset frame behind the photo */}
-          <div
-            aria-hidden
-            className="absolute -right-4 top-4 h-full w-full rounded-t-[10rem] rounded-b-2xl border border-accent/30"
-          />
-          <figure className="relative overflow-hidden rounded-t-[10rem] rounded-b-2xl border border-line/15 bg-surface">
-            {/* Real portrait at public/images/portrait.jpg (3:4, wired via
-                profile.portrait). The frame is an ARCH: keep any replacement
-                3:4 with the head centred and roughly 15-20% down from the top,
-                or the rounded corners will bite into it. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={asset(profile.portrait)}
-              alt={`Portrait of ${profile.name}`}
-              width={1086}
-              height={1448}
-              fetchPriority="high"
-              decoding="async"
-              className="aspect-[3/4] w-full object-cover"
-            />
-          </figure>
-          <figcaption className="mt-4 flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-muted">
+          {/* Gold arch frame wrapping the photo with an even gap on every
+              side. It used to be an offset copy shifted right and down, which
+              left the photo poking out on the left and the caption sitting
+              inside the frame's bottom edge. */}
+          <div className="rounded-t-[10.75rem] rounded-b-[1.4rem] border border-accent/35 p-2.5">
+            <figure className="relative overflow-hidden rounded-t-[10rem] rounded-b-2xl border border-line/15 bg-surface">
+              {/* Real portrait at public/images/portrait.jpg (3:4, wired via
+                  profile.portrait). The frame is an ARCH: keep any replacement
+                  3:4 with the head centred and roughly 15-20% down from the top,
+                  or the rounded corners will bite into it. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={asset(profile.portrait)}
+                alt={`Portrait of ${profile.name}`}
+                width={1086}
+                height={1448}
+                fetchPriority="high"
+                decoding="async"
+                className="aspect-[3/4] w-full object-cover"
+              />
+            </figure>
+          </div>
+          <div className="mt-4 flex items-center justify-between px-2.5 font-mono text-xs uppercase tracking-[0.16em] text-muted">
             <span>{profile.name}</span>
             <span>{profile.location}</span>
-          </figcaption>
+          </div>
         </motion.div>
       </div>
 
@@ -171,19 +173,7 @@ export default function Hero() {
         transition={{ delay: 0.8, duration: 1 }}
         className="border-t border-line/10"
       >
-        <div className="mx-auto flex max-w-content flex-wrap items-center gap-x-10 gap-y-3 px-6 py-6 sm:px-10">
-          <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
-            Trusted by
-          </span>
-          {clients.map((c) => (
-            <span
-              key={c}
-              className="font-mono text-xs uppercase tracking-[0.18em] text-muted"
-            >
-              {c}
-            </span>
-          ))}
-        </div>
+        <ClientMarquee />
       </motion.div>
     </section>
   );

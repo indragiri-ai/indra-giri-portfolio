@@ -26,7 +26,7 @@ The real folder is `D:\My_profile\CV_Indra\Profile_website_indra\Updated_profile
 ## Motion and accessibility conventions
 - One motion policy: `components/layout/MotionProvider.tsx` wraps the app in `MotionConfig reducedMotion="user"`. Do not add per-component reduced-motion checks for Framer animations.
 - Content must never depend on JS to be visible: a `<noscript>` rule in layout.tsx un-hides `opacity:0` entrance styles, and `Counter` renders the real value in HTML (count-up only below the fold).
-- No marquees of reading content on the home page. Home research shows the three projects flagged `home: true` in data.ts. Any looping marquee must hide its duplicate set (`aria-hidden` + `inert`) and offer a pause button (see PressMarquee).
+- No marquees of reading content on the home page (the short client-name strip in the hero, ClientMarquee, is the one exception). Home research shows the three projects flagged `home: true` in data.ts. Any looping marquee must hide its duplicate set (`aria-hidden` + `inert`) and offer a pause button (see PressMarquee).
 - Smallest text is ~11.5px (`text-[0.72rem]`); meaningful labels and nav use `text-xs` or larger.
 - `npm run typecheck` uses `tsconfig.typecheck.json` (runs `next typegen`, excludes `.next/dev`), because a running dev server can leave a half-written `.next/dev/types/routes.d.ts`.
 

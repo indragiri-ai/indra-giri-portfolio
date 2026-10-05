@@ -59,16 +59,17 @@ export default function About() {
         {/* Journey preview: every step from +2 to today as small tiles with
             one detail panel, so the whole path fits in less space than two
             big cards did. The full timeline lives on /journey. */}
-        <div className="mt-20 border-t border-line/10 pt-16">
-          <div className="fig-label mb-8">The journey so far</div>
+        <div className="mt-16 border-t border-line/10 pt-12">
+          <div className="mb-6 flex items-center justify-between gap-4">
+            <div className="fig-label">The journey so far</div>
+            <Link
+              href="/journey"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.12em] text-accent-text transition-colors hover:text-fg"
+            >
+              Full journey <IconArrowRight size={13} />
+            </Link>
+          </div>
           <JourneyStrip />
-          <Reveal delay={0.15}>
-            <div className="mt-10 flex justify-end">
-              <Link href="/journey" className="btn-primary">
-                Full journey <IconArrowRight size={15} />
-              </Link>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>

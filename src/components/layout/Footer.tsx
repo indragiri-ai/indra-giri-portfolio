@@ -56,9 +56,6 @@ export default function Footer() {
             );
           })}
         </div>
-        <div className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
-          Built with Next.js
-        </div>
       </div>
     </footer>
   );

@@ -41,6 +41,10 @@ const config: Config = {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        popIn: {
+          from: { opacity: "0", transform: "translateY(-4px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         marquee: "marquee 28s linear infinite",
@@ -48,6 +52,7 @@ const config: Config = {
         "pulse-dot": "pulseDot 2s ease-in-out infinite",
         ping2: "ping2 1.8s ease-out infinite",
         "fade-in": "fadeIn 0.7s ease-out both",
+        "pop-in": "popIn 0.18s ease-out both",
       },
     },
   },

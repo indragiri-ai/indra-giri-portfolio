@@ -188,7 +188,8 @@ select:focus-visible,
      marquees swap to a static layout in JS instead, so they don't need a
      rule here). */
   .animate-pulse-dot,
-  .animate-ping2 {
+  .animate-ping2,
+  .animate-pop-in {
     animation: none;
   }
 }
