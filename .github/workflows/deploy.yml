@@ -28,8 +28,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Gate on what ships. The export is static HTML, so devDependencies
+      # (Tailwind, ESLint) never reach visitors; an advisory there with no
+      # patched release (e.g. braces <=3.0.3) would otherwise block every
+      # deploy. Run `npm audit` locally to see build tooling too.
       - name: Security audit
-        run: npm audit --audit-level=high
+        run: npm audit --omit=dev --audit-level=high
 
       - name: Lint and typecheck
         run: npm run check
