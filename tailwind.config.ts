@@ -15,6 +15,7 @@ const config: Config = {
         accent: "rgb(var(--accent) / <alpha-value>)",
         "accent-ink": "rgb(var(--accent-ink) / <alpha-value>)",
         "accent-text": "rgb(var(--accent-text) / <alpha-value>)",
+        error: "rgb(var(--error) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],

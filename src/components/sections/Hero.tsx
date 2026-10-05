@@ -59,7 +59,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="mb-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[0.65rem] uppercase tracking-[0.22em] text-muted"
+            className="mb-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted"
           >
             <span>{profile.location}</span>
             <span className="inline-flex items-center gap-2 text-accent-text">
@@ -121,7 +121,7 @@ export default function Hero() {
                 <div className="font-display text-3xl font-semibold text-accent-text">
                   <Counter value={s.value} suffix={s.suffix} />
                 </div>
-                <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+                <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                   {s.label}
                 </div>
               </div>
@@ -157,7 +157,7 @@ export default function Hero() {
               className="aspect-[3/4] w-full object-cover"
             />
           </figure>
-          <figcaption className="mt-4 flex items-center justify-between font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+          <figcaption className="mt-4 flex items-center justify-between font-mono text-xs uppercase tracking-[0.16em] text-muted">
             <span>{profile.name}</span>
             <span>{profile.location}</span>
           </figcaption>
@@ -172,13 +172,13 @@ export default function Hero() {
         className="border-t border-line/10"
       >
         <div className="mx-auto flex max-w-content flex-wrap items-center gap-x-10 gap-y-3 px-6 py-6 sm:px-10">
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.24em] text-accent-text">
+          <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
             Trusted by
           </span>
           {clients.map((c) => (
             <span
               key={c}
-              className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted"
+              className="font-mono text-xs uppercase tracking-[0.18em] text-muted"
             >
               {c}
             </span>

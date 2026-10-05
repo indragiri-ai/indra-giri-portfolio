@@ -63,7 +63,7 @@ export default function AIPractice() {
                       </li>
                     ))}
                   </ul>
-                  <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-accent bg-accent px-4 py-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent-ink transition-all group-hover:gap-3 group-hover:shadow-[0_8px_24px_-6px_rgb(var(--accent)/0.7)]">
+                  <span className="relative mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-accent bg-accent px-4 py-2 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-ink transition-all group-hover:gap-3 group-hover:shadow-[0_8px_24px_-6px_rgb(var(--accent)/0.7)]">
                     Learn more <IconArrowRight size={13} />
                   </span>
                 </Link>

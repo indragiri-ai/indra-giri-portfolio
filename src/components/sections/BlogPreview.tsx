@@ -50,7 +50,7 @@ export default function BlogPreview() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <div className="mb-4 flex items-center gap-3 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
+                  <div className="mb-4 flex items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
                     <span className="text-accent-text">{p.category}</span>
                     <span>·</span>
                     <span>{p.displayDate}</span>
@@ -59,7 +59,7 @@ export default function BlogPreview() {
                     {p.title}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between border-t border-line/10 pt-4 font-mono text-[0.62rem] uppercase tracking-[0.15em] text-muted">
+                  <div className="mt-5 flex items-center justify-between border-t border-line/10 pt-4 font-mono text-xs uppercase tracking-[0.15em] text-muted">
                     {p.readTime}
                     <IconArrowRight
                       size={15}

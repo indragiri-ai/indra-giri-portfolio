@@ -181,14 +181,14 @@ export default function NepalMap() {
             <div className="font-display text-base font-bold text-fg">
               {activeShape.name}
             </div>
-            <div className="mt-0.5 font-mono text-[0.58rem] uppercase tracking-[0.16em] text-muted">
+            <div className="mt-0.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
               {activeShape.province}
             </div>
             <ul className="mt-3 space-y-2.5">
               {activeEntries.map((e) => (
                 <li key={`${e.project}-${e.year}`}>
                   <div className="text-sm leading-snug text-fg">{e.project}</div>
-                  <div className="mt-0.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-accent-text">
+                  <div className="mt-0.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text">
                     {e.org} · {e.year}
                   </div>
                 </li>
@@ -200,14 +200,14 @@ export default function NepalMap() {
 
       {/* Legend */}
       <div className="mx-auto mt-8 flex max-w-content flex-wrap items-center gap-x-7 gap-y-3 px-6 sm:px-10">
-        <span className="flex items-center gap-2.5 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+        <span className="flex items-center gap-2.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
           <span
             className="h-3 w-3 rounded-sm"
             style={{ backgroundColor: "rgb(var(--map-work))" }}
           />
           Fieldwork district
         </span>
-        <span className="flex items-center gap-2.5 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+        <span className="flex items-center gap-2.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
           <span
             className="h-3 w-3 rounded-sm"
             style={{
@@ -217,7 +217,7 @@ export default function NepalMap() {
           />
           No fieldwork yet
         </span>
-        <span className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent-text">
+        <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
           {visitedCount} of {districtShapes.length} districts
         </span>
       </div>
@@ -227,7 +227,7 @@ export default function NepalMap() {
           district, its projects and years, so screen readers and crawlers can
           still read the whole dataset out of the markup. */}
 
-      <p className="mx-auto mt-8 max-w-content px-6 font-mono text-[0.55rem] uppercase tracking-[0.16em] text-muted sm:px-10">
+      <p className="mx-auto mt-8 max-w-content px-6 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-muted sm:px-10">
         {MAP_ATTRIBUTION}
       </p>
     </div>

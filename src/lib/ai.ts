@@ -29,9 +29,9 @@ export const aiServices: AIService[] = [
     slug: "training",
     name: "AI Training",
     title: "AI training and capacity building",
-    tagline: "Hands on programs for universities, schools and companies.",
+    tagline: "Hands on AI training in Nepal, from AI in education to corporate AI adoption.",
     intro:
-      "Practical generative AI training built for the people in the room: management students who will graduate into AI-shaped jobs, school teachers who need to bring it into a classroom responsibly, and professionals who need it to do real work on Monday morning.",
+      "Practical generative AI training across Nepal: AI in education for school teachers and university students, and AI adoption training for professionals who need real results by Monday morning.",
     points: [
       "Generative AI and prompt engineering, taught on the participants' own tasks",
       "Programs for university cohorts, school teachers and corporate teams",

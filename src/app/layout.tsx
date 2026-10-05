@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { profile } from "@/lib/data";
-import { asset } from "@/lib/utils";
+import MotionProvider from "@/components/layout/MotionProvider";
 import "./globals.css";
 
 /**
@@ -43,25 +43,31 @@ const mono = localFont({
 });
 
 /**
- * Set NEXT_PUBLIC_SITE_URL once the deploy domain is decided (see CLAUDE.md:
- * "Deploy target: Vercel or GitHub Pages, custom domain later"). Without it,
- * the OG/Twitter image below still renders correctly on the site itself, but
- * link previews on LinkedIn/WhatsApp etc. can't resolve a relative image URL
- * and will show no image until the env var is set.
+ * NEXT_PUBLIC_SITE_URL is the full canonical site root. For a GitHub project
+ * page it includes the repository base path. The fallback matches the current
+ * production deployment so local builds still emit absolute social URLs.
  */
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
-const ogImagePath = asset(profile.portrait);
-const ogImage = SITE_URL ? `${SITE_URL}${ogImagePath}` : ogImagePath;
-const title = `${profile.name} | AI Generalist, Researcher & Educator`;
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri-ai.github.io${BASE_PATH}`
+).replace(/\/$/, "");
+const ogImage = `${SITE_URL}${profile.portrait.startsWith("/") ? "" : "/"}${profile.portrait}`;
+const title = `${profile.name} | AI Trainer & AI in Education, Nepal`;
 
 export const metadata: Metadata = {
-  ...(SITE_URL ? { metadataBase: new URL(SITE_URL) } : {}),
+  metadataBase: new URL(`${SITE_URL}/`),
   title,
   description: profile.tagline,
+  referrer: "strict-origin-when-cross-origin",
   keywords: [
     "Indra Giri",
     "AI Generalist",
     "AI trainer",
+    "AI trainer in Nepal",
+    "AI in Nepal",
+    "AI in education",
+    "AI in education Nepal",
+    "AI training Nepal",
     "researcher",
     "data analyst",
     "economist",
@@ -94,6 +100,52 @@ try {
 } catch (e) {}
 `;
 
+/*
+ * GitHub Pages does not support repository-defined response headers. This
+ * production-only meta policy still blocks unexpected third-party resources.
+ * Next's static App Router output requires inline bootstrap scripts and the
+ * UI uses inline style attributes, hence the two narrowly scoped allowances.
+ */
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "connect-src 'self' https://formspree.io",
+  "font-src 'self'",
+  "form-action 'self' https://formspree.io",
+  "frame-src 'none'",
+  "img-src 'self' data: https:",
+  "object-src 'none'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "worker-src 'self' blob:",
+  "upgrade-insecure-requests",
+].join("; ");
+
+/**
+ * Person schema for entity SEO: helps Google associate Indra with "AI
+ * trainer", "AI in education" and Nepal directly, rather than inferring it
+ * from page copy alone. All values are static site content, not user input.
+ */
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  url: SITE_URL,
+  image: ogImage,
+  jobTitle: ["AI Trainer", "AI Generalist", "Senior Researcher", "AI Educator"],
+  description: profile.tagline,
+  address: { "@type": "PostalAddress", addressLocality: "Kathmandu", addressCountry: "NP" },
+  knowsAbout: [
+    "Artificial Intelligence in Education",
+    "AI Training",
+    "AI Policy",
+    "Generative AI",
+    "Impact Evaluation",
+    "Data Analysis",
+  ],
+  sameAs: [profile.linkedin, profile.github, profile.facebook].filter(Boolean),
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -102,9 +154,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
     >
       <head>
+        {process.env.NODE_ENV === "production" && (
+          <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
+        )}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        {/* Entrance animations ship as inline opacity:0 in the static HTML
+            and only fade in once JS runs. Without JS, show everything. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html:
+              '<style>[style*="opacity:0"]{opacity:1!important;transform:none!important}</style>',
+          }}
+        />
       </head>
-      <body>{children}</body>
+      <body>
+        <MotionProvider>{children}</MotionProvider>
+      </body>
     </html>
   );
 }

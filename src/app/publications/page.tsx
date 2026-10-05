@@ -44,7 +44,7 @@ export default function PublicationsPage() {
           <div className="relative mt-14 overflow-hidden rounded-2xl border border-accent/30 bg-surface p-8 sm:p-10">
             <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/15 blur-[70px]" />
             <div className="relative z-10">
-              <div className="mb-5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-accent-text">
+              <div className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-accent-text">
                 Featured working paper · arXiv 2602.00138
               </div>
               <h2 className="mb-4 max-w-3xl font-display text-2xl font-bold leading-snug text-fg sm:text-3xl">
@@ -60,7 +60,7 @@ export default function PublicationsPage() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-fg">{a.name}</div>
-                      <div className="font-mono text-[0.62rem] uppercase tracking-[0.08em] text-muted">
+                      <div className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
                         {a.aff}
                       </div>
                     </div>
@@ -92,7 +92,7 @@ export default function PublicationsPage() {
           >
             <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/15 blur-[70px]" />
             <div className="relative z-10">
-              <div className="mb-5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-accent-text">
+              <div className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-accent-text">
                 Featured report · {aiReport.publisher}
               </div>
               <h2 className="mb-3 max-w-3xl font-display text-2xl font-bold leading-snug text-fg transition-colors group-hover:text-accent-text sm:text-3xl">
@@ -102,7 +102,7 @@ export default function PublicationsPage() {
                 {aiReport.subtitle}
               </p>
               <p className="mb-7 max-w-2xl text-sm leading-loose text-muted">{aiReport.headline}</p>
-              <span className="inline-flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
+              <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
                 Read the report &amp; download the PDF <IconArrowRight size={14} />
               </span>
             </div>
@@ -129,7 +129,7 @@ export default function PublicationsPage() {
                     {w.chips.map((c) => (
                       <span
                         key={c}
-                        className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+                        className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted"
                       >
                         {c}
                       </span>

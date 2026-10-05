@@ -35,9 +35,9 @@ export const profile = {
   portrait: "/images/portrait.jpg",
   aboutPhoto: "/images/about.jpg",
   tagline:
-    "AI Generalist, researcher and educator helping organisations turn data into decisions and evidence into impact.",
+    "AI trainer and AI Generalist in Kathmandu, Nepal. I bring generative AI into education and turn a decade of field research into decisions organisations can act on.",
   heroIntro:
-    "I combine a decade of rigorous field research with modern AI practice. I design studies, train professionals in AI and analytics, and build evidence that shapes policy and programs across Nepal, South Asia and beyond.",
+    "I combine a decade of rigorous field research with modern AI practice. I design studies, train professionals and educators in AI and analytics, and build evidence that shapes policy and programs across Nepal, South Asia and beyond.",
 };
 
 /**
@@ -101,14 +101,14 @@ export const fieldworkIntro = {
 
 export const aiPractice = {
   intro:
-    "I work across the full spectrum of applied AI: training people to use it well, researching how it is adopted, and building it into the research workflow itself.",
+    "I work across the full spectrum of applied AI in Nepal: AI in education and professional training, researching how AI is adopted, and building it into the research workflow itself.",
   offerings: [
     {
       icon: "school",
       /** Matches an AIService slug in lib/ai.ts: the offering card links to /ai/[slug]. */
       slug: "training",
       title: "AI Training & Capacity Building",
-      desc: "Practical generative AI programs for professionals, universities and organisations.",
+      desc: "Practical generative AI programs for schools, universities, professionals and organisations across Nepal.",
       points: [
         "Generative AI and prompt engineering workshops",
         "AI readiness assessments for organisations",
@@ -165,6 +165,8 @@ export interface Project {
   cat: ProjectCategory[];
   tags: string[];
   big?: boolean; // spans 2 cols in the grid
+  /** One of the three studies shown on the home page. Keep exactly three. */
+  home?: boolean;
 }
 
 export const projectFilters: { key: "all" | ProjectCategory; label: string }[] = [
@@ -186,6 +188,7 @@ export const projects: Project[] = [
     cat: ["impact"],
     tags: ["Mixed methods", "Household survey", "KII", "FGD"],
     big: true,
+    home: true,
   },
   {
     org: "Sankhya AI",
@@ -204,6 +207,7 @@ export const projects: Project[] = [
     status: "ongoing",
     cat: ["valuechain"],
     tags: ["Value chain", "KII", "Survey"],
+    home: true,
   },
   {
     org: "University of Pittsburgh",
@@ -259,6 +263,7 @@ export const projects: Project[] = [
     cat: ["market"],
     tags: ["Mixed methods", "Survey"],
     big: true,
+    home: true,
   },
   {
     org: "iDE Nepal",
@@ -660,6 +665,10 @@ export interface JourneyItem {
   period: string;
   desc: string;
   tools: string[];
+  /** Tile labels for the compact home strip. Entries without `short` are
+      left off the strip (they still show on /journey). */
+  short?: string;
+  orgShort?: string;
 }
 
 export const journey: JourneyItem[] = [
@@ -671,6 +680,8 @@ export const journey: JourneyItem[] = [
     period: "2023 - Present",
     desc: "Leading end to end research and impact evaluations for INGOs, governments and universities. Managing data teams, AI readiness research and analytics, and designing the firm's AI training programs.",
     tools: ["Generative AI", "Stata", "R", "Python", "SPSS", "KoboToolbox", "Tableau"],
+    short: "Sr Researcher & AI Lead",
+    orgShort: "Sankhya Solutions",
   },
   {
     type: "work",
@@ -680,6 +691,8 @@ export const journey: JourneyItem[] = [
     period: "2021 - 2023",
     desc: "Ran the authorised Motorhead Bikes dealership for Pokhara. Owned sales strategy, marketing and the customer experience end to end, from showroom operations to after sales handling.",
     tools: ["Sales strategy", "Marketing", "Customer experience"],
+    short: "Managing Director",
+    orgShort: "Multistar Motors",
   },
   {
     type: "work",
@@ -689,6 +702,8 @@ export const journey: JourneyItem[] = [
     period: "2020 - 2021",
     desc: "Analysed user behaviour and engagement data from Google Analytics and surveys. Evaluated market demand for new products and services.",
     tools: ["Excel", "Stata", "Google Analytics"],
+    short: "Sr Research Associate",
+    orgShort: "Pixstory",
   },
   {
     type: "work",
@@ -698,6 +713,8 @@ export const journey: JourneyItem[] = [
     period: "2017 - 2020",
     desc: "Led the research department for logistics. Predictive market analysis, cost saving strategy, route planning and live truck tracking dashboards.",
     tools: ["Tableau", "Stata", "Excel"],
+    short: "Research Manager",
+    orgShort: "Ebix Inc.",
   },
   {
     type: "work",
@@ -707,6 +724,8 @@ export const journey: JourneyItem[] = [
     period: "2015 - 2017",
     desc: "Field data quality, consumer market research, and client support on pricing, distribution and product mix strategy.",
     tools: ["Stata", "SPSS", "EViews", "Excel"],
+    short: "Sr Research Analyst",
+    orgShort: "Project Guru",
   },
   {
     type: "edu",
@@ -716,6 +735,8 @@ export const journey: JourneyItem[] = [
     period: "2013 - 2015",
     desc: "Dissertation on internal labour migration in India (NSSO 64th Round) using logistic regression, supervised by Dr. Namrata Gulati.",
     tools: ["Stata", "Econometrics"],
+    short: "MA Economics",
+    orgShort: "South Asian University",
   },
   {
     type: "work",
@@ -725,6 +746,8 @@ export const journey: JourneyItem[] = [
     period: "Early career",
     desc: "Report on the SAARC Development Fund covering ongoing projects, status and implementation challenges.",
     tools: ["Excel", "PowerPoint"],
+    short: "Intern",
+    orgShort: "SAARC Secretariat",
   },
   {
     type: "edu",
@@ -734,6 +757,8 @@ export const journey: JourneyItem[] = [
     period: "2009 - 2012",
     desc: "Foundation in economic theory, statistics and quantitative reasoning.",
     tools: [],
+    short: "BA Economics",
+    orgShort: "University of Delhi",
   },
   {
     type: "edu",
@@ -743,6 +768,8 @@ export const journey: JourneyItem[] = [
     period: "2007 - 2009",
     desc: "Commerce stream.",
     tools: [],
+    short: "+2 Commerce",
+    orgShort: "DPS R.K. Puram",
   },
   {
     type: "edu",

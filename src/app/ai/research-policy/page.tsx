@@ -12,7 +12,7 @@ import { asset } from "@/lib/utils";
 const service = aiServices.find((s) => s.slug === "research-policy")!;
 
 export const metadata: Metadata = {
-  title: `AI Research & Policy | ${profile.name}`,
+  title: `AI Adoption in Nepal: Research & Policy | ${profile.name}`,
   description: aiReport.headline,
 };
 
@@ -51,7 +51,7 @@ export default function AIResearchPolicyPage() {
                   <div className="font-display text-3xl font-semibold text-accent-text sm:text-4xl">
                     {s.value}
                   </div>
-                  <div className="mt-1 font-mono text-[0.58rem] uppercase leading-relaxed tracking-[0.14em] text-muted">
+                  <div className="mt-1 font-mono text-[0.72rem] uppercase leading-relaxed tracking-[0.14em] text-muted">
                     {s.label}
                   </div>
                 </div>
@@ -63,18 +63,18 @@ export default function AIResearchPolicyPage() {
                 <a href={asset(aiReport.file)} download className="btn-primary">
                   Download the report <IconDownload size={15} />
                 </a>
-                <span className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+                <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                   {aiReport.fileMeta}
                 </span>
               </div>
             )}
 
             <div className="mt-8 border-t border-accent/20 pt-6 text-sm leading-relaxed text-muted">
-              <span className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-accent-text">
+              <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                 Authors
               </span>
               <div className="mt-2">{aiReport.authors.join(" · ")}</div>
-              <div className="mt-1 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-muted">
+              <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-muted">
                 {aiReport.publisher} · {aiReport.edition} · {aiReport.fieldwork}
               </div>
             </div>
@@ -98,7 +98,7 @@ export default function AIResearchPolicyPage() {
           {aiReport.findings.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.04}>
               <div className="panel h-full p-7">
-                <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+                <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                   Finding 0{i + 1}
                 </div>
                 <h3 className="mt-3 font-display text-xl font-bold leading-snug text-fg">

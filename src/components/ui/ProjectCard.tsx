@@ -29,7 +29,7 @@ export default function ProjectCard({
         </span>
         <span
           className={cn(
-            "flex items-center gap-1.5 whitespace-nowrap font-mono text-[0.6rem] uppercase tracking-[0.15em]",
+            "flex items-center gap-1.5 whitespace-nowrap font-mono text-[0.72rem] uppercase tracking-[0.15em]",
             p.status === "ongoing" ? "text-accent-text" : "text-muted"
           )}
         >
@@ -44,7 +44,7 @@ export default function ProjectCard({
       </div>
 
       <div>
-        <div className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text">
+        <div className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text">
           {p.org}
         </div>
         <h3 className="mt-1.5 font-display text-xl font-bold leading-tight text-fg">
@@ -55,7 +55,7 @@ export default function ProjectCard({
       <p className="flex-1 text-sm leading-relaxed text-muted">{p.desc}</p>
 
       <div className="mt-auto border-t border-line/10 pt-4">
-        <span className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted">
+        <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.12em] text-muted">
           <IconMapPin size={13} className="text-accent-text" />
           {p.loc}
         </span>
@@ -63,7 +63,7 @@ export default function ProjectCard({
           {p.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+              className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted"
             >
               {t}
             </span>

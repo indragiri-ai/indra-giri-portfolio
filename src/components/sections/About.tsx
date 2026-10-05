@@ -2,15 +2,13 @@
 
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import { about, profile, journey } from "@/lib/data";
+import { about, profile } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
-import JourneyTimeline from "@/components/ui/JourneyTimeline";
+import JourneyStrip from "@/components/ui/JourneyStrip";
 import { asset } from "@/lib/utils";
 
 export default function About() {
-  const recentJourney = journey.filter((j) => j.type !== "edu").slice(0, 2);
-
   return (
     <section id="about" className="py-20">
       <div className="mx-auto max-w-content px-6 sm:px-10">
@@ -40,7 +38,7 @@ export default function About() {
                 className="aspect-[4/5] w-full object-cover"
               />
             </figure>
-            <figcaption className="mt-4 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+            <figcaption className="mt-4 font-mono text-xs uppercase tracking-[0.16em] text-muted">
               {about.photoCaption}
             </figcaption>
           </Reveal>
@@ -50,7 +48,7 @@ export default function About() {
               <p className="font-display text-2xl font-medium italic leading-snug text-fg">
                 &ldquo;{about.lead}&rdquo;
               </p>
-              <footer className="mt-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+              <footer className="mt-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
                 {profile.name}
               </footer>
             </blockquote>
@@ -58,12 +56,12 @@ export default function About() {
           </Reveal>
         </div>
 
-        {/* Journey preview: the fullest timeline lives on /journey. Two most
-            recent roles are enough here to say "there is a decade behind
-            this" without turning About into a second Journey section. */}
+        {/* Journey preview: every step from +2 to today as small tiles with
+            one detail panel, so the whole path fits in less space than two
+            big cards did. The full timeline lives on /journey. */}
         <div className="mt-20 border-t border-line/10 pt-16">
           <div className="fig-label mb-8">The journey so far</div>
-          <JourneyTimeline items={recentJourney} orientation="horizontal" />
+          <JourneyStrip />
           <Reveal delay={0.15}>
             <div className="mt-10 flex justify-end">
               <Link href="/journey" className="btn-primary">

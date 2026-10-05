@@ -55,7 +55,7 @@ export default function FeaturedWork() {
               {item.tags.map((t) => (
                 <span
                   key={t}
-                  className="rounded-full border border-line/15 px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted"
+                  className="rounded-full border border-line/15 px-3 py-1 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-muted"
                 >
                   {t}
                 </span>
@@ -71,7 +71,7 @@ export default function FeaturedWork() {
               >
                 Visit the portal <IconArrowUpRight size={15} />
               </a>
-              <span className="flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-accent-text">
+              <span className="flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                 <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-accent" />
                 {item.status}
               </span>
@@ -122,7 +122,7 @@ export default function FeaturedWork() {
                 <span className="h-2.5 w-2.5 rounded-full bg-muted/30" />
                 <span className="h-2.5 w-2.5 rounded-full bg-muted/30" />
                 <span className="h-2.5 w-2.5 rounded-full bg-muted/30" />
-                <span className="ml-3 truncate font-mono text-[0.58rem] tracking-[0.08em] text-muted">
+                <span className="ml-3 truncate font-mono text-[0.72rem] tracking-[0.08em] text-muted">
                   {item.url.replace(/^https?:\/\//, "")}
                 </span>
               </div>
@@ -148,7 +148,7 @@ export default function FeaturedWork() {
             {/* floating status badge, popped forward out of the card's plane */}
             <motion.div
               aria-hidden
-              className="absolute -top-4 right-6 z-10 flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/90 px-3.5 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-accent-text shadow-[0_10px_30px_-10px_rgb(var(--accent)/0.5)] backdrop-blur"
+              className="absolute -top-4 right-6 z-10 flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/90 px-3.5 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text shadow-[0_10px_30px_-10px_rgb(var(--accent)/0.5)] backdrop-blur"
               style={{ transform: "translateZ(60px)" }}
               initial={reduced ? { opacity: 0 } : { opacity: 0, y: -12, rotate: -4 }}
               whileInView={

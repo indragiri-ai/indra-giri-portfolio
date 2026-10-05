@@ -9,8 +9,9 @@ import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: `AI Practice | ${profile.name}`,
-  description: aiIntro,
+  title: `AI in Nepal: Training, Research & Automation | ${profile.name}`,
+  description:
+    "AI training, research and automation in Nepal. AI in education programs for schools and universities, plus AI adoption research for organisations.",
 };
 
 const ICONS = { school: IconSchool, bulb: IconBulb, robot: IconRobot };
@@ -43,14 +44,14 @@ export default function AIPage() {
                   <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-xl border border-accent/25 bg-accent/[0.08] text-accent-text">
                     <Icon size={20} />
                   </div>
-                  <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+                  <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                     0{i + 1}
                   </div>
                   <h2 className="mt-2 font-display text-2xl font-bold leading-snug text-fg">
                     {s.title}
                   </h2>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{s.tagline}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
+                  <span className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
                     Explore <IconArrowRight size={14} />
                   </span>
                 </Link>
@@ -74,7 +75,7 @@ export default function AIPage() {
                   <div className="font-display text-3xl font-semibold text-accent-text">
                     {s.value}
                   </div>
-                  <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+                  <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                     {s.label}
                   </div>
                 </div>
@@ -94,7 +95,7 @@ export default function AIPage() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {trainingDeliveries.map((d) => (
                 <div key={d.organisation} className="panel p-6">
-                  <div className="font-mono text-[0.58rem] uppercase tracking-[0.16em] text-accent-text">
+                  <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                     {d.audience}
                   </div>
                   <div className="mt-2 font-display text-lg font-bold leading-snug text-fg">
@@ -105,7 +106,7 @@ export default function AIPage() {
             </div>
             <Link
               href="/ai/training"
-              className="mt-8 inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-accent-text transition-colors hover:text-fg"
+              className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-accent-text transition-colors hover:text-fg"
             >
               See the training programs <IconArrowRight size={14} />
             </Link>

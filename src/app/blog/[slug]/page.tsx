@@ -45,13 +45,13 @@ export default async function BlogPostPage({
       <main className="mx-auto max-w-3xl px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent-text"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent-text"
         >
           <IconArrowLeft size={14} /> All articles
         </Link>
 
         <header className="mt-10">
-          <div className="flex flex-wrap items-center gap-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+          <div className="flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
             <span className="text-accent-text">{post.category}</span>
             <span>·</span>
             <span>{post.displayDate}</span>
@@ -93,7 +93,7 @@ export default async function BlogPostPage({
           {post.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-line/15 px-3 py-1 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted"
+              className="rounded-full border border-line/15 px-3 py-1 font-mono text-xs uppercase tracking-[0.1em] text-muted"
             >
               {t}
             </span>
@@ -121,7 +121,7 @@ export default async function BlogPostPage({
             className="group mt-8 flex items-center justify-between rounded-2xl border border-line/10 bg-surface p-7 transition-colors hover:border-accent/40"
           >
             <div>
-              <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+              <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                 Read next
               </div>
               <div className="mt-2 font-display text-xl font-semibold text-fg transition-colors group-hover:text-accent-text">

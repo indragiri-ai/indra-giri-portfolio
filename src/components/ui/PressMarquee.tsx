@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { IconNews, IconArrowRight } from "@tabler/icons-react";
+import { IconNews, IconArrowRight, IconPlayerPause, IconPlayerPlay } from "@tabler/icons-react";
 import { mediaArticles } from "@/lib/data";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
@@ -12,27 +13,29 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
  * line, serif headline, opening line) so it matches the article page it
  * links to, instead of reducing the story to an icon and a title. The track
  * pauses on hover/focus (CSS `animation-play-state`, no JS) so a moving
- * target never has to be clicked, and collapses to a static wrap under
- * prefers-reduced-motion.
+ * target never has to be clicked, has an explicit pause button (WCAG 2.2.2),
+ * and collapses to a static wrap under prefers-reduced-motion. The second
+ * copy that makes the loop seamless is aria-hidden and inert, so screen
+ * readers and keyboard users meet each story once.
  */
 export default function PressMarquee() {
   const reduced = usePrefersReducedMotion();
+  const [paused, setPaused] = useState(false);
   if (mediaArticles.length === 0) return null;
 
-  const Card = ({ m, keySuffix = "" }: { m: (typeof mediaArticles)[number]; keySuffix?: string }) => (
+  const Card = ({ m }: { m: (typeof mediaArticles)[number] }) => (
     <Link
-      key={m.slug + keySuffix}
       href={`/publications/press/${m.slug}`}
       className="group flex w-[19rem] shrink-0 flex-col gap-3 rounded-2xl border border-line/15 bg-surface p-6 transition-colors hover:border-accent/50 hover:bg-accent/[0.06] sm:w-[22rem]"
     >
-      <div className="flex flex-wrap items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+      <div className="flex flex-wrap items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
         <IconNews size={13} stroke={1.8} />
         {m.venue}
         <span className="text-muted">· {m.meta}</span>
       </div>
       <h3 className="font-display text-lg font-bold leading-snug text-fg">{m.title}</h3>
       <p className="line-clamp-2 text-sm leading-relaxed text-muted">{m.body[0]}</p>
-      <span className="mt-1 inline-flex items-center gap-1.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="mt-1 inline-flex items-center gap-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text opacity-0 transition-opacity group-hover:opacity-100">
         Read the story <IconArrowRight size={12} />
       </span>
     </Link>
@@ -49,17 +52,35 @@ export default function PressMarquee() {
   }
 
   return (
-    <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-      <div className="flex w-max animate-marquee gap-4 hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]">
-        {mediaArticles.map((m) => (
-          <Card key={m.slug} m={m} />
-        ))}
-        {/* duplicated set: the loop shifts exactly one set's width, so the
-            seam between the two copies is where the loop resets */}
-        {mediaArticles.map((m) => (
-          <Card key={m.slug} m={m} keySuffix="-dup" />
-        ))}
+    <div>
+      <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
+        <div
+          className="flex w-max animate-marquee hover:[animation-play-state:paused] focus-within:[animation-play-state:paused]"
+          style={paused ? { animationPlayState: "paused" } : undefined}
+        >
+          <div className="flex gap-4 pr-4">
+            {mediaArticles.map((m) => (
+              <Card key={m.slug} m={m} />
+            ))}
+          </div>
+          {/* duplicated set: the loop shifts exactly one set's width, so the
+              seam between the two copies is where the loop resets */}
+          <div className="flex gap-4 pr-4" aria-hidden inert>
+            {mediaArticles.map((m) => (
+              <Card key={m.slug} m={m} />
+            ))}
+          </div>
+        </div>
       </div>
+      <button
+        type="button"
+        onClick={() => setPaused((v) => !v)}
+        aria-pressed={paused}
+        className="mt-4 inline-flex items-center gap-2 rounded-full border border-line/20 px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:border-accent/50 hover:text-fg"
+      >
+        {paused ? <IconPlayerPlay size={13} /> : <IconPlayerPause size={13} />}
+        {paused ? "Play" : "Pause"}
+      </button>
     </div>
   );
 }

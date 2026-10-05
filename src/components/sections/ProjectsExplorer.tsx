@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { projects, projectFilters, type ProjectCategory } from "@/lib/data";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -35,7 +35,7 @@ export default function ProjectsExplorer() {
             onClick={() => setActive(f.key)}
             aria-pressed={active === f.key}
             className={cn(
-              "rounded-full border px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] transition-all",
+              "rounded-full border px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] transition-colors",
               active === f.key
                 ? "border-accent bg-accent text-accent-ink"
                 : "border-line/20 text-muted hover:border-accent/50 hover:text-fg"
@@ -56,29 +56,29 @@ export default function ProjectsExplorer() {
             <div className="fig-label mb-6">
               {group.label} · {group.items.length}
             </div>
-            <motion.div
-              layout={!reduced}
+            {/* Plain filtering, no exit/layout animation: AnimatePresence kept
+                filtered-out cards in the DOM until their exit animation ended,
+                which never happens in a throttled tab, so the filter looked
+                broken. Keying the grid on the filter replays the entrance. */}
+            <div
+              key={active}
               className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
             >
-              <AnimatePresence mode="popLayout">
-                {group.items.map((p, i) => (
-                  <motion.div
-                    key={p.title}
-                    layout={!reduced}
-                    initial={reduced ? false : { opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={reduced ? undefined : { opacity: 0, scale: 0.97 }}
-                    transition={
-                      reduced
-                        ? { duration: 0 }
-                        : { duration: 0.4, delay: i * 0.03, ease: [0.16, 1, 0.3, 1] }
-                    }
-                  >
-                    <ProjectCard p={p} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+              {group.items.map((p, i) => (
+                <motion.div
+                  key={p.title}
+                  initial={reduced ? false : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={
+                    reduced
+                      ? { duration: 0 }
+                      : { duration: 0.35, delay: i * 0.03, ease: [0.16, 1, 0.3, 1] }
+                  }
+                >
+                  <ProjectCard p={p} />
+                </motion.div>
+              ))}
+            </div>
           </div>
         )
       )}

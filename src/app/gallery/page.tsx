@@ -51,13 +51,13 @@ export default function GalleryPage() {
                   </div>
 
                   <figcaption className="p-5">
-                    <span className="font-mono text-[0.55rem] uppercase tracking-[0.16em] text-accent-text">
+                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-accent-text">
                       {item.kind === "training" ? "Training" : "Field work"}
                     </span>
                     <p className="mt-2 font-display text-base font-bold leading-snug text-fg">
                       {item.caption}
                     </p>
-                    <p className="mt-1 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-muted">
+                    <p className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-muted">
                       {item.meta}
                     </p>
                   </figcaption>

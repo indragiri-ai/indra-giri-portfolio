@@ -17,7 +17,7 @@ export default function UniversityList({ delayOffset = 0 }: { delayOffset?: numb
               <h3 className="font-display text-xl font-bold text-fg transition-colors group-hover:text-accent-text">
                 {u.name}
               </h3>
-              <div className="mt-0.5 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted">
+              <div className="mt-0.5 font-mono text-xs uppercase tracking-[0.12em] text-muted">
                 {u.aff}
               </div>
             </div>
@@ -32,7 +32,7 @@ export default function UniversityList({ delayOffset = 0 }: { delayOffset?: numb
               {u.courses.map((c) => (
                 <span
                   key={c}
-                  className="rounded-full border border-line/15 px-2.5 py-1 font-mono text-[0.58rem] uppercase tracking-[0.08em] text-muted"
+                  className="rounded-full border border-line/15 px-2.5 py-1 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-muted"
                 >
                   {c}
                 </span>

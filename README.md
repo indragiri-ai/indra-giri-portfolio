@@ -4,7 +4,7 @@ Personal profile site for **Indra Giri** — AI Generalist, Senior Researcher, A
 
 ## What's inside
 
-- **Next.js 15** (App Router) + **TypeScript** + **React 19**
+- **Next.js 16** (App Router) + **TypeScript** + **React 19**
 - **Tailwind CSS** with CSS-variable design tokens, dark + light themes (toggle in nav, persisted to `localStorage`)
 - **Static export** (`output: "export"`) for GitHub Pages, with an `asset()` helper that handles the repo base path
 - **Framer Motion** for reveal-on-scroll, the hero role flipper, and page transitions — all of it degrades under `prefers-reduced-motion`
@@ -22,7 +22,7 @@ npm run dev
 
 Open <http://localhost:3000>.
 
-Never run `npm run build` while `npm run dev` is active — it corrupts `.next` and the dev server starts 500ing. Stop the dev server first.
+Next.js 16 keeps development output under `.next/dev`, separate from production builds.
 
 ## Contact form (optional)
 

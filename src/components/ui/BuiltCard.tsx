@@ -25,11 +25,11 @@ export default function BuiltCard({ b }: { b: BuiltProject }) {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/40 bg-accent/10 text-accent-text transition-transform duration-300 group-hover:scale-110">
             <IconRocket size={15} stroke={1.8} />
           </span>
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+          <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
             {b.meta}
           </span>
         </div>
-        <span className="flex items-center gap-1.5 whitespace-nowrap font-mono text-[0.6rem] uppercase tracking-[0.15em] text-accent-text">
+        <span className="flex items-center gap-1.5 whitespace-nowrap font-mono text-[0.72rem] uppercase tracking-[0.15em] text-accent-text">
           <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-accent" />
           {b.status}
         </span>
@@ -45,13 +45,13 @@ export default function BuiltCard({ b }: { b: BuiltProject }) {
           {b.tags.map((t) => (
             <span
               key={t}
-              className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+              className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted"
             >
               {t}
             </span>
           ))}
         </div>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text transition-transform group-hover:translate-x-1.5">
+        <span className="inline-flex items-center gap-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text transition-transform group-hover:translate-x-1.5">
           Visit <IconExternalLink size={13} />
         </span>
       </div>

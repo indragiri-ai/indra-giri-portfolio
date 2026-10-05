@@ -48,7 +48,7 @@ export default function AIResearchWorkflowPage() {
             <Reveal key={s.stage} delay={i * 0.04}>
               <article className="grid grid-cols-1 gap-6 border-t border-line/10 py-10 last:border-b lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
                 <div>
-                  <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+                  <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                     0{i + 1}
                   </div>
                   <h2 className="mt-2 font-display text-2xl font-bold leading-snug text-fg">

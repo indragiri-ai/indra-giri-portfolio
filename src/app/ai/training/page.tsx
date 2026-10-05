@@ -14,8 +14,9 @@ const service = aiServices.find((s) => s.slug === "training")!;
 const handbook = builtProjects.find((b) => b.title.startsWith("AI for Teachers"));
 
 export const metadata: Metadata = {
-  title: `AI Training & Capacity Building | ${profile.name}`,
-  description: service.intro,
+  title: `AI Training in Nepal: AI in Education & Teams | ${profile.name}`,
+  description:
+    "Practical AI training in Nepal for schools, universities and professionals, including dedicated AI in education programs for teachers.",
 };
 
 export default function AITrainingPage() {
@@ -58,7 +59,7 @@ export default function AITrainingPage() {
             >
               <IconBook size={38} className="shrink-0 text-accent-text" stroke={1.4} />
               <div className="flex-1">
-                <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+                <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                   Free resource · {handbook.meta}
                 </div>
                 <h2 className="mt-2 font-display text-2xl font-bold leading-snug text-fg">
@@ -66,7 +67,7 @@ export default function AITrainingPage() {
                 </h2>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">{handbook.desc}</p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-2 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
+              <span className="inline-flex shrink-0 items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-accent-text transition-transform group-hover:translate-x-1">
                 Open the handbook <IconExternalLink size={14} />
               </span>
             </a>
@@ -84,7 +85,7 @@ export default function AITrainingPage() {
             {trainings.map((t, i) => (
               <Reveal key={t.title} delay={i * 0.04}>
                 <article className="group grid grid-cols-1 gap-6 border-t border-line/10 py-10 last:border-b sm:grid-cols-[auto_1fr] sm:gap-10">
-                  <div className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-accent-text sm:pt-2">
+                  <div className="font-mono text-[0.7rem] uppercase tracking-[0.16em] text-accent-text sm:pt-2">
                     W·0{i + 1}
                   </div>
                   <div>
@@ -97,7 +98,7 @@ export default function AITrainingPage() {
                       <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3">
                         {t.audience && (
                           <div>
-                            <div className="font-mono text-[0.58rem] uppercase tracking-[0.18em] text-muted">
+                            <div className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
                               Who it is for
                             </div>
                             <div className="mt-1 text-sm text-fg">{t.audience}</div>
@@ -105,7 +106,7 @@ export default function AITrainingPage() {
                         )}
                         {t.format && (
                           <div>
-                            <div className="font-mono text-[0.58rem] uppercase tracking-[0.18em] text-muted">
+                            <div className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
                               Format
                             </div>
                             <div className="mt-1 text-sm text-fg">{t.format}</div>
@@ -158,10 +159,10 @@ export default function AITrainingPage() {
                     /* Placeholder until the real photo lands in public/images/ai/ */
                     <div className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 bg-accent/[0.05] text-center">
                       <IconCamera size={26} className="text-accent-text/70" />
-                      <div className="px-6 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+                      <div className="px-6 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                         {d.photoCaption}
                       </div>
-                      <div className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-muted/60">
+                      <div className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted/60">
                         Photo to be added
                       </div>
                     </div>
@@ -169,7 +170,7 @@ export default function AITrainingPage() {
                 </figure>
 
                 <div>
-                  <div className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text">
+                  <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text">
                     {d.audience}
                   </div>
                   <h2 className="mt-2 font-display text-2xl font-bold leading-snug text-fg sm:text-3xl">
@@ -180,7 +181,7 @@ export default function AITrainingPage() {
                     {d.topics.map((t) => (
                       <span
                         key={t}
-                        className="rounded-full border border-line/15 px-3 py-1 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+                        className="rounded-full border border-line/15 px-3 py-1 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted"
                       >
                         {t}
                       </span>

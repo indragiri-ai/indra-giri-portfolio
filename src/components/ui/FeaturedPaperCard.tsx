@@ -11,7 +11,7 @@ export default function FeaturedPaperCard() {
     <div className="relative overflow-hidden rounded-2xl border border-accent/30 bg-surface p-8 sm:p-10">
       <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/15 blur-[70px]" />
       <div className="relative z-10">
-        <div className="mb-5 font-mono text-[0.62rem] uppercase tracking-[0.22em] text-accent-text">
+        <div className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-accent-text">
           Featured working paper · arXiv 2602.00138
         </div>
         <h3 className="mb-4 max-w-3xl font-display text-2xl font-bold leading-snug text-fg sm:text-3xl">
@@ -27,7 +27,7 @@ export default function FeaturedPaperCard() {
               </div>
               <div>
                 <div className="text-sm font-semibold text-fg">{a.name}</div>
-                <div className="font-mono text-[0.62rem] uppercase tracking-[0.08em] text-muted">
+                <div className="font-mono text-xs uppercase tracking-[0.08em] text-muted">
                   {a.aff}
                 </div>
               </div>

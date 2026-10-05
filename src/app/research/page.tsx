@@ -51,7 +51,7 @@ export default function ResearchPage() {
                   <div className="font-display text-3xl font-semibold text-accent-text">
                     {s.value}
                   </div>
-                  <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+                  <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                     {s.label}
                   </div>
                 </div>

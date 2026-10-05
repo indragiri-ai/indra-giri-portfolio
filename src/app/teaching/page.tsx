@@ -35,7 +35,7 @@ export default function TeachingPage() {
             {teachingMetrics.map((m) => (
               <div key={m.label} className="bg-surface px-6 py-6 text-center">
                 <div className="font-display text-4xl font-bold text-accent-text">{m.num}</div>
-                <div className="mt-1.5 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
+                <div className="mt-1.5 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
                   {m.label}
                 </div>
               </div>

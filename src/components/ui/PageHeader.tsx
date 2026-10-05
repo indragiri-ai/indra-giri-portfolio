@@ -24,7 +24,7 @@ export default function PageHeader({
     <Reveal>
       <Link
         href={backHref}
-        className="mb-10 flex w-fit items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted transition-colors hover:text-accent-text"
+        className="mb-10 flex w-fit items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-muted transition-colors hover:text-accent-text"
       >
         <IconArrowLeft size={14} /> {backLabel}
       </Link>

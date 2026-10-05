@@ -15,6 +15,7 @@
   --accent: 198 161 91; /* refined gold */
   --accent-ink: 15 19 30; /* text on gold fills */
   --accent-text: 215 181 115; /* gold used AS text on dark */
+  --error: 248 113 113; /* form errors on navy */
   --accent-display: 215 181 115; /* italics in section titles */
 
   /* Fieldwork map. Explicit fills per theme rather than a faded accent:
@@ -38,6 +39,7 @@
   --accent: 150 103 38; /* copper bronze for fills */
   --accent-ink: 255 255 255;
   --accent-text: 138 92 30; /* small text: darker, carries contrast */
+  --error: 185 28 28; /* form errors on ivory */
   --accent-display: 176 128 46; /* display italics: richer, large text only */
 
   /* Warm stone land so the bronze reads as a deliberate highlight rather
@@ -109,7 +111,7 @@ select:focus-visible,
 @layer components {
   /* small numbered eyebrow above section titles */
   .fig-label {
-    @apply inline-flex items-center gap-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-accent-text;
+    @apply inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-accent-text;
   }
   .fig-label::after {
     content: "";

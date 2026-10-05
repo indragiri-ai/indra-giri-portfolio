@@ -31,7 +31,7 @@ function ChipCloud({ items }: { items: string[] }) {
       {items.map((label) => (
         <span
           key={label}
-          className="rounded-full border border-line/15 bg-surface px-4 py-2 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-fg transition-colors hover:border-accent hover:text-accent-text"
+          className="rounded-full border border-line/15 bg-surface px-4 py-2 font-mono text-xs uppercase tracking-[0.1em] text-fg transition-colors hover:border-accent hover:text-accent-text"
         >
           {label}
         </span>
@@ -69,7 +69,7 @@ export default function JourneyPage() {
                 <div className="font-display text-3xl font-semibold text-accent-text">
                   {s.value}
                 </div>
-                <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-muted">
+                <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
                   {s.label}
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function JourneyPage() {
                   key={t.name}
                   className="panel flex h-full flex-col p-5 transition-colors hover:border-accent/40"
                 >
-                  <div className="font-mono text-[0.58rem] uppercase tracking-[0.18em] text-accent-text">
+                  <div className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-accent-text">
                     {t.tier}
                   </div>
                   <div className="mt-2 font-display text-lg font-bold leading-snug text-fg">
@@ -135,7 +135,7 @@ export default function JourneyPage() {
                 {languages.map((l) => (
                   <div key={l.name} className="panel flex items-baseline justify-between px-5 py-4">
                     <span className="font-display text-lg font-bold text-fg">{l.name}</span>
-                    <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-accent-text">
+                    <span className="font-mono text-[0.72rem] uppercase tracking-[0.15em] text-accent-text">
                       {l.level}
                     </span>
                   </div>
@@ -157,7 +157,7 @@ export default function JourneyPage() {
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent-text">
                         <IconCertificate size={16} stroke={1.7} />
                       </span>
-                      <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-muted">
+                      <span className="font-mono text-[0.72rem] uppercase tracking-[0.15em] text-muted">
                         {c.year}
                       </span>
                     </div>
@@ -165,19 +165,19 @@ export default function JourneyPage() {
                       <div className="font-display text-lg font-bold leading-snug text-fg">
                         {c.title}
                       </div>
-                      <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent-text">
+                      <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text">
                         {c.issuer}
                       </div>
                     </div>
                     {c.credentialId && (
-                      <p className="text-[0.68rem] text-muted">Credential ID: {c.credentialId}</p>
+                      <p className="text-xs text-muted">Credential ID: {c.credentialId}</p>
                     )}
                     {c.file && (
                       <a
                         href={asset(c.file)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-auto inline-flex items-center gap-1.5 pt-1 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-accent-text"
+                        className="mt-auto inline-flex items-center gap-1.5 pt-1 font-mono text-xs uppercase tracking-[0.14em] text-accent-text"
                       >
                         View certificate <IconExternalLink size={12} />
                         <span className="sr-only"> (opens in new tab)</span>

@@ -39,13 +39,13 @@ export default async function PressArticlePage({
       <main className="mx-auto max-w-3xl px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <Link
           href="/publications"
-          className="inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent-text"
+          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent-text"
         >
           <IconArrowLeft size={14} /> All publications
         </Link>
 
         <header className="mt-10">
-          <div className="flex flex-wrap items-center gap-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+          <div className="flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
             <span className="inline-flex items-center gap-2 text-accent-text">
               <IconNews size={13} /> {article.venue}
             </span>
@@ -66,7 +66,7 @@ export default async function PressArticlePage({
           ))}
         </article>
 
-        <p className="mt-12 border-t border-line/10 pt-6 font-mono text-[0.62rem] uppercase tracking-[0.16em] text-muted">
+        <p className="mt-12 border-t border-line/10 pt-6 font-mono text-xs uppercase tracking-[0.16em] text-muted">
           Published in {article.venue}, {article.place} · {article.date}
         </p>
 

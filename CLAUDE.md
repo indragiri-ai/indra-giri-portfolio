@@ -2,14 +2,14 @@
 Read `D:\My_profile\MASTER-INSTRUCTIONS.md` first for owner context and global rules (no em-dashes, no mouse effects, honest content). This file covers THIS project only.
 
 ## What this is
-Indra Giri's personal profile website. Premium editorial design (deep navy + gold, Fraunces serif, dark default + light toggle) positioning him as AI Generalist, Senior Researcher, AI Trainer and Educator. Next.js 15 App Router, TypeScript, Tailwind, `output: "export"` (static, GitHub Pages workflow exists in .github/workflows).
+Indra Giri's personal profile website. Premium editorial design (deep navy + gold, Fraunces serif, dark default + light toggle) positioning him as AI Generalist, Senior Researcher, AI Trainer and Educator. Next.js 16 App Router, TypeScript, Tailwind, `output: "export"` (static, GitHub Pages workflow exists in .github/workflows).
 
 ## CRITICAL path note
 The real folder is `D:\My_profile\CV_Indra\Profile_website_indra\Updated_profile\CRS 2023 data\Indra_updated_portfolio`. The SPACES in "CRS 2023 data" break npm and launchers. ALWAYS work via the junction `D:\My_profile\indra_portfolio` (same files, safe path).
 
 ## Commands
 - Dev: `npm run dev` (port 3000; launch config "indra-portfolio" in D:\Sankhya AI\Website\.claude\launch.json)
-- Build: `npm run build`. NEVER build while the dev server runs (corrupts .next, server starts 500ing; if it happens, stop and restart the dev server).
+- Build: `npm run build`. Next.js 16 isolates development output under `.next/dev`, so development and production builds no longer share the same output directory.
 
 ## Architecture (all under src/)
 - `lib/data.ts` : ALL site content (profile, roles, stats, about, aiPractice, projects, publications, skills, teaching, journey, navLinks). Edit content here, never in components. LinkedIn URL confirmed correct by the owner (Aug 2026).
@@ -22,6 +22,13 @@ The real folder is `D:\My_profile\CV_Indra\Profile_website_indra\Updated_profile
 - Standalone pages: `/ai` (hub) with `/ai/training`, `/ai/research-policy`, `/ai/research-workflow`; plus `/projects`, `/training`, `/blog`. Nav "AI" points at `/ai`, not the home anchor. Page content lives in `lib/ai.ts` and `lib/gallery.ts`; use `components/ui/PageHeader.tsx` for their headers.
 - `/ai/research-policy` summarises the real report at `public/AI_report/`. Every figure on that page was read out of the PDF: do not edit them without re-checking the source.
 - Photos: `gallery` items and `trainingDeliveries` render a labelled placeholder tile when `src`/`photo` is empty. Fill the paths as photos arrive; never invent a photo path.
+
+## Motion and accessibility conventions
+- One motion policy: `components/layout/MotionProvider.tsx` wraps the app in `MotionConfig reducedMotion="user"`. Do not add per-component reduced-motion checks for Framer animations.
+- Content must never depend on JS to be visible: a `<noscript>` rule in layout.tsx un-hides `opacity:0` entrance styles, and `Counter` renders the real value in HTML (count-up only below the fold).
+- No marquees of reading content on the home page. Home research shows the three projects flagged `home: true` in data.ts. Any looping marquee must hide its duplicate set (`aria-hidden` + `inert`) and offer a pause button (see PressMarquee).
+- Smallest text is ~11.5px (`text-[0.72rem]`); meaningful labels and nav use `text-xs` or larger.
+- `npm run typecheck` uses `tsconfig.typecheck.json` (runs `next typegen`, excludes `.next/dev`), because a running dev server can leave a half-written `.next/dev/types/routes.d.ts`.
 
 ## Images
 **Originals live in `source-images/` at the project root, NOT in `public/`.** Anything under `public/` is published verbatim, so raw camera files there ship to the live site (they were 19MB of it). Workflow: originals into `source-images/`, then process with sharp (crop to the target ratio, resize, mozjpeg q82) into `public/images/`. Only processed, referenced files belong in `public/`.
@@ -49,3 +56,13 @@ No em-dashes. Honest credentials only (KUSOM 4-day Excel+AI program, government 
 
 ## Pending from owner (July 2026)
 Review of the 4 draft blog posts (currently unrouted at src/app/_blog). Planned additions: Training & Workshops page (4 signature programs from his tracker file) and a Credentials section as he completes certifications. Deploy target: Vercel or GitHub Pages (workflow present), custom domain later.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

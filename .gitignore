@@ -10,5 +10,10 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Local AI/tooling state and generated analysis output
+/.claude/settings.local.json
+/graphify-out/
+/codex review.md
+
 # Original photos and source data, kept out of the published site
 /source-images/

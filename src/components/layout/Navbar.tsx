@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { profile, navLinks } from "@/lib/data";
@@ -10,11 +11,19 @@ import { cn, asset } from "@/lib/utils";
 
 const MENU_ID = "mobile-menu";
 
+/** usePathname has no basePath, and trailingSlash adds a final "/". */
+function isCurrent(pathname: string, href: string) {
+  if (href.includes("#")) return false;
+  const path = pathname.replace(/\/$/, "") || "/";
+  return path === href || path.startsWith(`${href}/`);
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const openButtonRef = useRef<HTMLButtonElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -76,17 +85,29 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={l.href}
-                className="group relative font-mono text-[0.68rem] uppercase tracking-[0.18em] text-muted transition-colors hover:text-fg"
-              >
-                {l.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((l) => {
+            const current = isCurrent(pathname, l.href);
+            return (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  aria-current={current ? "page" : undefined}
+                  className={cn(
+                    "group relative font-mono text-[0.8rem] uppercase tracking-[0.12em] transition-colors hover:text-fg",
+                    current ? "text-fg" : "text-muted"
+                  )}
+                >
+                  {l.label}
+                  <span
+                    className={cn(
+                      "absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 group-hover:w-full",
+                      current ? "w-full" : "w-0"
+                    )}
+                  />
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-3">
@@ -94,7 +115,7 @@ export default function Navbar() {
           <a
             href={asset(profile.cvPath)}
             download
-            className="hidden rounded-full border border-accent bg-accent px-5 py-2 font-mono text-[0.65rem] font-semibold uppercase tracking-[0.15em] text-accent-ink transition-transform hover:-translate-y-0.5 sm:block"
+            className="hidden rounded-full border border-accent bg-accent px-5 py-2 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-accent-ink transition-transform hover:-translate-y-0.5 sm:block"
           >
             Download CV
           </a>
@@ -125,7 +146,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[60] flex flex-col bg-bg/97 px-8 py-6 backdrop-blur-lg"
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.25em] text-muted">
+              <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
                 Menu
               </span>
               <button
@@ -147,6 +168,7 @@ export default function Navbar() {
                   <Link
                     href={l.href}
                     onClick={() => setOpen(false)}
+                    aria-current={isCurrent(pathname, l.href) ? "page" : undefined}
                     className="flex items-baseline gap-4 border-b border-line/10 py-4 font-display text-3xl font-semibold text-fg"
                   >
                     <span className="font-mono text-xs text-accent-text">

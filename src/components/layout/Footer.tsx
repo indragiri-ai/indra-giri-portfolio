@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-line/10 px-6 py-12 sm:px-10">
       <div className="mx-auto flex max-w-content flex-col items-center gap-6 sm:flex-row sm:justify-between">
-        <div className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">
+        <div className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
           © {year} {profile.name}
         </div>
         <div className="flex gap-3">
@@ -56,8 +56,8 @@ export default function Footer() {
             );
           })}
         </div>
-        <div className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">
-          Built with Next.js 15
+        <div className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+          Built with Next.js
         </div>
       </div>
     </footer>

@@ -36,7 +36,7 @@ function TimelineEntry({
           >
             {item.period}
           </div>
-          <div className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/70">
+          <div className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted/70">
             {isCurrent ? "Current" : isEdu ? "Education" : "Experience"}
           </div>
         </div>
@@ -84,7 +84,7 @@ function TimelineEntry({
             />
             <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1 sm:hidden">
               <span className="font-mono text-xs text-accent-text">{item.period}</span>
-              <span className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/70">
+              <span className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted/70">
                 {isCurrent ? "Current" : isEdu ? "Education" : "Experience"}
               </span>
             </div>
@@ -93,7 +93,7 @@ function TimelineEntry({
             </h3>
             <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
               <span className="font-semibold text-accent-text">{item.org}</span>
-              <span className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">
+              <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.1em] text-muted">
                 <IconMapPin size={12} />
                 {item.loc}
               </span>
@@ -104,7 +104,7 @@ function TimelineEntry({
                 {item.tools.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
+                    className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-muted"
                   >
                     {t}
                   </span>
@@ -118,115 +118,16 @@ function TimelineEntry({
   );
 }
 
-function HorizontalEntry({ item, index }: { item: JourneyItem; index: number }) {
-  const isEdu = item.type === "edu";
-  const isCurrent = item.type === "current";
-  const Marker = isCurrent ? IconStar : isEdu ? IconSchool : IconBriefcase;
-  const reduced = usePrefersReducedMotion();
-
-  return (
-    <Reveal delay={Math.min(index * 0.06, 0.2)}>
-      <div className="relative flex flex-col items-center text-center sm:items-start sm:text-left">
-        <div className="mb-5 flex items-center gap-3">
-          <span
-            className={cn(
-              "relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-shadow duration-500",
-              isCurrent
-                ? "border-accent bg-accent text-accent-ink shadow-[0_0_0_6px_rgb(var(--accent)/0.14),0_0_28px_-4px_rgb(var(--accent)/0.55)]"
-                : "border-line/20 bg-surface text-accent-text shadow-[0_4px_16px_-6px_rgb(var(--fg)/0.25)]"
-            )}
-          >
-            <Marker size={17} stroke={1.7} />
-          </span>
-          <div>
-            <div
-              className={cn(
-                "font-mono text-xs tracking-wide",
-                isCurrent ? "font-semibold text-accent-text" : "text-muted"
-              )}
-            >
-              {item.period}
-            </div>
-            <div className="font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted/70">
-              {isCurrent ? "Current" : isEdu ? "Education" : "Experience"}
-            </div>
-          </div>
-        </div>
-
-        <motion.div
-          initial={reduced ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.97 }}
-          whileInView={reduced ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-          whileHover={reduced ? undefined : { y: -4 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.6, ease: CARD_EASE }}
-          className={cn(
-            "panel w-full p-6 text-left shadow-[0_20px_45px_-20px_rgb(var(--fg)/0.35)] transition-colors hover:border-accent/40 sm:p-7",
-            isCurrent && "border-accent/40 bg-accent/[0.05]"
-          )}
-        >
-          <h3 className="font-display text-xl font-semibold leading-snug text-fg sm:text-2xl">
-            {item.role}
-          </h3>
-          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-            <span className="font-semibold text-accent-text">{item.org}</span>
-            <span className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-muted">
-              <IconMapPin size={12} />
-              {item.loc}
-            </span>
-          </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted">{item.desc}</p>
-          {item.tools.length > 0 && (
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {item.tools.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-line/15 px-2.5 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.1em] text-muted"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
-        </motion.div>
-      </div>
-    </Reveal>
-  );
-}
-
 /**
- * The career timeline: period rail, icon markers and cards. Lives on /journey
- * in full (vertical, the default); the About preview asks for `orientation="horizontal"`
- * so its short, curated slice reads as steps moving left to right instead of
- * a stack, which suits two or three entries better than a vertical rail.
+ * The career timeline: period rail, icon markers and cards, on /journey. The
+ * home page uses the compact JourneyStrip instead.
  *
  * Cards animate in with a slight backward-to-flat rotateX tilt (a perspective
  * on the list root gives every entry the same vanishing point) rather than a
  * plain fade, and settle forward a couple degrees on hover. Both skip to a
  * plain fade under prefers-reduced-motion.
  */
-export default function JourneyTimeline({
-  items = journey,
-  orientation = "vertical",
-}: {
-  items?: JourneyItem[];
-  orientation?: "vertical" | "horizontal";
-}) {
-  if (orientation === "horizontal") {
-    return (
-      <div className="relative">
-        <span
-          aria-hidden
-          className="pointer-events-none absolute left-5 right-5 top-5 hidden h-px bg-gradient-to-r from-line/15 via-accent/30 to-line/15 sm:block"
-        />
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
-          {items.map((j, i) => (
-            <HorizontalEntry key={j.org + i} item={j} index={i} />
-          ))}
-        </div>
-      </div>
-    );
-  }
-
+export default function JourneyTimeline({ items = journey }: { items?: JourneyItem[] }) {
   return (
     <div className="mx-auto max-w-4xl" style={{ perspective: 1400 }}>
       {items.map((j, i) => (

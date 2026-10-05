@@ -44,12 +44,12 @@ export default function BlogPage() {
                   decoding="async"
                   className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:aspect-auto lg:min-h-full"
                 />
-                <span className="absolute left-5 top-5 rounded-full border border-accent/40 bg-bg/70 px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-accent-text backdrop-blur">
+                <span className="absolute left-5 top-5 rounded-full border border-accent/40 bg-bg/70 px-3 py-1 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-accent-text backdrop-blur">
                   Latest
                 </span>
               </div>
               <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
-                <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-muted">
+                <div className="mb-5 flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-[0.16em] text-muted">
                   <span className="text-accent-text">{featured.category}</span>
                   <span>·</span>
                   <span>{featured.displayDate}</span>
@@ -87,7 +87,7 @@ export default function BlogPage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
-                  <div className="mb-4 flex flex-wrap items-center gap-3 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
+                  <div className="mb-4 flex flex-wrap items-center gap-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
                     <span className="text-accent-text">{p.category}</span>
                     <span>·</span>
                     <span>{p.displayDate}</span>
@@ -96,7 +96,7 @@ export default function BlogPage() {
                     {p.title}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between border-t border-line/10 pt-4 font-mono text-[0.62rem] uppercase tracking-[0.15em] text-muted">
+                  <div className="mt-5 flex items-center justify-between border-t border-line/10 pt-4 font-mono text-xs uppercase tracking-[0.15em] text-muted">
                     {p.readTime}
                     <IconArrowRight
                       size={15}

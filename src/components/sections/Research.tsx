@@ -2,19 +2,20 @@
 
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import { fieldworkIntro } from "@/lib/data";
+import { fieldworkIntro, projects } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
-import ResearchMarquee from "@/components/ui/ResearchMarquee";
+import ProjectCard from "@/components/ui/ProjectCard";
 import NepalMap from "@/components/ui/NepalMap";
 import FeaturedPaperCard from "@/components/ui/FeaturedPaperCard";
 
 /**
- * The Nepal fieldwork map, then every project as a rolling band, the same
- * marquee mechanic as the press mentions in Publications: pauses on
- * hover/focus, collapses to a static grid under prefers-reduced-motion. The
- * filterable, grouped catalogue lives at /research.
+ * The Nepal fieldwork map, then three selected studies (flagged `home` in
+ * data.ts) as a static grid. This used to be a marquee of all twelve, but
+ * research cards need reading time and a moving target is hard to compare,
+ * especially on touch. The filterable, grouped catalogue lives at /research.
  */
+const selected = projects.filter((p) => p.home);
 export default function Research() {
   return (
     <section id="research" className="py-20">
@@ -46,16 +47,20 @@ export default function Research() {
       </Reveal>
 
       <div className="mx-auto max-w-content px-6 pt-16 sm:px-10">
-        <div className="fig-label mb-6">Research conducted</div>
+        <div className="fig-label mb-6">Selected studies</div>
 
-        <Reveal delay={0.06}>
-          <ResearchMarquee />
-        </Reveal>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {selected.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.06} className="h-full">
+              <ProjectCard p={p} className="h-full" />
+            </Reveal>
+          ))}
+        </div>
 
         <Reveal delay={0.2}>
           <div className="mt-12 border-t border-line/10 pt-8">
             <Link href="/research" className="btn-primary">
-              View all research projects <IconArrowRight size={15} />
+              View all {projects.length} research projects <IconArrowRight size={15} />
             </Link>
           </div>
         </Reveal>
