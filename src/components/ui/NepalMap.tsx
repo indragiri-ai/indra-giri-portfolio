@@ -18,9 +18,10 @@ const clamp = (value: number, min: number, max: number) =>
  * inert background. Boundaries follow Nepal's updated map (Darchula includes
  * Kalapani, Lipulekh and Limpiyadhura), see scripts/build-nepal-map.mjs.
  *
- * The district list under the map is not decoration: it is the accessible and
- * crawlable version of the same information, and the only version on a device
- * with no pointer.
+ * The tooltip is a small card placed BESIDE the district's real outline (or
+ * above/below it when there is no side room), never on top of it, and the
+ * active district is redrawn last with a heavy outline so neighbouring borders
+ * cannot hide which one is selected.
  */
 export default function NepalMap() {
   const { byDistrict, unmatched } = useMemo(() => groupFieldwork(fieldwork), []);
@@ -42,43 +43,58 @@ export default function NepalMap() {
   const visitedCount = byDistrict.size;
 
   /**
-   * Place the tooltip from the district's real on-screen position, then keep it
-   * inside the map box. Measured rather than guessed because a district with
-   * four projects makes a tall card: a fixed "always above" rule pushed it off
-   * the top of the screen and under the sticky header.
+   * Place the tooltip from the district's real on-screen outline, then keep it
+   * inside the map box and the viewport. Tries right of the district, then
+   * left, then above, then below, and takes the first spot that does not
+   * cover the district; the selected district must stay visible.
    */
   useLayoutEffect(() => {
     if (!activeShape || !wrapRef.current || !svgRef.current || !tipRef.current) {
       setTipPos(null);
       return;
     }
-    const wrap = wrapRef.current.getBoundingClientRect();
-    const svg = svgRef.current.getBoundingClientRect();
-    const tip = tipRef.current.getBoundingClientRect();
-    /* The svg can be narrower than its wrapper once max-height clamps it. */
-    const scale = svg.width / NEPAL_VIEWBOX.width;
-    const x = svg.left - wrap.left + activeShape.cx * scale;
-    const y = svg.top - wrap.top + activeShape.cy * scale;
-
-    const GAP = 16;
-    const HEADER = 76; // fixed navbar, so the card never hides behind it
-
-    let top = y - tip.height - GAP; // above the district by default
-    if (top < 0) top = y + GAP; // not enough room, drop below
-
-    /* Clamp against the map box AND the viewport: a district with four
-       projects makes a card tall enough to escape both. */
-    const minTop = Math.max(0, HEADER - wrap.top);
-    const maxTop = Math.min(
-      wrap.height - tip.height,
-      window.innerHeight - 8 - wrap.top - tip.height
+    const path = svgRef.current.querySelector<SVGPathElement>(
+      `[data-district="${CSS.escape(activeShape.name)}"]`
     );
-    top = clamp(top, minTop, Math.max(minTop, maxTop));
+    if (!path) return;
+    const wrap = wrapRef.current.getBoundingClientRect();
+    const tip = tipRef.current.getBoundingClientRect();
+    const r = path.getBoundingClientRect();
+    /* district box in wrapper coordinates */
+    const d = {
+      left: r.left - wrap.left,
+      right: r.right - wrap.left,
+      top: r.top - wrap.top,
+      bottom: r.bottom - wrap.top,
+      cx: (r.left + r.right) / 2 - wrap.left,
+      cy: (r.top + r.bottom) / 2 - wrap.top,
+    };
 
-    const half = tip.width / 2;
-    const left = clamp(x, half, Math.max(half, wrap.width - half));
+    const GAP = 12;
+    const HEADER = 76; // fixed navbar, so the card never hides behind it
+    const minTop = Math.max(0, HEADER - wrap.top);
+    const maxTop = Math.max(
+      minTop,
+      Math.min(wrap.height - tip.height, window.innerHeight - 8 - wrap.top - tip.height)
+    );
+    const maxLeft = Math.max(0, wrap.width - tip.width);
+    const place = (left: number, top: number) => ({
+      left: clamp(left, 0, maxLeft),
+      top: clamp(top, minTop, maxTop),
+    });
+    const overlaps = (p: { left: number; top: number }) =>
+      p.left < d.right &&
+      p.left + tip.width > d.left &&
+      p.top < d.bottom &&
+      p.top + tip.height > d.top;
 
-    setTipPos({ left, top });
+    const candidates = [
+      place(d.right + GAP, d.cy - tip.height / 2), // right
+      place(d.left - GAP - tip.width, d.cy - tip.height / 2), // left
+      place(d.cx - tip.width / 2, d.top - GAP - tip.height), // above
+      place(d.cx - tip.width / 2, d.bottom + GAP), // below
+    ];
+    setTipPos(candidates.find((p) => !overlaps(p)) ?? candidates[0]);
   }, [activeShape]);
 
   return (
@@ -101,6 +117,7 @@ export default function NepalMap() {
             return (
               <path
                 key={shape.name}
+                data-district={shape.name}
                 d={shape.d}
                 tabIndex={worked ? 0 : undefined}
                 role={worked ? "button" : undefined}
@@ -151,15 +168,17 @@ export default function NepalMap() {
             pointerEvents="none"
           />
 
-          {/* Marker on the focused district, so keyboard users get the same cue */}
+          {/* The selected district, redrawn on top of everything with a heavy
+              outline: in the base layer its border is shared with (and partly
+              painted over by) its neighbours, so a fill change alone was easy
+              to miss. Same cue for hover, tap and keyboard focus. */}
           {activeShape && (
-            <circle
-              cx={activeShape.cx}
-              cy={activeShape.cy}
-              r={4}
-              fill="rgb(var(--bg))"
-              stroke="rgb(var(--map-work-active))"
-              strokeWidth={2}
+            <path
+              d={activeShape.d}
+              fill="rgb(var(--map-work-active))"
+              stroke="rgb(var(--fg))"
+              strokeWidth={2.5}
+              strokeLinejoin="round"
               vectorEffect="non-scaling-stroke"
               pointerEvents="none"
             />
@@ -171,24 +190,24 @@ export default function NepalMap() {
         {activeShape && activeEntries.length > 0 && (
           <div
             ref={tipRef}
-            className="pointer-events-none absolute z-10 w-[min(17rem,72vw)] -translate-x-1/2 rounded-xl border border-line/15 bg-surface p-4 shadow-lg"
+            className="pointer-events-none absolute z-10 w-[min(13.5rem,62vw)] rounded-lg border border-line/15 bg-surface/95 px-3 py-2.5 shadow-lg backdrop-blur-sm"
             style={{
               left: tipPos ? `${tipPos.left}px` : 0,
               top: tipPos ? `${tipPos.top}px` : 0,
               visibility: tipPos ? "visible" : "hidden",
             }}
           >
-            <div className="font-display text-base font-bold text-fg">
-              {activeShape.name}
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="font-display text-sm font-bold text-fg">{activeShape.name}</span>
+              <span className="truncate font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted">
+                {activeShape.province}
+              </span>
             </div>
-            <div className="mt-0.5 font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
-              {activeShape.province}
-            </div>
-            <ul className="mt-3 space-y-2.5">
+            <ul className="mt-1.5 space-y-1.5">
               {activeEntries.map((e) => (
                 <li key={`${e.project}-${e.year}`}>
-                  <div className="text-sm leading-snug text-fg">{e.project}</div>
-                  <div className="mt-0.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text">
+                  <div className="text-xs leading-snug text-fg">{e.project}</div>
+                  <div className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-accent-text">
                     {e.org} · {e.year}
                   </div>
                 </li>

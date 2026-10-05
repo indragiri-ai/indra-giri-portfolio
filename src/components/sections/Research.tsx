@@ -21,7 +21,7 @@ export default function Research() {
     <section id="research" className="py-20">
       <div className="mx-auto max-w-content px-6 sm:px-10">
         <SectionHead
-          fig="04"
+          fig="03"
           tag="Research"
           title={
             <>

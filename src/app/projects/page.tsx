@@ -22,7 +22,7 @@ export default function ProjectsPage() {
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader
-          backHref="/#projects"
+          backHref="/"
           eyebrow="Projects"
           title={
             <>

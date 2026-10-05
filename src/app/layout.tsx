@@ -171,7 +171,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body>
+      {/* Extensions such as Grammarly add attributes to <body> before React
+          hydrates; this only silences that one-level attribute mismatch. */}
+      <body suppressHydrationWarning>
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

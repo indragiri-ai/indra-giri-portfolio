@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IconArrowUpRight, IconBolt } from "@tabler/icons-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import { builtProjects } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
@@ -78,8 +78,7 @@ export default function FeaturedWork() {
             </div>
           </Reveal>
 
-          {/* mockup: shared perspective root gives the card and its floating
-              badge a single, consistent vanishing point */}
+          {/* mockup: perspective root for the card's 3D tilt */}
           <div className="relative py-6" style={{ perspective: 1600 }}>
             <motion.a
               href={item.url}
@@ -145,30 +144,6 @@ export default function FeaturedWork() {
               />
             </motion.a>
 
-            {/* floating status badge, popped forward out of the card's plane */}
-            <motion.div
-              aria-hidden
-              className="absolute -top-4 right-6 z-10 flex items-center gap-1.5 rounded-full border border-accent/30 bg-bg/90 px-3.5 py-1.5 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-accent-text shadow-[0_10px_30px_-10px_rgb(var(--accent)/0.5)] backdrop-blur"
-              style={{ transform: "translateZ(60px)" }}
-              initial={reduced ? { opacity: 0 } : { opacity: 0, y: -12, rotate: -4 }}
-              whileInView={
-                reduced
-                  ? { opacity: 1 }
-                  : { opacity: 1, y: [0, -6, 0], rotate: -4 }
-              }
-              viewport={{ once: true, amount: 0.4 }}
-              transition={
-                reduced
-                  ? { duration: 0.5 }
-                  : {
-                      default: { duration: 0.7, delay: 0.25, ease: CARD_EASE },
-                      y: { duration: 3.6, repeat: Infinity, ease: "easeInOut", delay: 1 },
-                    }
-              }
-            >
-              <IconBolt size={12} />
-              {item.status}
-            </motion.div>
           </div>
         </div>
       </div>
