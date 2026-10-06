@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { IconMapPin, IconChartBar } from "@tabler/icons-react";
 import type { Project } from "@/lib/data";
 import { cn } from "@/lib/utils";
@@ -53,6 +54,14 @@ export default function ProjectCard({
       </div>
 
       <p className="flex-1 text-sm leading-relaxed text-muted">{p.desc}</p>
+
+      {p.deliverable && (
+        <div className="border-l-2 border-accent/50 pl-4">
+          <div className="font-mono text-xs uppercase tracking-[0.12em] text-accent-text">Research output</div>
+          <p className="mt-2 text-sm leading-relaxed text-fg">{p.deliverable}</p>
+          {p.href && <Link href={p.href} className="mt-3 inline-block text-sm font-semibold text-accent-text underline underline-offset-4">Read the findings</Link>}
+        </div>
+      )}
 
       <div className="mt-auto border-t border-line/10 pt-4">
         <span className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.12em] text-muted">

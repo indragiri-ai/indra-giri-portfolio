@@ -1,4 +1,5 @@
 import { IconExternalLink, IconRocket } from "@tabler/icons-react";
+import { asset } from "@/lib/utils";
 import type { BuiltProject } from "@/lib/data";
 
 /**
@@ -20,6 +21,17 @@ export default function BuiltCard({ b }: { b: BuiltProject }) {
         className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-accent/20 blur-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       />
 
+      <div className="relative -mx-7 -mt-7 mb-7 overflow-hidden border-b border-accent/20 bg-surface">
+        {b.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={asset(b.image)} alt={`${b.title} preview`} width={1800} height={775} className="aspect-[2/1] w-full object-cover object-top" loading="lazy" />
+        ) : (
+          <div className="flex aspect-[2/1] flex-col justify-center gap-3 bg-accent/[0.06] px-7 sm:px-9">
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-accent-text">Free teaching resource</span>
+            <span className="max-w-xs font-display text-3xl font-semibold leading-tight text-fg">{b.title}</span>
+          </div>
+        )}
+      </div>
       <div className="relative mb-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-2.5">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/40 bg-accent/10 text-accent-text transition-transform duration-300 group-hover:scale-110">

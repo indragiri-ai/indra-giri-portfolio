@@ -9,10 +9,10 @@ import Reveal from "@/components/ui/Reveal";
 import BuiltCard from "@/components/ui/BuiltCard";
 
 const intro =
-  "Products and resources built and put online, as opposed to studies run for a client. Every link below is live and checked: what you see is what a visitor gets today.";
+  "Open data and practical learning resources. Explore the tools I build and the material I use in training.";
 
 export const metadata: Metadata = {
-  title: `Projects | ${profile.name}`,
+  title: `Tools & Resources | ${profile.name}`,
   description: intro,
 };
 
@@ -23,10 +23,10 @@ export default function ProjectsPage() {
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader
           backHref="/"
-          eyebrow="Projects"
+          eyebrow="Tools & resources"
           title={
             <>
-              Built &amp; <em>published</em>
+              Tools to use. <em>Ideas to apply.</em>
             </>
           }
           intro={intro}
@@ -46,8 +46,8 @@ export default function ProjectsPage() {
               Looking for the research studies?
             </h2>
             <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-              Impact evaluations, value chain studies and social research done
-              for clients live on the Research page, not here.
+              Explore impact evaluations, value chain studies and social research
+              for organisations across Nepal and India.
             </p>
             <Link href="/research" className="btn-primary mt-7">
               View research <IconArrowRight size={15} />

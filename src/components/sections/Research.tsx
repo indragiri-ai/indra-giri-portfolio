@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import { IconArrowRight } from "@tabler/icons-react";
-import { fieldworkIntro, projects } from "@/lib/data";
+import { projects } from "@/lib/data";
 import SectionHead from "@/components/ui/SectionHead";
 import Reveal from "@/components/ui/Reveal";
 import ProjectCard from "@/components/ui/ProjectCard";
-import NepalMap from "@/components/ui/NepalMap";
 import FeaturedPaperCard from "@/components/ui/FeaturedPaperCard";
 
 /**
- * The Nepal fieldwork map, then three selected studies (flagged `home` in
- * data.ts) as a static grid. This used to be a marquee of all twelve, but
+ * Three selected studies (flagged `home` in data.ts) as a static grid.
+ * The full fieldwork map lives on the dedicated research page. This used to be a marquee of all twelve, but
  * research cards need reading time and a moving target is hard to compare,
  * especially on touch. The filterable, grouped catalogue lives at /research.
  */
@@ -33,20 +32,6 @@ export default function Research() {
           intro="A decade of applied research for international organisations, governments and universities across South Asia."
         />
 
-        <div className="fig-label mb-4">{fieldworkIntro.label}</div>
-        <h3 className="max-w-2xl font-display text-3xl font-semibold leading-tight text-fg sm:text-4xl">
-          {fieldworkIntro.title}
-        </h3>
-        <p className="mt-4 max-w-2xl leading-relaxed text-muted">{fieldworkIntro.intro}</p>
-      </div>
-
-      {/* Full bleed: Nepal's bbox is 1.7:1 and needs the full viewport width
-          to stay legible. */}
-      <Reveal delay={0.08} className="mt-12">
-        <NepalMap />
-      </Reveal>
-
-      <div className="mx-auto max-w-content px-6 pt-16 sm:px-10">
         <div className="fig-label mb-6">Selected studies</div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">

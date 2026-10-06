@@ -133,7 +133,7 @@ export default function AITrainingPage() {
         </div>
 
         {/* Delivered programs, alternating photo and text */}
-        <div className="mt-20">
+        <div id="delivered" className="mt-20">
           <Reveal>
             <div className="fig-label mb-8">Where I have delivered</div>
           </Reveal>

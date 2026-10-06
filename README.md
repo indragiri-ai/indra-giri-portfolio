@@ -7,7 +7,7 @@ Personal profile site for **Indra Giri** — AI Generalist, Senior Researcher, A
 - **Next.js 16** (App Router) + **TypeScript** + **React 19**
 - **Tailwind CSS** with CSS-variable design tokens, dark + light themes (toggle in nav, persisted to `localStorage`)
 - **Static export** (`output: "export"`) for GitHub Pages, with an `asset()` helper that handles the repo base path
-- **Framer Motion** for reveal-on-scroll, the hero role flipper, and page transitions — all of it degrades under `prefers-reduced-motion`
+- **Framer Motion** for reveal-on-scroll and page transitions — all of it degrades under `prefers-reduced-motion`
 - Nepal fieldwork map: all 77 districts as inline SVG, hover/tap/keyboard interactive
 - Filterable research grid, career timeline, publications, teaching/training pages, blog
 - Contact form via Formspree (falls back to a `mailto:` link if no Formspree ID is set)

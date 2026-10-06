@@ -59,6 +59,11 @@ export default function ResearchPage() {
             </div>
           </Reveal>
 
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a href="#studies" className="btn-primary">Browse studies <IconArrowRight size={15} /></a>
+            <Link href="/publications" className="btn-ghost">Read publications</Link>
+          </div>
+
           <Reveal delay={0.1}>
             <div className="mt-16">
               <div className="fig-label mb-4">{fieldworkIntro.label}</div>
@@ -76,7 +81,7 @@ export default function ResearchPage() {
           <NepalMap />
         </Reveal>
 
-        <div className="mx-auto mt-16 max-w-content px-6 sm:px-10">
+        <div id="studies" className="mx-auto mt-16 max-w-content px-6 sm:px-10">
           <div className="fig-label mb-6">Research catalogue</div>
           <ProjectsExplorer />
         </div>

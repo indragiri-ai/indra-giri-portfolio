@@ -1,44 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { profile, roles, stats } from "@/lib/data";
+import { motion } from "framer-motion";
+import { profile, stats } from "@/lib/data";
 import Counter from "@/components/ui/Counter";
 import ClientMarquee from "@/components/ui/ClientMarquee";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { asset } from "@/lib/utils";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-function RoleFlipper() {
-  const reduced = usePrefersReducedMotion();
-  const [idx, setIdx] = useState(0);
-  useEffect(() => {
-    if (reduced) return;
-    const iv = setInterval(() => setIdx((i) => (i + 1) % roles.length), 2600);
-    return () => clearInterval(iv);
-  }, [reduced]);
-  return (
-    <span className="relative inline-flex h-[1.5em] min-w-[240px] overflow-hidden align-bottom">
-      {/* One stable accessible name; the flipping visual below is hidden from
-          assistive tech so it doesn't announce a change every 2.6s. */}
-      <span className="sr-only">{roles.join(" · ")}</span>
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={idx}
-          aria-hidden
-          initial={reduced ? false : { y: "100%", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={reduced ? undefined : { y: "-100%", opacity: 0 }}
-          transition={reduced ? { duration: 0 } : { duration: 0.45, ease: EASE }}
-          className="text-accent-text"
-        >
-          {roles[idx]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
 
 export default function Hero() {
   return (
@@ -53,14 +21,14 @@ export default function Hero() {
         }}
       />
 
-      <div className="mx-auto grid w-full max-w-content grid-cols-1 items-center gap-14 px-6 pb-16 pt-32 sm:px-10 lg:grid-cols-[1.1fr_0.72fr] lg:gap-20 lg:pt-40">
+      <div className="mx-auto grid w-full max-w-content grid-cols-1 items-center gap-10 px-6 pb-12 pt-24 sm:px-10 lg:grid-cols-[1.1fr_0.72fr] lg:gap-20 lg:pt-40">
         {/* ── Left: intro ── */}
         <div>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="mb-7 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted"
+            className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-[0.16em] text-muted"
           >
             <span>{profile.location}</span>
             <span className="inline-flex items-center gap-2 text-accent-text">
@@ -73,7 +41,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-            className="font-display text-6xl font-semibold leading-[1.02] tracking-tight text-fg sm:text-7xl lg:text-[5.5rem]"
+            className="font-display text-5xl font-semibold leading-[1.02] tracking-tight text-fg sm:text-7xl lg:text-[5.5rem]"
           >
             Indra <em className="italic text-accent-text">Giri</em>
           </motion.h1>
@@ -82,16 +50,16 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: EASE }}
-            className="mt-6 font-display text-2xl font-medium text-fg sm:text-3xl"
+            className="mt-5 max-w-xl font-display text-2xl font-medium leading-snug text-accent-text sm:mt-6 sm:text-3xl"
           >
-            <RoleFlipper />
+            {profile.positioning}
           </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: EASE }}
-            className="mt-6 max-w-xl leading-relaxed text-muted"
+            className="mt-4 max-w-xl leading-relaxed text-muted"
           >
             {profile.heroIntro}
           </motion.p>
@@ -100,9 +68,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            className="mt-6 flex flex-wrap items-center gap-4"
           >
-            <a href="#ai" className="btn-primary">
+            <a href="#work" className="btn-primary">
               Explore my work
             </a>
             <a href="#contact" className="btn-ghost">
@@ -115,7 +83,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
-            className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line/10 bg-line/10 sm:grid-cols-4"
+            className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line/10 bg-line/10 sm:grid-cols-4"
           >
             {stats.map((s) => (
               <div key={s.label} className="bg-surface px-5 py-5">

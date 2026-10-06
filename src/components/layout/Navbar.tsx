@@ -84,7 +84,7 @@ export default function Navbar() {
           Indra <span className="italic text-accent-text">Giri</span>
         </Link>
 
-        <ul className="hidden items-center gap-7 lg:flex">
+        <ul className="hidden items-center gap-5 xl:gap-7 lg:flex">
           {navLinks.map((l) => {
             const current = isCurrent(pathname, l.href);
             return (
@@ -143,7 +143,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-bg/97 px-8 py-6 backdrop-blur-lg"
+            className="fixed inset-0 z-[60] flex flex-col bg-bg px-6 py-5"
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
@@ -157,7 +157,7 @@ export default function Navbar() {
                 <IconX size={18} />
               </button>
             </div>
-            <div className="mt-12 flex flex-col gap-2 overflow-y-auto">
+            <div className="mt-6 min-h-0 flex-1 flex flex-col overflow-y-auto">
               {navLinks.map((l, i) => (
                 <motion.div
                   key={l.href}
@@ -169,7 +169,7 @@ export default function Navbar() {
                     href={l.href}
                     onClick={() => setOpen(false)}
                     aria-current={isCurrent(pathname, l.href) ? "page" : undefined}
-                    className="flex items-baseline gap-4 border-b border-line/10 py-4 font-display text-3xl font-semibold text-fg"
+                    className="flex items-baseline gap-4 border-b border-line/10 py-3 font-display text-2xl font-semibold text-fg"
                   >
                     <span className="font-mono text-xs text-accent-text">
                       {String(i + 1).padStart(2, "0")}
@@ -182,7 +182,7 @@ export default function Navbar() {
             <a
               href={asset(profile.cvPath)}
               download
-              className="mt-auto rounded-full border border-accent bg-accent py-3.5 text-center font-mono text-xs font-semibold uppercase tracking-[0.15em] text-accent-ink"
+              className="mt-5 shrink-0 rounded-full border border-accent bg-accent py-3.5 text-center font-mono text-xs font-semibold uppercase tracking-[0.15em] text-accent-ink"
             >
               Download CV
             </a>

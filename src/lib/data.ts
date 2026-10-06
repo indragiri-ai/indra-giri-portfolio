@@ -36,8 +36,9 @@ export const profile = {
   aboutPhoto: "/images/about.jpg",
   tagline:
     "AI trainer and AI Generalist in Kathmandu, Nepal. I bring generative AI into education and turn a decade of field research into decisions organisations can act on.",
+  positioning: "Research, practical AI and training for better decisions.",
   heroIntro:
-    "I combine a decade of rigorous field research with modern AI practice. I design studies, train professionals and educators in AI and analytics, and build evidence that shapes policy and programs across Nepal, South Asia and beyond.",
+    "I help organisations build evidence and use AI well, drawing on a decade of research across Nepal and South Asia.",
 };
 
 /**
@@ -167,6 +168,9 @@ export interface Project {
   big?: boolean; // spans 2 cols in the grid
   /** One of the three studies shown on the home page. Keep exactly three. */
   home?: boolean;
+  /** Documented output, not a claim of measured impact. */
+  deliverable?: string;
+  href?: string;
 }
 
 export const projectFilters: { key: "all" | ProjectCategory; label: string }[] = [
@@ -221,6 +225,7 @@ export const projects: Project[] = [
   {
     org: "Chingad Rural Municipality",
     title: "N-WASH Municipality Plan",
+    deliverable: "A municipal WASH plan using GPS based mobile data collection and DWSSM guidelines.",
     desc: "Municipal WASH planning per DWSSM guidelines with GPS based mobile data collection.",
     loc: "Surkhet, Nepal",
     status: "completed",
@@ -248,6 +253,7 @@ export const projects: Project[] = [
   {
     org: "World Vision International",
     title: "Child-focused Qualitative Research",
+    deliverable: "Policy implications synthesised from interviews and discussions with students, teachers, officials and parents.",
     desc: "Field research with students, teachers, officials and parents, synthesised into policy implications.",
     loc: "Jajarkot · Jumla · Kailali",
     status: "completed",
@@ -257,6 +263,7 @@ export const projects: Project[] = [
   {
     org: "Heifer International",
     title: "Dairy Market Study",
+    deliverable: "Strategic recommendations informed by a mixed methods dairy market study across six districts.",
     desc: "Mixed methods study of the dairy market across six districts with strategic recommendations.",
     loc: "6 districts, Nepal",
     status: "completed",
@@ -286,6 +293,8 @@ export const projects: Project[] = [
   {
     org: "Sankhya AI",
     title: "AI Awareness Among Professionals in Nepal",
+    deliverable: "The Adoption Paradox: a published report with findings, methods and limitations.",
+    href: "/ai/research-policy",
     desc: "Exploratory study on AI adoption, presented at the 4th National Economist Conference.",
     loc: "Nepal",
     status: "completed",
@@ -794,10 +803,23 @@ export const journey: JourneyItem[] = [
  */
 export const navLinks = [
   { href: "/ai", label: "AI" },
-  { href: "/projects", label: "Projects" },
+  { href: "/projects", label: "Resources" },
   { href: "/research", label: "Research" },
   { href: "/teaching", label: "Teaching" },
   { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Contact" },
   { href: "/gallery", label: "Gallery" },
 ];
+
+export const teachingApproach = {
+  title: "AI as an assistant. Understanding stays with the learner.",
+  body: "I teach economics, research methods and data analysis alongside practical AI use. The emphasis is on checking the evidence, explaining the reasoning and being able to do the work independently.",
+  invitation: "Invite me to teach or speak",
+  enquiry: "For a guest lecture or workshop, tell me the audience, the topic and what learners should be able to do afterwards.",
+};
+
+export const contactFormIntro = {
+  direct: "Send an enquiry",
+  email: "Prepare an email",
+  fallback: "This form prepares a draft in your email app. You will send it from there. You can also use the email or WhatsApp links directly.",
+};

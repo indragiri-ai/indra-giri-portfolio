@@ -31,7 +31,7 @@ export default function FeaturedWork() {
   if (!item) return null;
 
   return (
-    <section className="relative overflow-hidden border-y border-line/10 bg-surface/40">
+    <section id="work" className="relative overflow-hidden border-y border-line/10 bg-surface/40">
       {/* ambient depth glow behind the mockup column, quiet on its own */}
       <div
         aria-hidden

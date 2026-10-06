@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import { profile } from "@/lib/data";
 import { galleryPhotos, galleryIntro } from "@/lib/gallery";
@@ -60,6 +61,9 @@ export default function GalleryPage() {
                     <p className="mt-1 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-muted">
                       {item.meta}
                     </p>
+                    <Link href={item.kind === "training" ? "/ai/training#delivered" : "/research#studies"} className="mt-4 inline-block text-sm font-semibold text-accent-text underline underline-offset-4">
+                      {item.kind === "training" ? "Explore the training" : "Explore the research"}
+                    </Link>
                   </figcaption>
                 </figure>
               </Reveal>

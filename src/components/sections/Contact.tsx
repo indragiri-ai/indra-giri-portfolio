@@ -11,7 +11,7 @@ import {
   IconLoader2,
   IconBrandWhatsapp,
 } from "@tabler/icons-react";
-import { profile, whatsappUrl } from "@/lib/data";
+import { profile, whatsappUrl, contactFormIntro } from "@/lib/data";
 import Reveal from "@/components/ui/Reveal";
 
 type Status = "idle" | "sending" | "sent" | "mailto" | "error" | "timeout";
@@ -35,7 +35,7 @@ const LIMITS = { name: 100, email: 254, subject: 200, message: 5_000 } as const;
    falls back to opening the visitor's email app, and the button and the note
    under it say so BEFORE they press it. */
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "";
-const USE_FORMSPREE = /^[A-Za-z0-9_-]+$/.test(FORMSPREE_ID);
+const USE_FORMSPREE = /^[A-Za-z0-9_-]+$/.test(FORMSPREE_ID) && FORMSPREE_ID !== "your_formspree_form_id";
 
 function validate(p: Record<Field, string>): Errors {
   const errors: Errors = {};
@@ -255,6 +255,8 @@ export default function Contact() {
 
         <Reveal delay={0.08}>
           <form className="panel relative p-7 sm:p-9" onSubmit={submit} noValidate>
+            <h3 className="mb-4 font-display text-2xl font-semibold">{USE_FORMSPREE ? contactFormIntro.direct : contactFormIntro.email}</h3>
+            {!USE_FORMSPREE && <p className="mb-6 text-sm leading-relaxed text-muted">{contactFormIntro.fallback}</p>}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="contact-name" className={labelCls}>Name</label>

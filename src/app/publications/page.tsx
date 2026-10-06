@@ -95,7 +95,7 @@ export default function PublicationsPage() {
               <div className="mb-5 font-mono text-xs uppercase tracking-[0.16em] text-accent-text">
                 Featured report · {aiReport.publisher}
               </div>
-              <h2 className="mb-3 max-w-3xl font-display text-2xl font-bold leading-snug text-fg transition-colors group-hover:text-accent-text sm:text-3xl">
+              <h2 className="mb-3 max-w-3xl font-display text-2xl font-bold leading-snug text-fg sm:text-3xl">
                 {aiReport.title}
               </h2>
               <p className="mb-6 max-w-2xl font-display text-base italic leading-snug text-accent-text">
@@ -118,7 +118,7 @@ export default function PublicationsPage() {
                   key={w.title}
                   className="group border-t border-line/10 py-5 first:border-t-0 first:pt-0"
                 >
-                  <div className="font-display text-lg font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                  <div className="font-display text-lg font-bold leading-snug text-fg">
                     {w.title}
                   </div>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">
@@ -148,7 +148,7 @@ export default function PublicationsPage() {
                   key={c.title}
                   className="group border-t border-line/10 py-5 first:border-t-0 first:pt-0"
                 >
-                  <div className="font-display text-lg font-bold leading-snug text-fg transition-colors group-hover:text-accent-text">
+                  <div className="font-display text-lg font-bold leading-snug text-fg">
                     {c.title}
                   </div>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted">
