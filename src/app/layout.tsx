@@ -49,7 +49,7 @@ const mono = localFont({
  */
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri-ai.github.io${BASE_PATH}`
+  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri.com.np${BASE_PATH}`
 ).replace(/\/$/, "");
 const ogImage = `${SITE_URL}${profile.portrait.startsWith("/") ? "" : "/"}${profile.portrait}`;
 const title = `${profile.name} | AI Trainer & AI in Education, Nepal`;

@@ -41,17 +41,13 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # Replace with your actual repo name (e.g. /indra-giri-portfolio).
-          # Remove this line entirely if deploying to a user/org page (username.github.io).
-          NEXT_PUBLIC_BASE_PATH: /indra-giri-portfolio
-          NEXT_PUBLIC_SITE_URL: https://indragiri-ai.github.io/indra-giri-portfolio
+          # Custom domain served from the root, so no base path.
+          NEXT_PUBLIC_SITE_URL: https://indragiri.com.np
           # The form ID is public; use the portfolio form unless overridden.
           NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID || 'mrpepzrk' }}
 
       - name: Verify static export
         run: npm run verify:export
-        env:
-          NEXT_PUBLIC_BASE_PATH: /indra-giri-portfolio
 
       - name: Add .nojekyll
         run: touch out/.nojekyll

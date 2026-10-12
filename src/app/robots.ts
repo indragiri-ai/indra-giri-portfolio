@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri-ai.github.io${BASE_PATH}`
+  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri.com.np${BASE_PATH}`
 ).replace(/\/$/, "");
 
 export default function robots(): MetadataRoute.Robots {
