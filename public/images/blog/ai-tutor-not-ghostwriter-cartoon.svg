@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Cartoon of a student at a desk with a friendly robot tutor asking a question">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18203a"/>
+      <stop offset="1" stop-color="#0a0e19"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="400" r="300" fill="#c6a15b" opacity="0.07"/>
+  <rect y="690" width="1200" height="110" fill="#0a0e19" opacity="0.6"/>
+  <!-- thought bubble: student -->
+  <circle cx="275" cy="305" r="9" fill="#ebe8e0"/>
+  <circle cx="250" cy="265" r="14" fill="#ebe8e0"/>
+  <ellipse cx="205" cy="170" rx="110" ry="70" fill="#ebe8e0"/>
+  <circle cx="205" cy="160" r="30" fill="#d7b573"/>
+  <rect x="192" y="190" width="26" height="16" rx="3" fill="#9499a8"/>
+  <g stroke="#c6a15b" stroke-width="4" stroke-linecap="round">
+    <path d="M205 105V118M150 130l9 8M260 130l-9 8M135 165H147M263 165H275"/>
+  </g>
+  <!-- student -->
+  <rect x="258" y="400" width="152" height="150" rx="42" fill="#4fa3a5"/>
+  <rect x="320" y="378" width="30" height="30" rx="8" fill="#e8b98a"/>
+  <circle cx="335" cy="350" r="52" fill="#e8b98a"/>
+  <path d="M283 345a52 52 0 0 1 104 0q-26-24-52-14q-26-10-52 14z" fill="#1a1a24"/>
+  <circle cx="318" cy="356" r="5" fill="#1a1a24"/>
+  <circle cx="352" cy="356" r="5" fill="#1a1a24"/>
+  <path d="M320 374q15 12 30 0" fill="none" stroke="#1a1a24" stroke-width="4" stroke-linecap="round"/>
+  <!-- laptop -->
+  <rect x="440" y="415" width="190" height="115" rx="10" fill="#1b2340" stroke="#c6a15b" stroke-width="3"/>
+  <g stroke="#9499a8" stroke-width="6" stroke-linecap="round" opacity="0.7">
+    <path d="M462 445H590M462 470H560M462 495H600"/>
+  </g>
+  <circle cx="600" cy="448" r="6" fill="#d7b573"/>
+  <!-- desk -->
+  <rect x="140" y="540" width="920" height="36" rx="8" fill="#7a5640"/>
+  <rect x="180" y="576" width="24" height="130" fill="#5b3f2d"/>
+  <rect x="996" y="576" width="24" height="130" fill="#5b3f2d"/>
+  <rect x="418" y="530" width="234" height="14" rx="6" fill="#9499a8"/>
+  <!-- arms -->
+  <path d="M275 455Q295 525 440 528" fill="none" stroke="#e8b98a" stroke-width="22" stroke-linecap="round"/>
+  <path d="M395 455Q405 520 470 530" fill="none" stroke="#e8b98a" stroke-width="22" stroke-linecap="round"/>
+  <!-- robot tutor -->
+  <path d="M930 475Q995 450 1005 385" fill="none" stroke="#9bb5d6" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="1005" cy="378" r="15" fill="#c9d8ec"/>
+  <rect x="770" y="430" width="160" height="125" rx="28" fill="#9bb5d6"/>
+  <circle cx="850" cy="490" r="14" fill="#d7b573"/>
+  <rect x="775" y="300" width="150" height="115" rx="30" fill="#9bb5d6"/>
+  <circle cx="768" cy="358" r="11" fill="#c9d8ec"/>
+  <circle cx="932" cy="358" r="11" fill="#c9d8ec"/>
+  <rect x="793" y="320" width="114" height="74" rx="20" fill="#1b2340"/>
+  <circle cx="825" cy="352" r="10" fill="#d7b573"/>
+  <circle cx="875" cy="352" r="10" fill="#d7b573"/>
+  <path d="M830 375q20 12 40 0" fill="none" stroke="#d7b573" stroke-width="5" stroke-linecap="round"/>
+  <path d="M850 300V264" stroke="#9bb5d6" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="850" cy="254" r="12" fill="#d7b573"/>
+  <!-- speech bubble: robot asks -->
+  <path d="M905 245L880 298L950 252Z" fill="#ebe8e0"/>
+  <ellipse cx="965" cy="170" rx="115" ry="80" fill="#ebe8e0"/>
+  <path d="M935 140a28 28 0 1 1 44 22c-14 10-18 18-18 32" fill="none" stroke="#10152a" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="961" cy="225" r="8" fill="#10152a"/>
+</svg>

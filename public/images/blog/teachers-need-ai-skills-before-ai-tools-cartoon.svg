@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Cartoon of a teacher at a chalkboard with children at desks and a laptop showing an idea">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18203a"/>
+      <stop offset="1" stop-color="#0a0e19"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="360" r="300" fill="#c6a15b" opacity="0.07"/>
+  <rect y="690" width="1200" height="110" fill="#0a0e19" opacity="0.6"/>
+  <!-- chalkboard -->
+  <rect x="300" y="80" width="620" height="270" rx="12" fill="#7a5640"/>
+  <rect x="316" y="96" width="588" height="238" rx="8" fill="#1f3a3a"/>
+  <g stroke="#ebe8e0" stroke-width="6" stroke-linecap="round" opacity="0.8">
+    <path d="M350 150H580M350 192H520M350 234H560"/>
+  </g>
+  <circle cx="760" cy="190" r="44" fill="#d7b573"/>
+  <g stroke="#d7b573" stroke-width="5" stroke-linecap="round">
+    <path d="M760 124V110M706 140l-10-10M814 140l10-10M690 190H676M830 190H844"/>
+  </g>
+  <path d="M668 290l26 26 56-62" fill="none" stroke="#d7b573" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- teacher -->
+  <path d="M110 390h140l34 250H76z" fill="#e07a5f"/>
+  <path d="M150 395l30 60 30-60" fill="#ebe8e0"/>
+  <rect x="166" y="352" width="28" height="30" rx="8" fill="#c68a5c"/>
+  <circle cx="180" cy="320" r="46" fill="#c68a5c"/>
+  <circle cx="180" cy="262" r="22" fill="#1a1a24"/>
+  <path d="M134 318a46 46 0 0 1 92 0q-24-22-46-14q-22-8-46 14z" fill="#1a1a24"/>
+  <circle cx="164" cy="326" r="5" fill="#1a1a24"/>
+  <circle cx="196" cy="326" r="5" fill="#1a1a24"/>
+  <path d="M166 344q14 12 28 0" fill="none" stroke="#1a1a24" stroke-width="4" stroke-linecap="round"/>
+  <path d="M240 425Q310 405 360 335" fill="none" stroke="#c68a5c" stroke-width="22" stroke-linecap="round"/>
+  <path d="M360 335L470 205" stroke="#d7b573" stroke-width="6" stroke-linecap="round"/>
+  <!-- teacher laptop table -->
+  <rect x="980" y="520" width="190" height="18" rx="6" fill="#7a5640"/>
+  <rect x="1000" y="538" width="16" height="150" fill="#5b3f2d"/>
+  <rect x="1136" y="538" width="16" height="150" fill="#5b3f2d"/>
+  <rect x="1005" y="425" width="130" height="92" rx="9" fill="#1b2340" stroke="#c6a15b" stroke-width="3"/>
+  <circle cx="1070" cy="468" r="20" fill="#d7b573"/>
+  <rect x="1060" y="486" width="20" height="10" rx="2" fill="#9499a8"/>
+  <path d="M1070 375l7 18 18 7-18 7-7 18-7-18-18-7 18-7z" fill="#d7b573"/>
+  <!-- children -->
+  <g>
+    <rect x="300" y="612" width="60" height="50" rx="14" fill="#4fa3a5"/>
+    <circle cx="330" cy="578" r="34" fill="#e8b98a"/><path d="M296 574a34 34 0 0 1 68 0q-17-16-34-10q-17-6-34 10z" fill="#1a1a24"/>
+    <circle cx="319" cy="582" r="4" fill="#1a1a24"/><circle cx="341" cy="582" r="4" fill="#1a1a24"/>
+    <rect x="440" y="612" width="60" height="50" rx="14" fill="#d7b573"/>
+    <circle cx="470" cy="578" r="34" fill="#c68a5c"/><path d="M436 574a34 34 0 0 1 68 0q-17-16-34-10q-17-6-34 10z" fill="#1a1a24"/>
+    <circle cx="459" cy="582" r="4" fill="#1a1a24"/><circle cx="481" cy="582" r="4" fill="#1a1a24"/>
+    <path d="M590 640Q590 560 616 510" fill="none" stroke="#8d5a3b" stroke-width="16" stroke-linecap="round"/>
+    <circle cx="618" cy="502" r="12" fill="#8d5a3b"/>
+    <rect x="580" y="612" width="60" height="50" rx="14" fill="#e07a5f"/>
+    <circle cx="610" cy="578" r="34" fill="#8d5a3b"/><path d="M576 574a34 34 0 0 1 68 0q-17-16-34-10q-17-6-34 10z" fill="#1a1a24"/>
+    <circle cx="599" cy="582" r="4" fill="#1a1a24"/><circle cx="621" cy="582" r="4" fill="#1a1a24"/>
+    <rect x="720" y="612" width="60" height="50" rx="14" fill="#9bb5d6"/>
+    <circle cx="750" cy="578" r="34" fill="#e8b98a"/><path d="M716 574a34 34 0 0 1 68 0q-17-16-34-10q-17-6-34 10z" fill="#1a1a24"/>
+    <circle cx="739" cy="582" r="4" fill="#1a1a24"/><circle cx="761" cy="582" r="4" fill="#1a1a24"/>
+    <rect x="860" y="612" width="60" height="50" rx="14" fill="#4fa3a5"/>
+    <circle cx="890" cy="578" r="34" fill="#c68a5c"/><path d="M856 574a34 34 0 0 1 68 0q-17-16-34-10q-17-6-34 10z" fill="#1a1a24"/>
+    <circle cx="879" cy="582" r="4" fill="#1a1a24"/><circle cx="901" cy="582" r="4" fill="#1a1a24"/>
+  </g>
+  <rect x="250" y="646" width="720" height="32" rx="8" fill="#7a5640"/>
+</svg>
