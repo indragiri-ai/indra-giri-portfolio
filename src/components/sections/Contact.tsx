@@ -34,7 +34,7 @@ const LIMITS = { name: 100, email: 254, subject: 200, message: 5_000 } as const;
 /* Baked in at build time by the static export. Without a valid ID the form
    falls back to opening the visitor's email app, and the button and the note
    under it say so BEFORE they press it. */
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "";
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "mrpepzrk";
 const USE_FORMSPREE = /^[A-Za-z0-9_-]+$/.test(FORMSPREE_ID) && FORMSPREE_ID !== "your_formspree_form_id";
 
 function validate(p: Record<Field, string>): Errors {

@@ -10,7 +10,7 @@ Personal profile site for **Indra Giri** — AI Generalist, Senior Researcher, A
 - **Framer Motion** for reveal-on-scroll and page transitions — all of it degrades under `prefers-reduced-motion`
 - Nepal fieldwork map: all 77 districts as inline SVG, hover/tap/keyboard interactive
 - Filterable research grid, career timeline, publications, teaching/training pages, blog
-- Contact form via Formspree (falls back to a `mailto:` link if no Formspree ID is set)
+- Contact form via Formspree using the portfolio endpoint; includes validation, spam honeypot, and submission feedback
 - All content centralized in `src/lib/*.ts` — no CMS, no database
 
 ## Run it
@@ -24,15 +24,21 @@ Open <http://localhost:3000>.
 
 Next.js 16 keeps development output under `.next/dev`, separate from production builds.
 
-## Contact form (optional)
+## Contact form
 
-Copy `.env.example` to `.env.local` and add a [Formspree](https://formspree.io) form ID:
+The React contact form submits directly to `https://formspree.io/f/mrpepzrk` using JSON AJAX. No extra SDK or server is needed for GitHub Pages.
+
+In Formspree, confirm that this form's notification recipient is `girindra075@gmail.com` and complete any email verification. The recipient is controlled in Formspree, not by the email address displayed on the site.
+
+The public form ID is configured by default for local development and GitHub Pages. An existing GitHub Actions secret named `FORMSPREE_ID` overrides the deployment default; update or remove it if it points to a different form. To override locally, copy `.env.example` to `.env.local` and change:
 
 ```env
-NEXT_PUBLIC_FORMSPREE_ID=your_formspree_form_id
+NEXT_PUBLIC_FORMSPREE_ID=mrpepzrk
 ```
 
-Without it, the contact form falls back to opening the visitor's email client with a pre-filled `mailto:` link.
+Setting this variable to an empty string disables direct submission and uses the email-app fallback. Public environment variables are baked into the static export, so rebuild and redeploy after configuration changes.
+
+After deployment, submit a test message from the contact form and confirm it appears in Formspree's submissions and the Gmail inbox (check Spam too).
 
 ## Edit content
 

@@ -45,9 +45,8 @@ jobs:
           # Remove this line entirely if deploying to a user/org page (username.github.io).
           NEXT_PUBLIC_BASE_PATH: /indra-giri-portfolio
           NEXT_PUBLIC_SITE_URL: https://indragiri-ai.github.io/indra-giri-portfolio
-          # The ID is public in the browser bundle. A repository secret keeps
-          # environment configuration centralized; it is not a private API key.
-          NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID }}
+          # The form ID is public; use the portfolio form unless overridden.
+          NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.FORMSPREE_ID || 'mrpepzrk' }}
 
       - name: Verify static export
         run: npm run verify:export
