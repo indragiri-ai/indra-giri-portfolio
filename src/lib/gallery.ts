@@ -17,7 +17,7 @@ export interface GalleryItem {
   caption: string;
   /** Place and date, shown small under the caption. */
   meta: string;
-  /** "training" | "field" – used for the small tag on the tile. */
+  /** "training" | "field" - used for the small tag on the tile. */
   kind: "training" | "field";
 }
 
@@ -28,7 +28,7 @@ export interface GalleryItem {
  * happens" once a fieldwork entry actually has an image.
  */
 export const galleryIntro =
-  "Training sessions with teachers and institutions across Nepal, with fieldwork photography added as it comes in.";
+  "Training sessions with teachers and institutions across Nepal, and the field visits where the research happens.";
 
 /**
  * Only entries that actually have an image. Everything public renders from
@@ -61,6 +61,102 @@ export const gallery: GalleryItem[] = [
     caption: "Teaching staff after the AI training",
     meta: "Sewa Sadan School, Kathmandu",
     kind: "training",
+  },
+  {
+    src: "/images/gallery/kusom-token-of-love.jpg",
+    caption: "Receiving a token of appreciation after the AI and Excel training",
+    meta: "Kathmandu University School of Management",
+    kind: "training",
+  },
+  {
+    src: "/images/gallery/sankhya-ai-team-putalisadak.jpg",
+    caption: "With the Sankhya AI team",
+    meta: "Putalisadak, Kathmandu",
+    kind: "training",
+  },
+  {
+    src: "/images/gallery/cds-workshop-kalanki.jpg",
+    caption: "Workshop with the CDS team",
+    meta: "Kalanki, Kathmandu",
+    kind: "training",
+  },
+  {
+    src: "/images/gallery/fgd-child-marriage-nepalgunj.jpg",
+    caption: "After a focus group discussion with parents on child marriage",
+    meta: "Nepalgunj",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/parents-municipality-nepalgunj.jpg",
+    caption: "Discussion with parents and municipality representatives",
+    meta: "Nepalgunj",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/scm-meeting-nepalgunj.jpg",
+    caption: "Meeting with the School Management Committee",
+    meta: "Nepalgunj",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/children-discussion-jumla.jpg",
+    caption: "Discussion with students about the issues children face",
+    meta: "Jumla",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/municipality-meeting-jajarkot.jpg",
+    caption: "Meeting with a municipality representative",
+    meta: "Jajarkot",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/nwash-inception-surkhet.jpg",
+    caption: "At the N-WASH inception programme",
+    meta: "Chingad Municipality, Surkhet",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/flood-relief-bhotekoshi.jpg",
+    caption: "Relief distribution for Bhotekoshi flood victims",
+    meta: "Kathmandu",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/cardamom-study-cdc-ilam.jpg",
+    caption: "During the value chain analysis of large cardamom",
+    meta: "Cardamom Development Centre, Ilam",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/cardamom-collector-fikkal-ilam.jpg",
+    caption: "Talking with a large cardamom collector",
+    meta: "Fikkal Bazar, Ilam",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/cardamom-farmer-pachthar.jpg",
+    caption: "With a large cardamom farmer",
+    meta: "Wangwarak Rural Municipality, Pachthar",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/dairy-survey-dumse-tanahun.jpg",
+    caption: "With farmers during the dairy market survey",
+    meta: "Dumse, Tanahun",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/farmer-tanglafat-kirtipur.jpg",
+    caption: "With a farmer in the field",
+    meta: "Tanglafat, Kirtipur",
+    kind: "field",
+  },
+  {
+    src: "/images/gallery/college-field-trip-hetauda.jpg",
+    caption: "During a college field trip",
+    meta: "Hetauda",
+    kind: "field",
   },
   {
     caption: "Household survey enumeration",
