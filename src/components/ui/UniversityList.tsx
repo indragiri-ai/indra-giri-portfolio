@@ -23,10 +23,12 @@ export default function UniversityList({ delayOffset = 0 }: { delayOffset?: numb
             </div>
             <div className="flex items-center gap-4 text-sm">
               <span className="font-semibold text-fg">{u.role}</span>
-              <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted">
-                <IconCalendar size={13} className="text-accent-text" />
-                {u.period}
-              </span>
+              {u.period && (
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-muted">
+                  <IconCalendar size={13} className="text-accent-text" />
+                  {u.period}
+                </span>
+              )}
             </div>
             <div className="flex flex-wrap gap-1.5 sm:justify-end">
               {u.courses.map((c) => (

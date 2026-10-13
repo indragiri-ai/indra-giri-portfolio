@@ -61,7 +61,7 @@ export default function JourneyStrip({ items = journey }: { items?: JourneyItem[
       <ol
         ref={listRef}
         aria-label="Career and education, newest to oldest"
-        className="relative grid grid-cols-3 gap-2 sm:grid-cols-5 lg:grid-cols-9"
+        className="relative grid grid-cols-1 gap-2 sm:grid-cols-5 lg:grid-cols-9"
       >
         {steps.map((j, i) => {
           const isOpen = open === i;
@@ -94,7 +94,7 @@ export default function JourneyStrip({ items = journey }: { items?: JourneyItem[
                   else show(i, e.currentTarget);
                 }}
                 className={cn(
-                  "flex h-full w-full flex-col rounded-lg border px-2.5 py-2 text-left transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
+                  "flex h-full w-full flex-row items-center gap-3 rounded-lg border px-3 py-2.5 text-left sm:flex-col sm:items-stretch sm:gap-0 sm:px-2.5 sm:py-2 transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                   isOpen
                     ? "border-accent bg-raised motion-safe:-translate-y-0.5"
                     : isCurrent
@@ -102,7 +102,7 @@ export default function JourneyStrip({ items = journey }: { items?: JourneyItem[
                       : "border-line/15 bg-surface hover:border-accent/50"
                 )}
               >
-                <span className="flex items-center justify-between gap-1">
+                <span className="flex w-16 shrink-0 items-center justify-between gap-1 sm:w-auto">
                   <span
                     className={cn(
                       "font-mono text-[0.72rem]",
@@ -118,10 +118,14 @@ export default function JourneyStrip({ items = journey }: { items?: JourneyItem[
                     className={isOpen || isCurrent ? "text-accent-text" : "text-muted/70"}
                   />
                 </span>
-                <span className="mt-1 line-clamp-2 font-display text-[0.8rem] font-semibold leading-tight text-fg">
-                  {j.short}
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-sm font-semibold leading-tight text-fg sm:mt-1 sm:line-clamp-2 sm:text-[0.8rem]">
+                    {j.short}
+                  </span>
+                  <span className="mt-0.5 block text-xs leading-snug text-muted sm:line-clamp-2 sm:text-[0.72rem]">
+                    {j.orgShort}
+                  </span>
                 </span>
-                <span className="mt-0.5 line-clamp-2 text-[0.72rem] leading-snug text-muted">{j.orgShort}</span>
               </button>
 
               {/* Details: a floating card while open, screen-reader-only text
@@ -132,8 +136,8 @@ export default function JourneyStrip({ items = journey }: { items?: JourneyItem[
                 className={
                   isOpen
                     ? cn(
-                        "absolute top-full w-[min(20rem,calc(100vw-2rem))] pt-2",
-                        alignRight ? "right-0" : "left-0"
+                        "relative w-full pt-2 sm:absolute sm:top-full sm:w-[min(20rem,calc(100vw-2rem))]",
+                        alignRight ? "sm:right-0" : "sm:left-0"
                       )
                     : "sr-only"
                 }

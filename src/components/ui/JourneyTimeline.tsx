@@ -25,7 +25,7 @@ function TimelineEntry({
 
   return (
     <Reveal delay={Math.min(index * 0.04, 0.2)}>
-      <div className="relative grid grid-cols-[3rem_1fr] gap-x-5 pb-12 last:pb-0 sm:grid-cols-[10rem_3rem_1fr] sm:gap-x-6">
+      <div className="relative grid grid-cols-[2rem_1fr] gap-x-3 pb-8 last:pb-0 sm:grid-cols-[10rem_3rem_1fr] sm:gap-x-6 sm:pb-12">
         {/* period (desktop, left column) */}
         <div className="hidden pt-1 text-right sm:block">
           <div
@@ -46,18 +46,18 @@ function TimelineEntry({
           {!last && (
             <span
               aria-hidden
-              className="absolute -bottom-2 top-10 w-px bg-gradient-to-b from-accent/35 via-line/15 to-line/15"
+              className="absolute -bottom-2 top-8 w-px sm:top-10 bg-gradient-to-b from-accent/35 via-line/15 to-line/15"
             />
           )}
           <span
             className={cn(
-              "relative z-10 flex h-10 w-10 items-center justify-center rounded-full border transition-shadow duration-500",
+              "relative z-10 flex h-8 w-8 items-center sm:h-10 sm:w-10 justify-center rounded-full border transition-shadow duration-500",
               isCurrent
                 ? "border-accent bg-accent text-accent-ink shadow-[0_0_0_6px_rgb(var(--accent)/0.14),0_0_28px_-4px_rgb(var(--accent)/0.55)]"
                 : "border-line/20 bg-surface text-accent-text shadow-[0_4px_16px_-6px_rgb(var(--fg)/0.25)]"
             )}
           >
-            <Marker size={17} stroke={1.7} />
+            <Marker size={15} stroke={1.7} className="sm:h-[17px] sm:w-[17px]" />
           </span>
         </div>
 
@@ -72,7 +72,7 @@ function TimelineEntry({
             transition={{ duration: 0.65, ease: CARD_EASE }}
             style={{ transformStyle: "preserve-3d", transformOrigin: "50% 0%" }}
             className={cn(
-              "panel relative p-6 shadow-[0_20px_45px_-20px_rgb(var(--fg)/0.35)] transition-colors hover:border-accent/40 sm:p-7",
+              "panel relative p-4 shadow-[0_20px_45px_-20px_rgb(var(--fg)/0.35)] transition-colors hover:border-accent/40 sm:p-7",
               isCurrent && "border-accent/40 bg-accent/[0.05]"
             )}
           >
@@ -88,7 +88,7 @@ function TimelineEntry({
                 {isCurrent ? "Current" : isEdu ? "Education" : "Experience"}
               </span>
             </div>
-            <h3 className="font-display text-xl font-semibold leading-snug text-fg sm:text-2xl">
+            <h3 className="font-display text-lg font-semibold leading-snug text-fg sm:text-2xl">
               {item.role}
             </h3>
             <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
