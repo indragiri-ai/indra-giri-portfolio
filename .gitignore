@@ -17,3 +17,6 @@ next-env.d.ts
 
 # Original photos and source data, kept out of the published site
 /source-images/
+
+# Private writing-style notes used when drafting blogs; never publish
+My_writing_style/
