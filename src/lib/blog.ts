@@ -41,7 +41,7 @@ export const posts: BlogPost[] = [
         paragraphs: [
           "Every semester I see the same fork in the road. A student gets an assignment, opens a chatbot, pastes the question and hands in whatever comes back. The writing is clean. The student has learned nothing.",
           "I do not blame the student. The tool is free, fast and awake at midnight. If we only tell students not to use it, we lose, because they will use it anyway and stop telling us. If we pretend it changes nothing, we also lose. My position is simple: AI should be a tutor, never a ghostwriter. The difference is who does the thinking.",
-          "I have taught at four universities, and I now train professionals and school teachers to use AI. The pattern is the same in every room. People who use AI to skip thinking get weaker. People who use it to think harder get stronger. Same tool, opposite results.",
+          "I have taught at multiple universities, and I now train professionals and school teachers to use AI. The pattern is the same in every room. People who use AI to skip thinking get weaker. People who use it to think harder get stronger. Same tool, opposite results.",
         ],
       },
       {

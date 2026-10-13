@@ -580,7 +580,7 @@ export const certifications: Certification[] = [
 /* ── Teaching ────────────────────────────────────────────────── */
 
 export const teachingMetrics = [
-  { num: "5", label: "Universities" },
+  { num: "5", label: "Institutions" },
   { num: "8+", label: "Courses taught" },
   { num: "5", label: "Training programs" },
   { num: "4+", label: "Years teaching" },
@@ -591,7 +591,7 @@ export const universities = [
     name: "Department of Economics, Kathmandu University",
     aff: "Hattiban, Lalitpur",
     role: "Visiting Faculty",
-    period: "",
+    period: "Aug 2026 - Present",
     courses: ["Computer Application", "Data Analytics with Python"],
   },
   {
