@@ -16,11 +16,14 @@ import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import JourneyTimeline from "@/components/ui/JourneyTimeline";
 import { asset } from "@/lib/utils";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const intro =
   "From Delhi classrooms to Nepali field sites, and from spreadsheets to AI systems. The full path, with the toolkit picked up along the way.";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/journey") },
   title: `Journey & Toolkit | ${profile.name}`,
   description: intro,
 };
@@ -46,6 +49,7 @@ export default function JourneyPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Journey", path: "/journey" }]} />
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

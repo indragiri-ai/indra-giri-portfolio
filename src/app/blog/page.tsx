@@ -7,8 +7,11 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Reveal from "@/components/ui/Reveal";
 import { asset } from "@/lib/utils";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/blog") },
   title: `Blog & Articles | ${profile.name}`,
   description: blogIntro,
 };
@@ -19,6 +22,7 @@ export default function BlogPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Blog", path: "/blog" }]} />
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <Reveal>
@@ -41,6 +45,8 @@ export default function BlogPage() {
                 <img
                   src={asset(featured.cover)}
                   alt={featured.coverAlt}
+                  width={1200}
+                  height={800}
                   decoding="async"
                   className="aspect-[16/10] h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:aspect-auto lg:min-h-full"
                 />
@@ -81,6 +87,8 @@ export default function BlogPage() {
                   <img
                     src={asset(p.cover)}
                     alt={p.coverAlt}
+                    width={1200}
+                    height={800}
                     loading="lazy"
                     decoding="async"
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"

@@ -8,10 +8,13 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import { asset } from "@/lib/utils";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const service = aiServices.find((s) => s.slug === "research-policy")!;
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/ai/research-policy") },
   title: `AI Adoption in Nepal: Research & Policy | ${profile.name}`,
   description: aiReport.headline,
 };
@@ -19,6 +22,7 @@ export const metadata: Metadata = {
 export default function AIResearchPolicyPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "AI", path: "/ai" }, { name: "Research & Policy", path: "/ai/research-policy" }]} />
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

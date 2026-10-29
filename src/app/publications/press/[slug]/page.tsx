@@ -5,6 +5,8 @@ import { IconArrowLeft, IconNews } from "@tabler/icons-react";
 import { profile, mediaArticles } from "@/lib/data";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 export function generateStaticParams() {
   return mediaArticles.map((m) => ({ slug: m.slug }));
@@ -21,6 +23,7 @@ export async function generateMetadata({
   return {
     title: `${article.title} | ${profile.name}`,
     description: `${article.venue} · ${article.meta}`,
+    alternates: { canonical: absUrl(`/publications/press/${article.slug}`) },
   };
 }
 
@@ -35,6 +38,12 @@ export default async function PressArticlePage({
 
   return (
     <>
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Publications", path: "/publications" },
+          { name: article.title, path: `/publications/press/${article.slug}` },
+        ]}
+      />
       <Navbar />
       <main className="mx-auto max-w-3xl px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <Link

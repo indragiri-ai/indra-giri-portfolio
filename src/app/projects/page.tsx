@@ -7,11 +7,14 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import BuiltCard from "@/components/ui/BuiltCard";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const intro =
   "Open data and practical learning resources. Explore the tools I build and the material I use in training.";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/projects") },
   title: `Tools & Resources | ${profile.name}`,
   description: intro,
 };
@@ -19,6 +22,8 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Projects", path: "/projects" }]} />
+
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

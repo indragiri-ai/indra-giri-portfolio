@@ -1,19 +1,9 @@
 import type { MetadataRoute } from "next";
 import { posts } from "@/lib/blog";
 import { mediaArticles } from "@/lib/data";
+import { absUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
-
-/**
- * Same fallback pattern as layout.tsx's OG image: once a custom domain is
- * decided (see CLAUDE.md "Deploy target"), set NEXT_PUBLIC_SITE_URL and this
- * picks it up automatically. Until then it defaults to the GitHub Pages
- * project URL the deploy workflow actually publishes to.
- */
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri.com.np${BASE_PATH}`
-).replace(/\/$/, "");
 
 const staticRoutes = [
   "",
@@ -31,22 +21,22 @@ const staticRoutes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
-  const pages = staticRoutes.map((path) => ({
-    url: `${SITE_URL}${path}/`,
-    lastModified,
-  }));
+  // Static pages have no tracked edit date, so lastModified is left out rather
+  // than reporting the build time as if the page had just changed.
+  const pages = staticRoutes.map((path) => ({ url: absUrl(path) }));
 
   const blogPages = posts.map((p) => ({
-    url: `${SITE_URL}/blog/${p.slug}/`,
-    lastModified,
+    url: absUrl(`/blog/${p.slug}`),
+    lastModified: new Date(p.modified ?? p.date),
   }));
 
-  const pressPages = mediaArticles.map((m) => ({
-    url: `${SITE_URL}/publications/press/${m.slug}/`,
-    lastModified,
-  }));
+  const pressPages = mediaArticles.map((m) => {
+    const d = new Date(m.date);
+    return {
+      url: absUrl(`/publications/press/${m.slug}`),
+      ...(Number.isNaN(d.getTime()) ? {} : { lastModified: d }),
+    };
+  });
 
   return [...pages, ...blogPages, ...pressPages];
 }
