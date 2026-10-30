@@ -8,6 +8,7 @@ export const dynamic = "force-static";
 const staticRoutes = [
   "",
   "/ai",
+  "/ai/education",
   "/ai/training",
   "/ai/research-policy",
   "/ai/research-workflow",

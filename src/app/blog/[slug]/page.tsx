@@ -10,6 +10,7 @@ import { asset } from "@/lib/utils";
 import JsonLd, { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { PERSON_ID } from "@/lib/jsonld";
 import { absUrl, absAsset } from "@/lib/site";
+import { overviewPostSlugs } from "@/lib/ai-education";
 
 export function generateStaticParams() {
   return posts.map((p) => ({ slug: p.slug }));
@@ -137,6 +138,27 @@ export default async function BlogPostPage({
             </section>
           ))}
         </article>
+
+        {/* link up to the AI in education pillar page */}
+        {overviewPostSlugs.includes(post.slug) && (
+          <Link
+            href="/ai/education"
+            className="group mt-12 flex items-center justify-between gap-6 rounded-2xl border border-line/10 bg-surface p-6 transition-colors hover:border-accent/40"
+          >
+            <div>
+              <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
+                AI in education in Nepal
+              </div>
+              <div className="mt-2 font-display text-lg font-semibold text-fg transition-colors group-hover:text-accent-text">
+                Read the overview
+              </div>
+            </div>
+            <IconArrowRight
+              size={18}
+              className="shrink-0 text-accent-text transition-transform group-hover:translate-x-1"
+            />
+          </Link>
+        )}
 
         {/* tags */}
         <div className="mt-12 flex flex-wrap gap-2">

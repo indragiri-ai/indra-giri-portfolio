@@ -22,7 +22,7 @@ export interface AIService {
 }
 
 export const aiIntro =
-  "AI is not a side interest. I train professionals and students to use it well, I research how Nepal is actually adopting it, and I build it into the research work I do every week. These three things feed each other: the training is grounded in evidence, and the evidence comes from the field.";
+  "AI is not a side interest. I train professionals and students to use it well, I research how Nepal is actually adopting it, and I build it into the research work I do every week. Each one feeds the others. The training is based on what I see in the field.";
 
 export const aiServices: AIService[] = [
   {
@@ -59,7 +59,7 @@ export const aiServices: AIService[] = [
     slug: "research-workflow",
     name: "AI & Automation",
     title: "AI and automation",
-    tagline: "Faster studies that are still defensible.",
+    tagline: "Faster studies you can still trust.",
     intro:
       "I use AI across the research lifecycle, from instrument design to the final report, without letting it near the parts of the work where a plausible-sounding error would be fatal. This page sets out exactly where it helps, where it does not, and the checks that make the difference.",
     points: [

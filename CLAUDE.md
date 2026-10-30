@@ -19,7 +19,7 @@ The real folder is `D:\My_profile\CV_Indra\Profile_website_indra\Updated_profile
 - `components/ui/`: SectionHead (eyebrow "NN · TAG"), Reveal (fade-up), Counter, ThemeToggle. `components/effects/` contains UNUSED legacy files (CursorTrail, HeroCanvas, Preloader, SmoothScroll, MagneticButton): do not re-import them, the owner explicitly rejected mouse effects and preloaders.
 - Design tokens in `app/globals.css` (dark: navy #0c101b + gold #c6a15b; light: ivory + bronze). Shared classes: `.fig-label`, `.section-title`, `.panel`, `.btn-primary`, `.btn-ghost`.
 - Home page is a curated overview: Hero, FeaturedWork, 01 About (with JourneyStrip), 02 AI, 03 Research, 04 Contact. Projects, Teaching, Blog and Gallery live only on their own pages; do not add them back to the home page. Keep the numbering consistent when adding sections.
-- Standalone pages: `/ai` (hub) with `/ai/training`, `/ai/research-policy`, `/ai/research-workflow`; plus `/projects`, `/training`, `/blog`. Nav "AI" points at `/ai`, not the home anchor. Page content lives in `lib/ai.ts` and `lib/gallery.ts`; use `components/ui/PageHeader.tsx` for their headers.
+- Standalone pages: `/ai` (hub) with `/ai/education` (pillar page on AI in education, copy in `lib/ai-education.ts`, approved wording: do not re-polish), `/ai/training`, `/ai/research-policy`, `/ai/research-workflow`; plus `/projects`, `/training`, `/blog`. Nav "AI" points at `/ai`, not the home anchor. Page content lives in `lib/ai.ts` and `lib/gallery.ts`; use `components/ui/PageHeader.tsx` for their headers.
 - `/ai/research-policy` summarises the real report at `public/AI_report/`. Every figure on that page was read out of the PDF: do not edit them without re-checking the source.
 - Photos: `gallery` items and `trainingDeliveries` render a labelled placeholder tile when `src`/`photo` is empty. Fill the paths as photos arrive; never invent a photo path.
 
@@ -40,6 +40,9 @@ No em-dashes. Honest credentials only (KUSOM 4-day Excel+AI program, government 
 **Sankhya naming**: Sankhya AI is the AI unit of Sankhya Solutions Pvt. Ltd. Use "Sankhya AI" in AI and training contexts (aiPractice, AI project cards, training labels), "Sankhya Solutions" in research and evaluation contexts (journey employer, paper affiliation). Never list either in `clients`, it is his own company.
 
 **No self assigned skill scores.** `tools` in data.ts carries tier plus a factual `use` line, never a 0-100 number. Do not reintroduce percentage meters.
+
+## Writing voice
+The voice rules for all site copy live in `CLAUDE.local.md` (private, gitignored, not in the repo). Follow them for every page, FAQ, meta description and blog post.
 
 ## Nepal fieldwork map
 - `components/ui/NepalMap.tsx` renders Nepal's 77 districts as inline SVG (hover/tap/keyboard, tooltip with project + year). Full bleed at the bottom of the About section, outside `max-w-content`, because Nepal's bbox is 1.7:1; capped at 90vh so the whole country stays visible at once. The owner removed the visible district list, so the per-district `aria-label` is now the only machine readable copy of the data: keep it populated.

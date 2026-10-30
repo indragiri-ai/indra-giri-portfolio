@@ -36,9 +36,9 @@ export const profile = {
   aboutPhoto: "/images/about.jpg",
   tagline:
     "AI trainer and AI Generalist in Kathmandu, Nepal. I bring generative AI into education and turn a decade of field research into decisions organisations can act on.",
-  positioning: "Research, practical AI and training for better decisions.",
+  positioning: "Helping Nepal use AI well, through training and research.",
   heroIntro:
-    "I help organisations build evidence and use AI well, drawing on a decade of research across Nepal and South Asia.",
+    "I train people to use AI well, and I research how Nepal is adopting it. I have worked on research across Nepal and South Asia for more than ten years.",
 };
 
 /**

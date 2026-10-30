@@ -215,6 +215,9 @@ export default function AITrainingPage() {
               <Link href="/#contact" className="btn-primary">
                 Get in touch <IconArrowRight size={15} />
               </Link>
+              <Link href="/ai/education" className="btn-ghost">
+                Read the overview
+              </Link>
             </div>
           </div>
         </Reveal>

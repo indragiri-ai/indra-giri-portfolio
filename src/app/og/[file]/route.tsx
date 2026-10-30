@@ -1,6 +1,13 @@
 import { ImageResponse } from "next/og";
-import { posts, getPost } from "@/lib/blog";
+import { posts } from "@/lib/blog";
+import { educationOg } from "@/lib/ai-education";
 import { OG_SIZE, ogColors, ogFont } from "@/lib/og";
+
+/** Every share card: one per blog post, plus the AI in education pillar page. */
+const cards = [
+  ...posts.map((p) => ({ slug: p.slug, title: p.title, label: p.category })),
+  educationOg,
+];
 
 /**
  * Social share card for each blog post, written at build time to
@@ -13,7 +20,7 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return posts.map((p) => ({ file: `${p.slug}.png` }));
+  return cards.map((c) => ({ file: `${c.slug}.png` }));
 }
 
 export async function GET(
@@ -21,7 +28,7 @@ export async function GET(
   { params }: { params: Promise<{ file: string }> },
 ) {
   const { file } = await params;
-  const post = getPost(file.replace(/\.png$/, ""));
+  const post = cards.find((c) => c.slug === file.replace(/\.png$/, ""));
   if (!post) return new Response("Not found", { status: 404 });
   const c = ogColors();
 
@@ -68,7 +75,7 @@ export async function GET(
           }}
         >
           <span style={{ color: c.fgSoft }}>indragiri.com.np</span>
-          <span style={{ color: c.gold }}>{post.category}</span>
+          <span style={{ color: c.gold }}>{post.label}</span>
         </div>
       </div>
     ),

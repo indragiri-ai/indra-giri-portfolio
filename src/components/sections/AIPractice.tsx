@@ -21,9 +21,7 @@ export default function AIPractice() {
           tag="AI Practice"
           title={
             <>
-              Artificial intelligence,
-              <br />
-              applied with <em>rigour</em>
+              What I do with <em>AI</em>
             </>
           }
           intro={aiPractice.intro}
@@ -71,6 +69,13 @@ export default function AIPractice() {
             );
           })}
         </div>
+
+        <Link
+          href="/ai/education"
+          className="mt-10 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-accent-text transition-colors hover:text-fg"
+        >
+          AI in education in Nepal: read the overview <IconArrowRight size={14} />
+        </Link>
       </div>
     </section>
   );

@@ -10,6 +10,7 @@ export const dynamic = "force-static";
 export function GET() {
   const keyPages: [string, string][] = [
     ["AI in Nepal: training, research and automation", "/ai"],
+    ["AI in education in Nepal: evidence, training and FAQ", "/ai/education"],
     ["AI training in Nepal: AI in education and teams", "/ai/training"],
     ["AI adoption in Nepal: research and policy", "/ai/research-policy"],
     ["Research", "/research"],

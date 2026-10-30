@@ -29,7 +29,7 @@ export default function AIPage() {
           eyebrow="AI practice"
           title={
             <>
-              Artificial intelligence, applied with <em>rigour</em>
+              What I do with <em>AI</em>
             </>
           }
           intro={aiIntro}
@@ -63,6 +63,27 @@ export default function AIPage() {
             );
           })}
         </div>
+
+        {/* Pillar page */}
+        <Reveal>
+          <Link
+            href="/ai/education"
+            className="group mt-10 flex items-center justify-between gap-6 rounded-2xl border border-line/10 bg-surface p-7 transition-colors hover:border-accent/40"
+          >
+            <div>
+              <div className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
+                AI in education
+              </div>
+              <div className="mt-2 font-display text-xl font-semibold text-fg transition-colors group-hover:text-accent-text">
+                AI in education in Nepal: what the evidence shows and what I do about it
+              </div>
+            </div>
+            <IconArrowRight
+              size={20}
+              className="shrink-0 text-accent-text transition-transform group-hover:translate-x-1"
+            />
+          </Link>
+        </Reveal>
 
         {/* Report teaser */}
         <Reveal>
