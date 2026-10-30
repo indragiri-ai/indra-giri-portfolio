@@ -7,10 +7,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const service = aiServices.find((s) => s.slug === "research-workflow")!;
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/ai/research-workflow") },
   title: `AI in the Research Workflow | ${profile.name}`,
   description: service.intro,
 };
@@ -18,6 +21,7 @@ export const metadata: Metadata = {
 export default function AIResearchWorkflowPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "AI", path: "/ai" }, { name: "Research Workflow", path: "/ai/research-workflow" }]} />
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

@@ -20,13 +20,13 @@ export const profile = {
   // Sankhya AI is the AI unit of Sankhya Solutions Pvt. Ltd.
   // NAMING RULE: use "Sankhya AI" in AI / training contexts, "Sankhya Solutions"
   // in research and evaluation contexts. Do not mix the two in one sentence.
-  // URL is a placeholder until the site exists; components must render the link
-  // ONLY when `url` is non-empty (see UPGRADE-INSTRUCTIONS.md, workstream E).
+  // No Sankhya website exists, so `url` is empty. Components must render a link
+  // ONLY when `url` is non-empty (none currently read this field).
   sankhya: {
     name: "Sankhya AI",
     parent: "Sankhya Solutions Pvt. Ltd.",
     role: "Co-founder",
-    url: "", // TODO: set real Sankhya AI website URL when live
+    url: "",
     blurb: "The AI training and analytics unit of Sankhya Solutions Pvt. Ltd., Kathmandu.",
   },
   github: "https://github.com/indragiri-ai",

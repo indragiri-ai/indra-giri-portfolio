@@ -1,12 +1,11 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri.com.np${BASE_PATH}`
-).replace(/\/$/, "");
-
+// One rule for every crawler. AI crawlers (GPTBot, ClaudeBot, PerplexityBot,
+// Google-Extended) are deliberately NOT blocked: being cited by AI assistants
+// is a goal of the site.
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },

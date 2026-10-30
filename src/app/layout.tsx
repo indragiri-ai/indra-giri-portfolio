@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { profile } from "@/lib/data";
 import MotionProvider from "@/components/layout/MotionProvider";
+import JsonLd from "@/components/seo/JsonLd";
+import { personJsonLd } from "@/lib/jsonld";
+import { SITE_URL, absAsset } from "@/lib/site";
 import "./globals.css";
 
 /**
@@ -42,16 +45,7 @@ const mono = localFont({
   fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "monospace"],
 });
 
-/**
- * NEXT_PUBLIC_SITE_URL is the full canonical site root. For a GitHub project
- * page it includes the repository base path. The fallback matches the current
- * production deployment so local builds still emit absolute social URLs.
- */
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? `https://indragiri.com.np${BASE_PATH}`
-).replace(/\/$/, "");
-const ogImage = `${SITE_URL}${profile.portrait.startsWith("/") ? "" : "/"}${profile.portrait}`;
+const ogImage = absAsset(profile.portrait);
 const title = `${profile.name} | AI Trainer & AI in Education, Nepal`;
 
 export const metadata: Metadata = {
@@ -121,31 +115,6 @@ const contentSecurityPolicy = [
   "upgrade-insecure-requests",
 ].join("; ");
 
-/**
- * Person schema for entity SEO: helps Google associate Indra with "AI
- * trainer", "AI in education" and Nepal directly, rather than inferring it
- * from page copy alone. All values are static site content, not user input.
- */
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  url: SITE_URL,
-  image: ogImage,
-  jobTitle: ["AI Trainer", "AI Generalist", "Senior Researcher", "AI Educator"],
-  description: profile.tagline,
-  address: { "@type": "PostalAddress", addressLocality: "Kathmandu", addressCountry: "NP" },
-  knowsAbout: [
-    "Artificial Intelligence in Education",
-    "AI Training",
-    "AI Policy",
-    "Generative AI",
-    "Impact Evaluation",
-    "Data Analysis",
-  ],
-  sameAs: [profile.linkedin, profile.github, profile.facebook].filter(Boolean),
-};
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -158,10 +127,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
         )}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
+        {/* Person schema: ties Indra to "AI trainer", "AI in education" and Nepal
+            as an entity. Defined in lib/jsonld.ts. */}
+        <JsonLd data={personJsonLd} />
         {/* Entrance animations ship as inline opacity:0 in the static HTML
             and only fade in once JS runs. Without JS, show everything. */}
         <noscript

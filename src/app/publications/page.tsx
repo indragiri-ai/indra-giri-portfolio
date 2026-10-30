@@ -13,11 +13,14 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import PressMarquee from "@/components/ui/PressMarquee";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const intro =
   "Peer-reviewed and working papers, conference presentations and writing in the national press. Where the research ends up once the fieldwork is done.";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/publications") },
   title: `Publications | ${profile.name}`,
   description: intro,
 };
@@ -25,6 +28,8 @@ export const metadata: Metadata = {
 export default function PublicationsPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Publications", path: "/publications" }]} />
+
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

@@ -7,8 +7,11 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/ai") },
   title: `AI in Nepal: Training, Research & Automation | ${profile.name}`,
   description:
     "AI training, research and automation in Nepal. AI in education programs for schools and universities, plus AI adoption research for organisations.",
@@ -19,6 +22,7 @@ const ICONS = { school: IconSchool, bulb: IconBulb, robot: IconRobot };
 export default function AIPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "AI", path: "/ai" }]} />
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

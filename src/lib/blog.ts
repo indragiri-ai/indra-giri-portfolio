@@ -14,6 +14,8 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string; // ISO, used for sorting
+  /** ISO date of the last real content edit; omit if never edited after publishing. */
+  modified?: string;
   displayDate: string;
   category: string;
   readTime: string;
@@ -30,6 +32,7 @@ export const posts: BlogPost[] = [
     excerpt:
       "The same chatbot can make a student weaker or sharper. The difference is who does the thinking, and that is something we can teach.",
     date: "2026-10-12",
+    modified: "2026-10-13", // intro wording changed in git commit ff77746
     displayDate: "October 12, 2026",
     category: "Teaching & Learning",
     readTime: "9 min read",

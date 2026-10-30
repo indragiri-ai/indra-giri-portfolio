@@ -7,8 +7,11 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import { asset } from "@/lib/utils";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/gallery") },
   title: `Media & Gallery | ${profile.name}`,
   description: galleryIntro,
 };
@@ -18,6 +21,8 @@ export default function GalleryPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Gallery", path: "/gallery" }]} />
+
       <Navbar />
       <main className="pb-28 pt-36 lg:pt-44">
         <div className="mx-auto max-w-content px-6 sm:px-10">
@@ -45,6 +50,8 @@ export default function GalleryPage() {
                     <img
                       src={asset(item.src!)}
                       alt={item.caption}
+                      width={1600}
+                      height={1200}
                       loading={i < 3 ? "eager" : "lazy"}
                       decoding="async"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

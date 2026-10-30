@@ -6,11 +6,14 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import UniversityList from "@/components/ui/UniversityList";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const intro =
   "University lecture halls: economics, research methods, data analysis and the tools of modern evidence based work.";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/teaching") },
   title: `Teaching | ${profile.name}`,
   description: intro,
 };
@@ -18,6 +21,8 @@ export const metadata: Metadata = {
 export default function TeachingPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Teaching", path: "/teaching" }]} />
+
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader

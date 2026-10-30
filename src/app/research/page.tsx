@@ -9,11 +9,14 @@ import Reveal from "@/components/ui/Reveal";
 import ProjectsExplorer from "@/components/sections/ProjectsExplorer";
 import NepalMap from "@/components/ui/NepalMap";
 import FeaturedPaperCard from "@/components/ui/FeaturedPaperCard";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const intro =
   "Impact evaluations, value chain studies, market research and social research for international organisations, governments and universities across Nepal and India. Every study below ran end to end: design, field teams, analysis and the recommendations that followed.";
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/research") },
   title: `Research | ${profile.name}`,
   description: intro,
 };
@@ -23,6 +26,8 @@ export default function ResearchPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "Research", path: "/research" }]} />
+
       <Navbar />
       <main className="pb-28 pt-36 lg:pt-44">
         <div className="mx-auto max-w-content px-6 sm:px-10">

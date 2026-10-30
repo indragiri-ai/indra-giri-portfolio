@@ -8,12 +8,15 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/ui/Reveal";
 import { asset } from "@/lib/utils";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { absUrl } from "@/lib/site";
 
 const service = aiServices.find((s) => s.slug === "training")!;
 /* The teachers handbook, surfaced here because it came out of these sessions. */
 const handbook = builtProjects.find((b) => b.title.startsWith("AI for Teachers"));
 
 export const metadata: Metadata = {
+  alternates: { canonical: absUrl("/ai/training") },
   title: `AI Training in Nepal: AI in Education & Teams | ${profile.name}`,
   description:
     "Practical AI training in Nepal for schools, universities and professionals, including dedicated AI in education programs for teachers.",
@@ -22,6 +25,8 @@ export const metadata: Metadata = {
 export default function AITrainingPage() {
   return (
     <>
+      <BreadcrumbJsonLd trail={[{ name: "AI", path: "/ai" }, { name: "Training", path: "/ai/training" }]} />
+
       <Navbar />
       <main className="mx-auto max-w-content px-6 pb-28 pt-36 sm:px-10 lg:pt-44">
         <PageHeader
@@ -151,6 +156,8 @@ export default function AITrainingPage() {
                     <img
                       src={asset(d.photo)}
                       alt={d.photoCaption ?? d.organisation}
+                      width={1600}
+                      height={1200}
                       loading="lazy"
                       decoding="async"
                       className="aspect-[4/3] w-full object-cover"

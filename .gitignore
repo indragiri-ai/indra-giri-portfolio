@@ -20,3 +20,6 @@ next-env.d.ts
 
 # Private writing-style notes used when drafting blogs; never publish
 My_writing_style/
+
+# Working brief for SEO/GEO tasks, not part of the site
+SEO_GEO_TASKS.md
