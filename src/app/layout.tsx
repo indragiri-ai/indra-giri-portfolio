@@ -71,6 +71,8 @@ export const metadata: Metadata = {
     "research consultant",
   ],
   authors: [{ name: profile.name }],
+  // Google Search Console ownership tag, rendered site-wide in <head>.
+  verification: { google: "wA9BGVVKzrMT86nDwqS4yIPTwFYaQcZc9dwMEvDfw0E" },
   openGraph: {
     title,
     description: profile.tagline,
