@@ -13,6 +13,7 @@
     "verify:export": "node scripts/verify-export.mjs"
   },
   "dependencies": {
+    "@next/third-parties": "^16.4.1",
     "@tabler/icons-react": "^3.29.0",
     "framer-motion": "^12.0.0",
     "next": "^16.4.1",

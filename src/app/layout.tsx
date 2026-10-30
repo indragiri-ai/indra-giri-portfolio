@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { profile } from "@/lib/data";
 import MotionProvider from "@/components/layout/MotionProvider";
 import JsonLd from "@/components/seo/JsonLd";
@@ -105,13 +106,14 @@ try {
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
-  "connect-src 'self' https://formspree.io",
+  // Google Analytics 4: gtag.js loads from googletagmanager.com and reports to the Google domains.
+  "connect-src 'self' https://formspree.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com",
   "font-src 'self'",
   "form-action 'self' https://formspree.io",
   "frame-src 'none'",
   "img-src 'self' data: https:",
   "object-src 'none'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
   "worker-src 'self' blob:",
   "upgrade-insecure-requests",
@@ -146,6 +148,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning>
         <MotionProvider>{children}</MotionProvider>
       </body>
+      <GoogleAnalytics gaId="G-6LRXL0EZZB" />
     </html>
   );
 }
