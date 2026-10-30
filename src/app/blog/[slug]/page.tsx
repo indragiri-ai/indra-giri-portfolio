@@ -24,9 +24,8 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return { title: `Blog | ${profile.name}` };
   const url = absUrl(`/blog/${post.slug}`);
-  // Covers are SVG, which Facebook, LinkedIn and X do not render as a share
-  // image, so social cards fall back to the portrait. TODO: raster covers.
-  const ogImage = absAsset(post.cover.endsWith(".svg") ? profile.portrait : post.cover);
+  // Share card rendered at build time by app/og/[file]/route.tsx.
+  const ogImage = absAsset(`/og/${post.slug}.png`);
   return {
     title: `${post.title} | ${profile.name}`,
     description: post.excerpt,
@@ -41,7 +40,7 @@ export async function generateMetadata({
       modifiedTime: post.modified ?? post.date,
       authors: [absUrl()],
       tags: post.tags,
-      images: [{ url: ogImage, alt: post.coverAlt }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -71,7 +70,7 @@ export default async function BlogPostPage({
     "@type": "BlogPosting",
     headline: post.title,
     description: post.excerpt,
-    image: absAsset(post.cover),
+    image: absAsset(`/og/${post.slug}.png`),
     datePublished: post.date,
     dateModified: post.modified ?? post.date,
     inLanguage: "en",
